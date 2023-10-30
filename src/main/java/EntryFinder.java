@@ -1,0 +1,2 @@
+public class EntryFinder {
+}
