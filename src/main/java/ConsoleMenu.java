@@ -1,7 +1,15 @@
 import java.util.Scanner;
+
 public class ConsoleMenu {
     private DictionaryService dictionaryService;
+    private DictionaryFileWriter fileWriter; // Добавьте DictionaryFileWriter
     private Scanner scanner;
+
+    public ConsoleMenu(DictionaryService dictionaryService, DictionaryFileWriter fileWriter) {
+        this.dictionaryService = dictionaryService;
+        this.fileWriter = fileWriter;
+        this.scanner = new Scanner(System.in);
+    }
 
     public ConsoleMenu(DictionaryService dictionaryService, DictionaryFileReader fileReader) {
         this.dictionaryService = dictionaryService;

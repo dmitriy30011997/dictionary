@@ -4,18 +4,17 @@ public class Application {
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
         DictionaryFileReader fileReader = new DictionaryFileReader();
+        DictionaryFileWriter fileWriter = new DictionaryFileWriter();
 
-        // Загрузка данных из файла при запуске
         Map<String, String> initialData = fileReader.readFromFile("src/main/dictionary.txt");
         dictionary.setDictionary(initialData);
 
         DictionaryService dictionaryService = new DictionaryService(dictionary);
-        ConsoleMenu consoleMenu = new ConsoleMenu(dictionaryService, fileReader);
+        ConsoleMenu consoleMenu = new ConsoleMenu(dictionaryService, fileWriter);
 
         consoleMenu.run();
 
-        // Сохранение данных в файл перед завершением
-        fileReader.writeToFile(dictionary.getDictionary(), "src/main/dictionary.txt");
+        fileWriter.writeToFile(dictionary.getDictionary(), "src/main/dictionary.txt");
 
         consoleMenu.close();
     }
