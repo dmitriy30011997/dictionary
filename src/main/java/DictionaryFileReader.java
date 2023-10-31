@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DictionaryFileReader {
-    public Map<String, String> readFromFile(String file) {
+    public Map<String, String> readFromFile() {
         Map<String, String> dictionary = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/dictionary.txt"))) {
             String line;

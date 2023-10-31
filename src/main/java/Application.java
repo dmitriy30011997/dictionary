@@ -6,7 +6,7 @@ public class Application {
         DictionaryFileReader fileReader = new DictionaryFileReader();
         DictionaryFileWriter fileWriter = new DictionaryFileWriter();
 
-        Map<String, String> initialData = fileReader.readFromFile("src/main/dictionary.txt");
+        Map<String, String> initialData = fileReader.readFromFile();
         dictionary.setDictionary(initialData);
 
         DictionaryService dictionaryService = new DictionaryService(dictionary);
