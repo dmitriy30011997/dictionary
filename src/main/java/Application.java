@@ -3,18 +3,17 @@ import java.util.Map;
 public class Application {
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
-        DictionaryFileReader fileReader = new DictionaryFileReader();
-        DictionaryFileWriter fileWriter = new DictionaryFileWriter();
+        FileService fileService = new FileService();
 
-        Map<String, String> initialData = fileReader.readFromFile();
+        Map<String, String> initialData = fileService.readFromFile();
         dictionary.setDictionary(initialData);
 
         DictionaryService dictionaryService = new DictionaryService(dictionary);
-        ConsoleMenu consoleMenu = new ConsoleMenu(dictionaryService, fileWriter);
+        ConsoleMenu consoleMenu = new ConsoleMenu(dictionaryService, fileService);
 
         consoleMenu.run();
 
-        fileWriter.writeToFile(dictionary.getDictionary(), "src/main/dictionary.txt");
+        fileService.writeToFile(dictionary.getDictionary(), "src/main/dictionary.txt");
 
         consoleMenu.close();
     }

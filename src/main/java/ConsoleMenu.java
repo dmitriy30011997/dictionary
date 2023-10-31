@@ -2,16 +2,16 @@ import java.util.Scanner;
 
 public class ConsoleMenu {
     private DictionaryService dictionaryService;
-    private DictionaryFileWriter fileWriter; // Добавьте DictionaryFileWriter
+    private FileService fileService;
     private Scanner scanner;
 
-    public ConsoleMenu(DictionaryService dictionaryService, DictionaryFileWriter fileWriter) {
+    public ConsoleMenu(DictionaryService dictionaryService, FileService fileService) {
         this.dictionaryService = dictionaryService;
-        this.fileWriter = fileWriter;
+        this.fileService = fileService;
         this.scanner = new Scanner(System.in);
     }
 
-    public ConsoleMenu(DictionaryService dictionaryService, DictionaryFileReader fileReader) {
+    public ConsoleMenu(DictionaryService dictionaryService) {
         this.dictionaryService = dictionaryService;
         this.scanner = new Scanner(System.in);
     }

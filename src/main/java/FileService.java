@@ -2,7 +2,18 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DictionaryFileReader {
+public class FileService {
+    public void writeToFile(Map<String, String> dictionary, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (Map.Entry<String, String> entry : dictionary.entrySet()) {
+                writer.write(entry.getKey() + ": " + entry.getValue());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Map<String, String> readFromFile() {
         Map<String, String> dictionary = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/dictionary.txt"))) {
@@ -21,5 +32,3 @@ public class DictionaryFileReader {
         return dictionary;
     }
 }
-
-
