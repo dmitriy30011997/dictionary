@@ -49,17 +49,17 @@ public class ConsoleMenu {
                     String key = scanner.nextLine();
                     System.out.print("Введите значение: ");
                     String value = scanner.nextLine();
-                    dictionaryService.add(key, value);
+                    dictionaryService.add(key, value, dictionaryChoice);
                     break;
                 case 2:
                     System.out.print("Введите ключ для удаления: ");
                     String keyToDelete = scanner.nextLine();
-                    dictionaryService.delete(keyToDelete);
+                    dictionaryService.delete(keyToDelete, dictionaryChoice);
                     break;
                 case 3:
                     System.out.print("Введите ключ для поиска: ");
                     String keyToFind = scanner.nextLine();
-                    String translation = dictionaryService.find(keyToFind);
+                    String translation = dictionaryService.find(keyToFind, dictionaryChoice);
                     if (translation != null) {
                         System.out.println("Перевод: " + translation);
                     } else {
