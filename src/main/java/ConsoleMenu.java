@@ -10,12 +10,6 @@ public class ConsoleMenu {
         this.fileService = fileService;
         this.scanner = new Scanner(System.in);
     }
-
-    public ConsoleMenu(DictionaryService dictionaryService) {
-        this.dictionaryService = dictionaryService;
-        this.scanner = new Scanner(System.in);
-    }
-
     public void run() {
         boolean exit = false;
         while (!exit) {
