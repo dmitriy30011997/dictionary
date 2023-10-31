@@ -14,6 +14,26 @@ public class ConsoleMenu {
     public void run() {
         boolean exit = false;
         while (!exit) {
+            System.out.println("Выберите словарь:");
+            System.out.println("1. Словарь 1");
+            System.out.println("2. Словарь 2");
+            System.out.println("3. Выйти");
+
+            int dictionaryChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (dictionaryChoice == 1) {
+                dictionaryService.setActiveDictionary(dictionaryService.getDictionary1());
+            } else if (dictionaryChoice == 2) {
+                dictionaryService.setActiveDictionary(dictionaryService.getDictionary2());
+            } else if (dictionaryChoice == 3) {
+                exit = true;
+                continue;
+            } else {
+                System.out.println("Неверный выбор словаря.");
+                continue;
+            }
+
             System.out.println("Меню команд:");
             System.out.println("1. Добавить запись");
             System.out.println("2. Удалить запись");
