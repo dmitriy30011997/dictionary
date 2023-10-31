@@ -1,12 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+
 
 public class Dictionary {
     private Map<String, String> dictionary;
 
-    public Dictionary() {
-        this.dictionary = new HashMap<>();
+    public Dictionary(Map<String, String> initialData) {
+        this.dictionary = new HashMap<>(initialData);
     }
 
     public void addEntry(String key, String value) {
@@ -19,10 +19,6 @@ public class Dictionary {
 
     public String findEntry(String key) {
         return dictionary.get(key);
-    }
-
-    public void setDictionary(Map<String, String> dictionary) {
-        this.dictionary = dictionary;
     }
 
     public Map<String, String> getDictionary() {
