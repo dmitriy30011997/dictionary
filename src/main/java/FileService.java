@@ -1,14 +1,13 @@
+import java.util.Map;
 import java.io.*;
 import java.util.HashMap;
-import java.util.Map;
-
 public class FileService {
-    private String firstDictionary;
-    private String secondDictionary;
+    private String firstDictionaryFileName;
+    private String secondDictionaryFileName;
 
-    public FileService(String firstDictionary, String secondDictionary) {
-        this.firstDictionary = firstDictionary;
-        this.secondDictionary = secondDictionary;
+    public FileService(String firstDictionaryFileName, String secondDictionaryFileName) {
+        this.firstDictionaryFileName = firstDictionaryFileName;
+        this.secondDictionaryFileName = secondDictionaryFileName;
     }
 
     public void writeToFile(Map<String, String> dictionary, String fileName) {
@@ -20,6 +19,14 @@ public class FileService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void writeToFileForFirstDictionary(Map<String, String> dictionary) {
+        writeToFile(dictionary, firstDictionaryFileName);
+    }
+
+    public void writeToFileForSecondDictionary(Map<String, String> dictionary) {
+        writeToFile(dictionary, secondDictionaryFileName);
     }
 
     public Map<String, String> readFromFile(String fileName) {
@@ -40,19 +47,11 @@ public class FileService {
         return dictionary;
     }
 
-    public Map<String, String> readFromFileForDictionary1() {
-        return readFromFile(firstDictionary);
+    public Map<String, String> readFromFileForFirstDictionary() {
+        return readFromFile(firstDictionaryFileName);
     }
 
-    public Map<String, String> readFromFileForDictionary2() {
-        return readFromFile(secondDictionary);
-    }
-
-    public void writeToFileForDictionary1(Map<String, String> dictionary) {
-        writeToFile(dictionary, firstDictionary);
-    }
-
-    public void writeToFileForDictionary2(Map<String, String> dictionary) {
-        writeToFile(dictionary, secondDictionary);
+    public Map<String, String> readFromFileForSecondDictionary() {
+        return readFromFile(secondDictionaryFileName);
     }
 }

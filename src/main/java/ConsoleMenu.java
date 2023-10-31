@@ -14,31 +14,50 @@ public class ConsoleMenu {
     public void run() {
         boolean exit = false;
         while (!exit) {
-            System.out.println("Выберите словарь:");
-            System.out.println("1. Словарь 1");
-            System.out.println("2. Словарь 2");
+            System.out.println("Меню команд:");
+            System.out.println("1. Выбрать словарь (1 или 2)");
+            System.out.println("2. Показать все записи со словарей");
             System.out.println("3. Выйти");
 
-            int dictionaryChoice = scanner.nextInt();
+            int mainChoice = scanner.nextInt();
             scanner.nextLine();
 
-            if (dictionaryChoice == 1) {
-                dictionaryService.setActiveDictionary(dictionaryService.getDictionary1());
-            } else if (dictionaryChoice == 2) {
-                dictionaryService.setActiveDictionary(dictionaryService.getDictionary2());
-            } else if (dictionaryChoice == 3) {
+            if (mainChoice == 1) {
+                chooseDictionary();
+            } else if (mainChoice == 2) {
+                dictionaryService.viewDictionaryContents();
+            } else if (mainChoice == 3) {
                 exit = true;
-                continue;
             } else {
-                System.out.println("Неверный выбор словаря.");
-                continue;
+                System.out.println("Неверная команда. Попробуйте снова.");
             }
+        }
+    }
 
-            System.out.println("Меню команд:");
+    public void chooseDictionary() {
+        System.out.print("Выберите словарь (1 или 2): ");
+        int dictionaryChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (dictionaryChoice == 1) {
+            dictionaryService.setActiveDictionary(dictionaryService.getDictionary1());
+            dictionaryFunctions();
+        } else if (dictionaryChoice == 2) {
+            dictionaryService.setActiveDictionary(dictionaryService.getDictionary2());
+            dictionaryFunctions();
+        } else {
+            System.out.println("Неверный выбор словаря.");
+        }
+    }
+
+    public void dictionaryFunctions() {
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Меню команд для выбранного словаря:");
             System.out.println("1. Добавить запись");
             System.out.println("2. Удалить запись");
-            System.out.println("3. Найти запись");
-            System.out.println("4. Выйти");
+            System.out.println("3. Показать содержимое словарей");
+            System.out.println("4. Выйти из словаря");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -49,32 +68,22 @@ public class ConsoleMenu {
                     String key = scanner.nextLine();
                     System.out.print("Введите значение: ");
                     String value = scanner.nextLine();
-                    dictionaryService.add(key, value, dictionaryChoice);
+                    dictionaryService.add(key, value, dictionaryService.getActiveDictionaryLanguage());
                     break;
                 case 2:
                     System.out.print("Введите ключ для удаления: ");
                     String keyToDelete = scanner.nextLine();
-                    dictionaryService.delete(keyToDelete, dictionaryChoice);
+                    dictionaryService.delete(keyToDelete, dictionaryService.getActiveDictionaryLanguage());
                     break;
                 case 3:
-                    System.out.print("Введите ключ для поиска: ");
-                    String keyToFind = scanner.nextLine();
-                    String translation = dictionaryService.find(keyToFind, dictionaryChoice);
-                    if (translation != null) {
-                        System.out.println("Перевод: " + translation);
-                    } else {
-                        System.out.println("Запись не найдена.");
-                    }
+                    String dictionaryContents = dictionaryService.viewDictionaryContents();
+                    System.out.println(dictionaryContents);
                     break;
                 case 4:
                     exit = true;
                     break;
-                case 5:
-                    String dictionaryContents = dictionaryService.viewDictionaryContents();
-                    System.out.println(dictionaryContents);
-                    break;
                 default:
-                    System.out.println("Неверная команда. Попробуйте снова.");
+                    System.out.println("Неверная команда для словаря. Попробуйте снова.");
             }
         }
     }

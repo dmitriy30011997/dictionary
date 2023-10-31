@@ -1,49 +1,58 @@
 import java.util.Map;
 
 public class DictionaryService {
-    private Dictionary dictionary1;
-    private Dictionary dictionary2;
-    private Dictionary activeDictionary;
+    private Dictionary dictionary;
+    private int activeDictionaryLanguage;
 
-    public DictionaryService(Dictionary dictionary1, Dictionary dictionary2) {
-        this.dictionary1 = dictionary1;
-        this.dictionary2 = dictionary2;
-        this.activeDictionary = dictionary1; // Начально активный словарь
+    public DictionaryService(Dictionary dictionary) {
+        this.dictionary = dictionary;
+        this.activeDictionaryLanguage = 1;
     }
 
     public void setActiveDictionary(Dictionary dictionary) {
-        this.activeDictionary = dictionary;
+        this.dictionary = dictionary;
     }
 
-    public void add(String key, String value, int language) {
-        activeDictionary.addEntry(key, value, language);
-    }
-
-    public void delete(String key, int language) {
-        activeDictionary.deleteEntry(key, language);
-    }
-
-    public String find(String key, int language) {
-        return activeDictionary.findEntry(key, language);
+    public int getActiveDictionaryLanguage() {
+        return activeDictionaryLanguage;
     }
 
     public Dictionary getDictionary1() {
+        Dictionary dictionary1 = new Dictionary();
+        dictionary1.setDictionary1(dictionary.getDictionary1());
         return dictionary1;
     }
 
     public Dictionary getDictionary2() {
+        Dictionary dictionary2 = new Dictionary();
+        dictionary2.setDictionary2(dictionary.getDictionary2());
         return dictionary2;
+    }
+
+    public void add(String key, String value, int language) {
+        activeDictionaryLanguage = language;
+        dictionary.addEntry(key, value, language);
+    }
+
+    public void delete(String key, int language) {
+        activeDictionaryLanguage = language;
+        dictionary.deleteEntry(key, language);
+    }
+
+    public String find(String key, int language) {
+        activeDictionaryLanguage = language;
+        return dictionary.findEntry(key, language);
     }
 
     public String viewDictionaryContents() {
         String dictionary1Contents = "Содержимое словаря 1:\n";
         String dictionary2Contents = "Содержимое словаря 2:\n";
 
-        for (Map.Entry<String, String> entry : dictionary1.getDictionary1().entrySet()) {
+        for (Map.Entry<String, String> entry : dictionary.getDictionary1().entrySet()) {
             dictionary1Contents += entry.getKey() + ": " + entry.getValue() + "\n";
         }
 
-        for (Map.Entry<String, String> entry : dictionary2.getDictionary2().entrySet()) {
+        for (Map.Entry<String, String> entry : dictionary.getDictionary2().entrySet()) {
             dictionary2Contents += entry.getKey() + ": " + entry.getValue() + "\n";
         }
 

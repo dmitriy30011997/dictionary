@@ -49,6 +49,14 @@ public class Dictionary {
         }
     }
 
+    public void setDictionary1(Map<String, String> dictionary1) {
+        this.dictionary1 = dictionary1;
+    }
+
+    public void setDictionary2(Map<String, String> dictionary2) {
+        this.dictionary2 = dictionary2;
+    }
+
     public Map<String, String> getDictionary1() {
         return dictionary1;
     }
