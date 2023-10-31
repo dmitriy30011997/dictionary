@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Dictionary {
     private Map<String, String> dictionary;
@@ -26,6 +27,5 @@ public class Dictionary {
 
     public Map<String, String> getDictionary() {
         return dictionary;
-
     }
 }
