@@ -69,6 +69,10 @@ public class ConsoleMenu {
                 case 4:
                     exit = true;
                     break;
+                case 5:
+                    String dictionaryContents = dictionaryService.viewDictionaryContents();
+                    System.out.println(dictionaryContents);
+                    break;
                 default:
                     System.out.println("Неверная команда. Попробуйте снова.");
             }

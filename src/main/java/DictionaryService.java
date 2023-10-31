@@ -1,3 +1,5 @@
+import java.util.Map;
+
 public class DictionaryService {
     private Dictionary dictionary1;
     private Dictionary dictionary2;
@@ -31,5 +33,20 @@ public class DictionaryService {
 
     public Dictionary getDictionary2() {
         return dictionary2;
+    }
+
+    public String viewDictionaryContents() {
+        String dictionary1Contents = "Содержимое словаря 1:\n";
+        String dictionary2Contents = "Содержимое словаря 2:\n";
+
+        for (Map.Entry<String, String> entry : dictionary1.getDictionary1().entrySet()) {
+            dictionary1Contents += entry.getKey() + ": " + entry.getValue() + "\n";
+        }
+
+        for (Map.Entry<String, String> entry : dictionary2.getDictionary2().entrySet()) {
+            dictionary2Contents += entry.getKey() + ": " + entry.getValue() + "\n";
+        }
+
+        return dictionary1Contents + "\n" + dictionary2Contents;
     }
 }
