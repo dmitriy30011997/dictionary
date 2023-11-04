@@ -7,17 +7,17 @@ public class Application {
         Map<String, String> initialData1 = fileService.readFromFileForFirstDictionary();
         Map<String, String> initialData2 = fileService.readFromFileForSecondDictionary();
 
-        Dictionary dictionary = new Dictionary();
-        dictionary.getDictionary1().putAll(initialData1);
-        dictionary.getDictionary2().putAll(initialData2);
+        DictionaryRepisitory dictionaryRepisitory = new DictionaryRepisitory();
+        dictionaryRepisitory.getDictionary1().putAll(initialData1);
+        dictionaryRepisitory.getDictionary2().putAll(initialData2);
 
-        DictionaryService dictionaryService = new DictionaryService(dictionary);
+        DictionaryService dictionaryService = new DictionaryService(dictionaryRepisitory);
         ConsoleMenu consoleMenu = new ConsoleMenu(dictionaryService, fileService);
 
         consoleMenu.run();
 
-        fileService.writeToFileForFirstDictionary(dictionary.getDictionary1());
-        fileService.writeToFileForSecondDictionary(dictionary.getDictionary2());
+        fileService.writeToFileForFirstDictionary(dictionaryRepisitory.getDictionary1());
+        fileService.writeToFileForSecondDictionary(dictionaryRepisitory.getDictionary2());
 
         consoleMenu.close();
     }
