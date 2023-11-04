@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class ConsoleMenu {
+    DictionaryRepository dictionaryRepository = new DictionaryRepository();
     private DictionaryService dictionaryService;
     private FileService fileService;
     private Scanner scanner;
@@ -87,8 +88,9 @@ public class ConsoleMenu {
             }
         }
     }
-
     public void close() {
+        fileService.writeToFileForFirstDictionary(dictionaryRepository.getDictionary1());
+        fileService.writeToFileForSecondDictionary(dictionaryRepository.getDictionary2());
         scanner.close();
     }
 }

@@ -1,11 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class DictionaryRepisitory {
+public class DictionaryRepository {
     private Map<String, String> dictionary1;
     private Map<String, String> dictionary2;
 
-    public DictionaryRepisitory() {
+    public DictionaryRepository() {
         this.dictionary1 = new HashMap<>();
         this.dictionary2 = new HashMap<>();
     }
