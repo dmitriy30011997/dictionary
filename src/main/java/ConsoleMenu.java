@@ -81,6 +81,7 @@ public class ConsoleMenu {
                     System.out.println(dictionaryContents);
                     break;
                 case 4:
+                    fileService.writeToFile(dictionaryRepository.getDictionary1());
                     exit = true;
                     break;
                 default:
@@ -89,8 +90,6 @@ public class ConsoleMenu {
         }
     }
     public void close() {
-        fileService.writeToFile(dictionaryRepository.getDictionary1());
-        fileService.writeToFile(dictionaryRepository.getDictionary2());
         scanner.close();
     }
 }
