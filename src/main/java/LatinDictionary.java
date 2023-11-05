@@ -3,10 +3,14 @@ import java.util.Map;
 public class LatinDictionary implements IDictionary{
 
     private Map<String, String> latinDictionary;
+    private FileService fileService;
 
     //конструктор с инициализацией словарей
     LatinDictionary(){
-
+        Map<String, String> initialData = fileService.
+                readFromFileForDictionary("src/main/latinDictionary.txt");
+        DictionaryRepository dictionaryRepository = new DictionaryRepository();
+        dictionaryRepository.getDictionary().putAll(initialData);
     }
     @Override
     public void addEntry(String key, String value) {

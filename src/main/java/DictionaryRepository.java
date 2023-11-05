@@ -2,12 +2,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DictionaryRepository {
-    private Map<String, String> dictionary1;
-    private Map<String, String> dictionary2;
+    private Map<String, String> dictionary;
 
     public DictionaryRepository() {
-        this.dictionary1 = new HashMap<>();
-        this.dictionary2 = new HashMap<>();
+        this.dictionary = new HashMap<>();
     }
 
     public void addEntry(String key, String value, int language) {
@@ -57,11 +55,7 @@ public class DictionaryRepository {
         this.dictionary2 = dictionary2;
     }
 
-    public Map<String, String> getDictionary1() {
-        return dictionary1;
-    }
-
-    public Map<String, String> getDictionary2() {
-        return dictionary2;
+    public Map<String, String> getDictionary() {
+        return dictionary;
     }
 }

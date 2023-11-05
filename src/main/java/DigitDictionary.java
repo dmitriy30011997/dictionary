@@ -2,6 +2,14 @@ import java.util.Map;
 
 public class DigitDictionary implements IDictionary{
     private Map<String, String> digitDictionary;
+    private FileService fileService;
+
+    DigitDictionary(){
+        Map<String, String> initialData = fileService.
+                readFromFileForDictionary("src/main/latinDictionary.txt");
+        DictionaryRepository dictionaryRepository = new DictionaryRepository();
+        dictionaryRepository.getDictionary().putAll(initialData);
+    }
     //конструктор с инициализацией словарей
     @Override
     public void addEntry(String key, String value) {
