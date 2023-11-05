@@ -27,6 +27,6 @@ public class DigitDictionary implements IDictionary{
 
     @Override
     public String findEntry(String key) {
-        return null;
+        return digitDictionary.get(key);
     }
 }
