@@ -89,8 +89,8 @@ public class ConsoleMenu {
         }
     }
     public void close() {
-        fileService.writeToFileForFirstDictionary(dictionaryRepository.getDictionary1());
-        fileService.writeToFileForSecondDictionary(dictionaryRepository.getDictionary2());
+        fileService.writeToFile(dictionaryRepository.getDictionary1());
+        fileService.writeToFile(dictionaryRepository.getDictionary2());
         scanner.close();
     }
 }

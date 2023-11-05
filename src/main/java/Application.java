@@ -2,10 +2,12 @@ import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
-        FileService fileService = new FileService("src/main/dictionary1.txt", "src/main/dictionary2.txt");
+        FileService fileService = new FileService("src/main/dictionary1.txt");
+        FileService fileService1 = new FileService("src/main/dictionary2.txt");
 
-        Map<String, String> initialData1 = fileService.readFromFileForFirstDictionary();
-        Map<String, String> initialData2 = fileService.readFromFileForSecondDictionary();
+
+        Map<String, String> initialData1 = fileService.readFromFileForDictionary("src/main/dictionary1.txt");
+        Map<String, String> initialData2 = fileService.readFromFileForDictionary("src/main/dictionary2.txt");
 
         DictionaryRepository dictionaryRepository = new DictionaryRepository();
         dictionaryRepository.getDictionary1().putAll(initialData1);

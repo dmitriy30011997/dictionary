@@ -2,12 +2,10 @@ import java.util.Map;
 import java.io.*;
 import java.util.HashMap;
 public class FileService {
-    private String firstDictionaryFileName;
-    private String secondDictionaryFileName;
+    private String FileName;
 
-    public FileService(String firstDictionaryFileName, String secondDictionaryFileName) {
-        this.firstDictionaryFileName = firstDictionaryFileName;
-        this.secondDictionaryFileName = secondDictionaryFileName;
+    public FileService(String FileName) {
+        this.FileName = FileName;
     }
 
     public void writeToFile(Map<String, String> dictionary, String fileName) {
@@ -21,12 +19,8 @@ public class FileService {
         }
     }
 
-    public void writeToFileForFirstDictionary(Map<String, String> dictionary) {
-        writeToFile(dictionary, firstDictionaryFileName);
-    }
-
-    public void writeToFileForSecondDictionary(Map<String, String> dictionary) {
-        writeToFile(dictionary, secondDictionaryFileName);
+    public void writeToFile(Map<String, String> dictionary) {
+        writeToFile(dictionary, FileName);
     }
 
     public Map<String, String> readFromFile(String fileName) {
@@ -47,11 +41,7 @@ public class FileService {
         return dictionary;
     }
 
-    public Map<String, String> readFromFileForFirstDictionary() {
-        return readFromFile(firstDictionaryFileName);
-    }
-
-    public Map<String, String> readFromFileForSecondDictionary() {
-        return readFromFile(secondDictionaryFileName);
+    public Map<String, String> readFromFileForDictionary(String fileName) {
+        return readFromFile(fileName);
     }
 }
