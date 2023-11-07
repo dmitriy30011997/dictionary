@@ -4,16 +4,15 @@ import java.util.Scanner;
 public class ConsoleMenu {
     private Map<Integer, Service> services = new HashMap<>();
     private DictionaryRepository dictionaryRepository;
-    private DictionaryService dictionaryService;
     private FileService fileService;
     private Scanner scanner;
 
-    public ConsoleMenu(DictionaryService dictionaryService, FileService fileService) {
+    public ConsoleMenu(DictionaryRepository dictionaryRepository, FileService fileService) {
         this.dictionaryService = dictionaryService;
         this.fileService = fileService;
 
-        services.put(1, new LatinDictionaryService(dictionaryService));
-        services.put(2, new DigitDictionaryService(dictionaryService));
+        services.put(1, new LatinDictionaryService(dictionaryRepository));
+        services.put(2, new DigitDictionaryService(dictionaryRepository));
 
         this.scanner = new Scanner(System.in);
     }

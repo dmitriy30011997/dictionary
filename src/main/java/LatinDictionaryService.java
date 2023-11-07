@@ -1,31 +1,20 @@
-import java.util.Map;
-
-public class LatinDictionaryService<Service> {
+public class LatinDictionaryService implements Service {
     private DictionaryRepository dictionaryRepository;
-    public DictionaryService(DictionaryRepository dictionaryRepository) {
+
+    public LatinDictionaryService(DictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 
-    public DictionaryRepository getDictionary1() {
-        DictionaryRepository dictionaryRepository1 = new DictionaryRepository();
-        dictionaryRepository1.setDictionary1(dictionaryRepository.getDictionary1());
-        return dictionaryRepository1;
+    @Override
+    public void add(String key, String value) {
+        dictionaryRepository.addEntry(key, value, 1);
     }
 
-
-    public void add(String key, String value, int language) {
-        dictionaryRepository.addEntry(key, value, language);
-    }
-
+    @Override
     public void delete(String key, int language) {
-        activeDictionaryLanguage = language;
-        dictionaryRepository.deleteEntry(key, language);
+        dictionaryRepository.deleteEntry(key, 1);
     }
-
-    public String find(String key, int language) {
-        activeDictionaryLanguage = language;
-        return dictionaryRepository.findEntry(key, language);
-    }
+}
 
     public String viewDictionaryContents() {
         String dictionary1Contents = "Содержимое словаря 1:\n";

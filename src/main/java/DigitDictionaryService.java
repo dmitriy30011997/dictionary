@@ -1,40 +1,19 @@
 import java.util.Map;
-
-public class DigitDictionaryService<Service> implements Service {
+public class DigitDictionaryService implements Service {
     private DictionaryRepository dictionaryRepository;
 
-    public DictionaryService(DictionaryRepository dictionaryRepository) {
+    public DigitDictionaryService(DictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
-    }
-
-
-    public int getActiveDictionaryLanguage() {
-        return activeDictionaryLanguage;
-    }
-
-    public DictionaryRepository getDictionary1() {
-        DictionaryRepository dictionaryRepository1 = new DictionaryRepository();
-        dictionaryRepository1.setDictionary1(dictionaryRepository.getDictionary1());
-        return dictionaryRepository1;
-    }
-
-    public void add(String key, String value, int language) {
-        dictionaryRepository.addEntry(key, value, language);
     }
 
     @Override
     public void add(String key, String value) {
-
+        dictionaryRepository.addEntry(key, value, 2);
     }
 
+    @Override
     public void delete(String key, int language) {
-        activeDictionaryLanguage = language;
-        dictionaryRepository.deleteEntry(key, language);
-    }
-
-    public String find(String key, int language) {
-        activeDictionaryLanguage = language;
-        return dictionaryRepository.findEntry(key, language);
+        dictionaryRepository.deleteEntry(key, 2);
     }
 
     public String viewDictionaryContents() {

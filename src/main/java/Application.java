@@ -7,7 +7,6 @@ public class Application {
 
         DictionaryRepository dictionaryRepository = new DictionaryRepository();
 
-        DictionaryService dictionaryService = new DictionaryService(dictionaryRepository);
         ConsoleMenu consoleMenu = new ConsoleMenu(dictionaryService, fileService);
 
         consoleMenu.run();
