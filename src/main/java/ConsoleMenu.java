@@ -100,7 +100,15 @@ public class ConsoleMenu {
             }
         }
     }
+    public void viewAllDictionaryContents() {
+        System.out.println("Содержимое латинского словаря:");
+        String latinDictionaryContents = services.get(1).viewDictionaryContents();
+        System.out.println(latinDictionaryContents);
 
+        System.out.println("Содержимое цифрового словаря:");
+        String digitDictionaryContents = services.get(2).viewDictionaryContents();
+        System.out.println(digitDictionaryContents);
+    }
     public void close() {
         scanner.close();
     }
