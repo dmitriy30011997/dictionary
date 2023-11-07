@@ -1,6 +1,6 @@
 import java.util.Map;
 public class DigitDictionaryService implements DictionaryService {
-    private DigitDictionaryRepository dictionaryRepository;
+    private final DigitDictionaryRepository dictionaryRepository;
 
     public DigitDictionaryService(DigitDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;

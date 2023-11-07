@@ -2,7 +2,7 @@ import java.util.Map;
 import java.io.*;
 import java.util.HashMap;
 public class FileService {
-    private String FileName;
+    private final String FileName;
 
     public FileService(String FileName) {
         this.FileName = FileName;

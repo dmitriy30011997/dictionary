@@ -1,10 +1,10 @@
 import java.util.Map;
 
 public class LatinDictionaryService implements DictionaryService {
-    private LatinDictionaryRepository dictionaryRepository;
+    private final LatinDictionaryRepository dictionaryRepository;
 
     public LatinDictionaryService(LatinDictionaryRepository dictionaryRepository) {
-        this.dictionaryRepository = dictionaryRepository;
+        this.dictionaryRepository = new LatinDictionaryRepository(dictionaryRepository.getDictionary());
     }
 
     @Override

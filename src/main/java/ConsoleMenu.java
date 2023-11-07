@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class ConsoleMenu {
     private Map<Integer, DictionaryService> services = new HashMap<>();
     private DictionaryRepository dictionaryRepository;
-    private FileService latinFileService;
-    private FileService digitFileService;
+    private final FileService latinFileService;
+    private final FileService digitFileService;
     private FileService fileService;
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public ConsoleMenu(LatinDictionaryRepository latinDictionaryRepository, DigitDictionaryRepository digitDictionaryRepository,
                        FileService latinFileService, FileService digitFileService) {
