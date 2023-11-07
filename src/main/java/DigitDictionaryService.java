@@ -22,11 +22,6 @@ public class DigitDictionaryService implements DictionaryService {
         for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
             dictionaryContents += entry.getKey() + ": " + entry.getValue() + "\n";
         }
-
-        for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
-            dictionaryContents += entry.getKey() + ": " + entry.getValue() + "\n";
-        }
-
         return dictionaryContents;
     }
 }

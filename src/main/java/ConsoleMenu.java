@@ -4,21 +4,19 @@ import java.util.Scanner;
 
 public class ConsoleMenu {
     private Map<Integer, DictionaryService> services = new HashMap<>();
-    private DictionaryRepository latinDictionaryRepository;
-    private DictionaryRepository digitDictionaryRepository;
+    private DictionaryRepository dictionaryRepository;
+    private FileService fileService;
     private FileService latinFileService;
     private FileService digitFileService;
     private Scanner scanner;
 
     public ConsoleMenu(DictionaryRepository latinDictionaryRepository, DictionaryRepository digitDictionaryRepository,
                        FileService latinFileService, FileService digitFileService) {
-        this.latinDictionaryRepository = latinDictionaryRepository;
-        this.digitDictionaryRepository = digitDictionaryRepository;
         this.latinFileService = latinFileService;
         this.digitFileService = digitFileService;
 
-        services.put(1, new LatinDictionaryService(latinDictionaryRepository, latinFileService));
-        services.put(2, new DigitDictionaryService(digitDictionaryRepository, digitFileService));
+        services.put(1, new LatinDictionaryService(latinDictionaryRepository));
+        services.put(2, new DigitDictionaryService(digitDictionaryRepository));
 
         this.scanner = new Scanner(System.in);
     }
@@ -37,7 +35,7 @@ public class ConsoleMenu {
             if (mainChoice == 1) {
                 chooseDictionary();
             } else if (mainChoice == 2) {
-                dictionaryService.viewDictionaryContents();
+                viewAllDictionaryContents();
             } else if (mainChoice == 3) {
                 exit = true;
             } else {
@@ -45,7 +43,7 @@ public class ConsoleMenu {
             }
         }
     }
-
+    private int dictionaryChoice;
     public void chooseDictionary() {
         System.out.print("Выберите словарь (1 - латинский, 2 - цифровой): ");
         int dictionaryChoice = scanner.nextInt();
@@ -57,6 +55,15 @@ public class ConsoleMenu {
         } else {
             System.out.println("Неверный выбор словаря.");
         }
+    }
+    public void viewAllDictionaryContents() {
+        System.out.println("Содержимое латинского словаря:");
+        String latinDictionaryContents = services.get(1).viewDictionaryContents();
+        System.out.println(latinDictionaryContents);
+
+        System.out.println("Содержимое цифрового словаря:");
+        String digitDictionaryContents = services.get(2).viewDictionaryContents();
+        System.out.println(digitDictionaryContents);
     }
 
     public void dictionaryFunctions(DictionaryService service) {
@@ -77,16 +84,15 @@ public class ConsoleMenu {
                     String key = scanner.nextLine();
                     System.out.print("Введите значение: ");
                     String value = scanner.nextLine();
-                    dictionaryService.add(key, value, dictionaryService.getActiveDictionaryLanguage());
+                    service.add(key, value);
                     break;
                 case 2:
                     System.out.print("Введите ключ для удаления: ");
                     String keyToDelete = scanner.nextLine();
-                    dictionaryService.delete(keyToDelete, dictionaryService.getActiveDictionaryLanguage());
+                    service.delete(keyToDelete, dictionaryChoice);
                     break;
                 case 3:
-                    String dictionaryContents = dictionaryService.viewDictionaryContents();
-                    System.out.println(dictionaryContents);
+                    viewAllDictionaryContents();
                     break;
                 case 4:
                     fileService.writeToFile(dictionaryRepository.getDictionary());
@@ -96,15 +102,6 @@ public class ConsoleMenu {
                     System.out.println("Неверная команда для словаря. Попробуйте снова.");
             }
         }
-    }
-    public void viewAllDictionaryContents() {
-        System.out.println("Содержимое латинского словаря:");
-        String latinDictionaryContents = services.get(1).viewDictionaryContents();
-        System.out.println(latinDictionaryContents);
-
-        System.out.println("Содержимое цифрового словаря:");
-        String digitDictionaryContents = services.get(2).viewDictionaryContents();
-        System.out.println(digitDictionaryContents);
     }
     public void close() {
         scanner.close();
