@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class ConsoleMenu {
     private Map<Integer, DictionaryService> services = new HashMap<>();
     private DictionaryRepository dictionaryRepository;
-    private FileService fileService;
     private FileService latinFileService;
     private FileService digitFileService;
     private Scanner scanner;
@@ -89,7 +88,7 @@ public class ConsoleMenu {
                 case 2:
                     System.out.print("Введите ключ для удаления: ");
                     String keyToDelete = scanner.nextLine();
-                    service.delete(keyToDelete, dictionaryChoice);
+                    service.delete(keyToDelete);
                     break;
                 case 3:
                     viewAllDictionaryContents();

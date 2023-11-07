@@ -13,7 +13,7 @@ public class LatinDictionaryService implements DictionaryService {
     }
 
     @Override
-    public void delete(String key, int language) {
+    public void delete(String key) {
         dictionaryRepository.deleteEntry(key);
     }
 
