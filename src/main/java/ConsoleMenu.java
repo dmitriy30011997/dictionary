@@ -47,22 +47,19 @@ public class ConsoleMenu {
     }
 
     public void chooseDictionary() {
-        System.out.print("Выберите словарь (1 или 2): ");
+        System.out.print("Выберите словарь (1 - латинский, 2 - цифровой): ");
         int dictionaryChoice = scanner.nextInt();
         scanner.nextLine();
 
-        if (dictionaryChoice == 1) {
-            dictionaryService.setActiveDictionary(dictionaryService.getDictionary1());
-            dictionaryFunctions();
-        } else if (dictionaryChoice == 2) {
-            dictionaryService.setActiveDictionary(dictionaryService.getDictionary2());
-            dictionaryFunctions();
+        DictionaryService selectedService = services.get(dictionaryChoice);
+        if (selectedService != null) {
+            dictionaryFunctions(selectedService);
         } else {
             System.out.println("Неверный выбор словаря.");
         }
     }
 
-    public void dictionaryFunctions() {
+    public void dictionaryFunctions(DictionaryService service) {
         boolean exit = false;
         while (!exit) {
             System.out.println("Меню команд для выбранного словаря:");
