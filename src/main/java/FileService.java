@@ -40,8 +40,4 @@ public class FileService {
         }
         return dictionary;
     }
-
-    public Map<String, String> readFromFileForDictionary(String fileName) {
-        return readFromFile(fileName);
-    }
 }
