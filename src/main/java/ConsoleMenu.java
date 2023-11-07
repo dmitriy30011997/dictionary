@@ -1,14 +1,15 @@
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleMenu {
-    private Map<Integer, Service> services = new HashMap<>();
+    private Map<Integer, DictionaryService> services = new HashMap<>();
     private DictionaryRepository dictionaryRepository;
     private FileService fileService;
     private Scanner scanner;
 
     public ConsoleMenu(DictionaryRepository dictionaryRepository, FileService fileService) {
-        this.dictionaryService = dictionaryService;
+        this.dictionaryRepository = dictionaryRepository;
         this.fileService = fileService;
 
         services.put(1, new LatinDictionaryService(dictionaryRepository));

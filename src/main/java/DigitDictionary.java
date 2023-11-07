@@ -7,7 +7,7 @@ public class DigitDictionary implements IDictionary{
     DigitDictionary(){
         Map<String, String> initialData = fileService.
                 readFromFileForDictionary("src/main/latinDictionary.txt");
-        DictionaryRepository dictionaryRepository = new DictionaryRepository();
+        DictionaryRepository dictionaryRepository = new DictionaryRepository(initialData);
         dictionaryRepository.getDictionary().putAll(initialData);
     }
     //конструктор с инициализацией словарей

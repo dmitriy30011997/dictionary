@@ -9,7 +9,7 @@ public class LatinDictionary implements IDictionary{
     LatinDictionary(){
         Map<String, String> initialData = fileService.
                 readFromFileForDictionary("src/main/latinDictionary.txt");
-        DictionaryRepository dictionaryRepository = new DictionaryRepository();
+        DictionaryRepository dictionaryRepository = new DictionaryRepository(initialData);
         dictionaryRepository.getDictionary().putAll(initialData);
     }
     @Override
