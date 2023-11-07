@@ -1,16 +1,15 @@
 import java.util.Map;
 
-public class DigitDictionary implements IDictionary{
+public class DigitDictionaryRepository implements DictionaryRepository {
     private Map<String, String> digitDictionary;
     private FileService fileService;
 
-    DigitDictionary(){
+    DigitDictionaryRepository(){
         Map<String, String> initialData = fileService.
                 readFromFileForDictionary("src/main/latinDictionary.txt");
-        DictionaryRepository dictionaryRepository = new DictionaryRepository(initialData);
-        dictionaryRepository.getDictionary().putAll(initialData);
+        DigitDictionaryRepository dictionaryRepository = new DigitDictionaryRepository();
+        digitDictionary.putAll(initialData);
     }
-    //конструктор с инициализацией словарей
     @Override
     public void addEntry(String key, String value) {
         if (key.matches("^\\d{5}$") && value.matches("^\\d{5}$")) {

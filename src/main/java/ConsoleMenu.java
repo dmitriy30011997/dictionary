@@ -7,6 +7,7 @@ public class ConsoleMenu {
     private DictionaryRepository dictionaryRepository;
     private FileService latinFileService;
     private FileService digitFileService;
+    private int dictionaryChoice;
     private Scanner scanner;
 
     public ConsoleMenu(DictionaryRepository latinDictionaryRepository, DictionaryRepository digitDictionaryRepository,
@@ -42,7 +43,7 @@ public class ConsoleMenu {
             }
         }
     }
-    private int dictionaryChoice;
+
     public void chooseDictionary() {
         System.out.print("Выберите словарь (1 - латинский, 2 - цифровой): ");
         int dictionaryChoice = scanner.nextInt();

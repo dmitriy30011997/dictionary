@@ -1,16 +1,16 @@
 import java.util.Map;
 
-public class LatinDictionary implements IDictionary{
+public class LatinDictionaryRepository implements DictionaryRepository {
 
     private Map<String, String> latinDictionary;
     private FileService fileService;
 
     //конструктор с инициализацией словарей
-    LatinDictionary(){
+    LatinDictionaryRepository(){
         Map<String, String> initialData = fileService.
                 readFromFileForDictionary("src/main/latinDictionary.txt");
-        DictionaryRepository dictionaryRepository = new DictionaryRepository(initialData);
-        dictionaryRepository.getDictionary().putAll(initialData);
+        LatinDictionaryRepository dictionaryRepository = new LatinDictionaryRepository();
+        latinDictionary.putAll(initialData);
     }
     @Override
     public void addEntry(String key, String value) {
