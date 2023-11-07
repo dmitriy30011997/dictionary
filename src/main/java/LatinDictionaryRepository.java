@@ -4,12 +4,11 @@ public class LatinDictionaryRepository implements DictionaryRepository {
 
     private Map<String, String> latinDictionary;
     private FileService fileService;
-
-    //конструктор с инициализацией словарей
-    LatinDictionaryRepository(){
+    private FileService latinFileService;
+    LatinDictionaryRepository(Map<String, String> stringStringMap){
         Map<String, String> initialData = fileService.
-                readFromFileForDictionary("src/main/latinDictionary.txt");
-        LatinDictionaryRepository dictionaryRepository = new LatinDictionaryRepository();
+                readFromFile("src/main/latinDictionary.txt");
+        LatinDictionaryRepository dictionaryRepository = new LatinDictionaryRepository(latinFileService.readFromFile("src/main/latinDictionary.txt"));
         latinDictionary.putAll(initialData);
     }
     @Override
@@ -29,5 +28,10 @@ public class LatinDictionaryRepository implements DictionaryRepository {
     @Override
     public String findEntry(String key) {
         return latinDictionary.get(key);
+    }
+
+    @Override
+    public Map<String, String> getDictionary() {
+        return latinDictionary;
     }
 }

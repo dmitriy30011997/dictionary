@@ -3,11 +3,13 @@ import java.util.Map;
 public class DigitDictionaryRepository implements DictionaryRepository {
     private Map<String, String> digitDictionary;
     private FileService fileService;
+    private FileService digitFileService;
 
-    DigitDictionaryRepository(){
+    DigitDictionaryRepository(Map<String, String> stringStringMap){
         Map<String, String> initialData = fileService.
-                readFromFileForDictionary("src/main/latinDictionary.txt");
-        DigitDictionaryRepository dictionaryRepository = new DigitDictionaryRepository();
+                readFromFile("src/main/latinDictionary.txt");
+
+        DigitDictionaryRepository dictionaryRepository = new DigitDictionaryRepository(digitFileService.readFromFile("src/main/digitDictionary.txt"));
         digitDictionary.putAll(initialData);
     }
     @Override
@@ -27,5 +29,10 @@ public class DigitDictionaryRepository implements DictionaryRepository {
     @Override
     public String findEntry(String key) {
         return digitDictionary.get(key);
+    }
+
+    @Override
+    public Map<String, String> getDictionary() {
+        return digitDictionary;
     }
 }

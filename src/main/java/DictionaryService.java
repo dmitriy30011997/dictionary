@@ -1,4 +1,5 @@
 public interface DictionaryService {
-    public void add(String key, String value);
-    public void delete(String key);
+    void add(String key, String value);
+    void delete(String key);
+    String viewDictionaryContents();
 }

@@ -7,10 +7,10 @@ public class ConsoleMenu {
     private DictionaryRepository dictionaryRepository;
     private FileService latinFileService;
     private FileService digitFileService;
-    private int dictionaryChoice;
+    private FileService fileService;
     private Scanner scanner;
 
-    public ConsoleMenu(DictionaryRepository latinDictionaryRepository, DictionaryRepository digitDictionaryRepository,
+    public ConsoleMenu(LatinDictionaryRepository latinDictionaryRepository, DigitDictionaryRepository digitDictionaryRepository,
                        FileService latinFileService, FileService digitFileService) {
         this.latinFileService = latinFileService;
         this.digitFileService = digitFileService;

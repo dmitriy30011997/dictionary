@@ -1,8 +1,8 @@
 import java.util.Map;
 public class DigitDictionaryService implements DictionaryService {
-    private DictionaryRepository dictionaryRepository;
+    private DigitDictionaryRepository dictionaryRepository;
 
-    public DigitDictionaryService(DictionaryRepository dictionaryRepository) {
+    public DigitDictionaryService(DigitDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 
@@ -23,5 +23,6 @@ public class DigitDictionaryService implements DictionaryService {
             dictionaryContents += entry.getKey() + ": " + entry.getValue() + "\n";
         }
         return dictionaryContents;
+
     }
 }

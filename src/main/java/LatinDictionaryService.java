@@ -1,9 +1,9 @@
 import java.util.Map;
 
 public class LatinDictionaryService implements DictionaryService {
-    private DictionaryRepository dictionaryRepository;
+    private LatinDictionaryRepository dictionaryRepository;
 
-    public LatinDictionaryService(DictionaryRepository dictionaryRepository) {
+    public LatinDictionaryService(LatinDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 
@@ -16,8 +16,6 @@ public class LatinDictionaryService implements DictionaryService {
     public void delete(String key) {
         dictionaryRepository.deleteEntry(key);
     }
-
-    // может сделать отдельную логику для собирания всех словарей?
     public String viewDictionaryContents() {
         String dictionaryContents = "Содержимое словаря \n";
 

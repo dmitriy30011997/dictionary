@@ -3,8 +3,8 @@ public class Application {
         FileService latinFileService = new FileService("src/main/latinDictionary.txt");
         FileService digitFileService = new FileService("src/main/digitDictionary.txt");
 
-        DictionaryRepository latinDictionaryRepository = new DictionaryRepository(latinFileService.readFromFile("src/main/latinDictionary.txt"));
-        DictionaryRepository digitDictionaryRepository = new DictionaryRepository(digitFileService.readFromFile("src/main/digitDictionary.txt"));
+        LatinDictionaryRepository latinDictionaryRepository = new LatinDictionaryRepository(latinFileService.readFromFile("src/main/latinDictionary.txt"));
+        DigitDictionaryRepository digitDictionaryRepository = new DigitDictionaryRepository(digitFileService.readFromFile("src/main/digitDictionary.txt"));
 
         ConsoleMenu consoleMenu = new ConsoleMenu(latinDictionaryRepository, digitDictionaryRepository, latinFileService, digitFileService);
 
