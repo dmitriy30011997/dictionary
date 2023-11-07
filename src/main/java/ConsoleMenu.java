@@ -1,7 +1,9 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleMenu {
-    DictionaryRepository dictionaryRepository = new DictionaryRepository();
+    private Map<Integer, Service> services = new HashMap<>();
+    private DictionaryRepository dictionaryRepository;
     private DictionaryService dictionaryService;
     private FileService fileService;
     private Scanner scanner;
@@ -9,6 +11,10 @@ public class ConsoleMenu {
     public ConsoleMenu(DictionaryService dictionaryService, FileService fileService) {
         this.dictionaryService = dictionaryService;
         this.fileService = fileService;
+
+        services.put(1, new LatinDictionaryService(dictionaryService));
+        services.put(2, new DigitDictionaryService(dictionaryService));
+
         this.scanner = new Scanner(System.in);
     }
 
@@ -81,7 +87,7 @@ public class ConsoleMenu {
                     System.out.println(dictionaryContents);
                     break;
                 case 4:
-                    fileService.writeToFile(dictionaryRepository.getDictionary1());
+                    fileService.writeToFile(dictionaryRepository.getDictionary());
                     exit = true;
                     break;
                 default:
@@ -89,6 +95,7 @@ public class ConsoleMenu {
             }
         }
     }
+
     public void close() {
         scanner.close();
     }

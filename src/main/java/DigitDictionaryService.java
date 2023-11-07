@@ -1,17 +1,12 @@
 import java.util.Map;
 
-public class DictionaryService {
+public class DigitDictionaryService<Service> implements Service {
     private DictionaryRepository dictionaryRepository;
-    private int activeDictionaryLanguage;
 
     public DictionaryService(DictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
-        this.activeDictionaryLanguage = 1;
     }
 
-    public void setActiveDictionary(DictionaryRepository dictionaryRepository) {
-        this.dictionaryRepository = dictionaryRepository;
-    }
 
     public int getActiveDictionaryLanguage() {
         return activeDictionaryLanguage;
@@ -23,15 +18,13 @@ public class DictionaryService {
         return dictionaryRepository1;
     }
 
-    public DictionaryRepository getDictionary2() {
-        DictionaryRepository dictionaryRepository2 = new DictionaryRepository();
-        dictionaryRepository2.setDictionary2(dictionaryRepository.getDictionary2());
-        return dictionaryRepository2;
+    public void add(String key, String value, int language) {
+        dictionaryRepository.addEntry(key, value, language);
     }
 
-    public void add(String key, String value, int language) {
-        activeDictionaryLanguage = language;
-        dictionaryRepository.addEntry(key, value, language);
+    @Override
+    public void add(String key, String value) {
+
     }
 
     public void delete(String key, int language) {

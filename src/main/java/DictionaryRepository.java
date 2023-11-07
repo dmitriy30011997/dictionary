@@ -1,13 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class DictionaryRepository {
+public class DictionaryRepository implements Service {
     private Map<String, String> dictionary;
 
     public DictionaryRepository() {
         this.dictionary = new HashMap<>();
     }
-
     public void addEntry(String key, String value, int language) {
         if (language == 1) {
             if (key.matches("^[a-zA-Z]{4}$") && value.matches("^[a-zA-Z]{4}$")) {
@@ -57,5 +56,15 @@ public class DictionaryRepository {
 
     public Map<String, String> getDictionary() {
         return dictionary;
+    }
+
+    @Override
+    public void add(String key, String value) {
+
+    }
+
+    @Override
+    public void delete(String key, int language) {
+
     }
 }
