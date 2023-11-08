@@ -1,6 +1,6 @@
 package repository;
 
-import repository.DictionaryRepository;
+import service.FileService;
 
 import java.util.Map;
 

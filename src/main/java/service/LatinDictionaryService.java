@@ -1,6 +1,5 @@
 package service;
 
-import service.DictionaryService;
 import repository.LatinDictionaryRepository;
 
 import java.util.Map;
