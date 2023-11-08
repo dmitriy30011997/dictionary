@@ -97,6 +97,7 @@ public class ConsoleMenu {
                 case 5:
                     service.save();
                     exit = true;
+                    close();
                     break;
                 default:
                     System.out.println("Неверная команда для словаря. Попробуйте снова.");
