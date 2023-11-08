@@ -24,9 +24,10 @@ public class DigitDictionaryService implements DictionaryService {
         }
         return dictionaryContents.toString();
     }
+
     @Override
-    public Map<String, String> getDictionary() {
-        return dictionaryRepository.getDictionary();
+    public String findEntry(String key) {
+        return dictionaryRepository.findEntry(key);
     }
 
     @Override

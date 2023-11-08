@@ -24,13 +24,14 @@ public class LatinDictionaryService implements DictionaryService {
         }
         return dictionaryContents.toString();
     }
+
     @Override
-    public void save() {
-        dictionaryRepository.save();
+    public String findEntry(String key) {
+        return dictionaryRepository.findEntry(key);
     }
 
     @Override
-    public Map<String, String> getDictionary() {
-        return dictionaryRepository.getDictionary();
+    public void save() {
+        dictionaryRepository.save();
     }
 }

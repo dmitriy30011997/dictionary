@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 public class ConsoleMenu {
     private final Map<Integer, DictionaryService> services = new HashMap<>();
     private final Scanner scanner;
@@ -11,6 +12,7 @@ public class ConsoleMenu {
 
         this.scanner = new Scanner(System.in);
     }
+
     public void run() {
         boolean exit = false;
         while (!exit) {
@@ -46,6 +48,7 @@ public class ConsoleMenu {
             System.out.println("Неверный выбор словаря.");
         }
     }
+
     public void viewAllDictionaryContents() {
         String latinDictionaryContents = services.get(1).viewDictionaryContents();
         System.out.println(latinDictionaryContents);
@@ -61,7 +64,8 @@ public class ConsoleMenu {
             System.out.println("1. Добавить запись");
             System.out.println("2. Удалить запись");
             System.out.println("3. Показать содержимое словарей");
-            System.out.println("4. Выйти из словаря");
+            System.out.println("4. Показать значение ключа");
+            System.out.println("5. Выйти из словаря");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -83,6 +87,10 @@ public class ConsoleMenu {
                     viewAllDictionaryContents();
                     break;
                 case 4:
+                    System.out.println("Введите ключ, значение которого надо найти");
+                    String keyToFind = scanner.nextLine();
+                    System.out.println(service.findEntry(keyToFind));
+                case 5:
                     service.save();
                     exit = true;
                     break;
@@ -91,6 +99,7 @@ public class ConsoleMenu {
             }
         }
     }
+
     public void close() {
         scanner.close();
     }
