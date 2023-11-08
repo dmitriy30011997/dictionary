@@ -17,11 +17,16 @@ public class LatinDictionaryService implements DictionaryService {
         dictionaryRepository.deleteEntry(key);
     }
     public String viewDictionaryContents() {
-        String dictionaryContents = "Содержимое словаря \n";
+        String dictionaryContents = "Содержимое словаря 1 \n";
 
         for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
             dictionaryContents += entry.getKey() + ": " + entry.getValue() + "\n";
         }
         return dictionaryContents;
+    }
+
+    @Override
+    public Map<String, String> getDictionary() {
+        return dictionaryRepository.getDictionary();
     }
 }

@@ -1,9 +1,7 @@
 import java.util.Map;
 
 public class LatinDictionaryRepository implements DictionaryRepository {
-
     private Map<String, String> latinDictionary;
-    private FileService fileService;
 
     public LatinDictionaryRepository(Map<String, String> initialData) {
         latinDictionary = initialData;

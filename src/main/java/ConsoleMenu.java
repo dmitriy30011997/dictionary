@@ -1,25 +1,47 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
 public class ConsoleMenu {
     private Map<Integer, DictionaryService> services = new HashMap<>();
-    private DictionaryRepository dictionaryRepository;
+    private DictionaryRepository latinDictionaryRepository;
+    private DictionaryRepository digitDictionaryRepository;
     private final FileService latinFileService;
     private final FileService digitFileService;
     private FileService fileService;
+    private DictionaryRepository dictionaryRepository;
     private final Scanner scanner;
 
     public ConsoleMenu(LatinDictionaryRepository latinDictionaryRepository, DigitDictionaryRepository digitDictionaryRepository,
                        FileService latinFileService, FileService digitFileService) {
         this.latinFileService = latinFileService;
         this.digitFileService = digitFileService;
+        this.latinDictionaryRepository = latinDictionaryRepository;
+        this.digitDictionaryRepository = digitDictionaryRepository;
 
         services.put(1, new LatinDictionaryService(latinDictionaryRepository));
         services.put(2, new DigitDictionaryService(digitDictionaryRepository));
 
         this.scanner = new Scanner(System.in);
     }
+
+//public class ConsoleMenu {
+//    private Map<Integer, DictionaryService> services = new HashMap<>();
+//    private DictionaryRepository dictionaryRepository;
+//    private final FileService latinFileService;
+//    private final FileService digitFileService;
+//    private FileService fileService;
+//    private final Scanner scanner;
+//
+//    public ConsoleMenu(LatinDictionaryRepository latinDictionaryRepository, DigitDictionaryRepository digitDictionaryRepository,
+//                       FileService latinFileService, FileService digitFileService) {
+//        this.latinFileService = latinFileService;
+//        this.digitFileService = digitFileService;
+//
+//        services.put(1, new LatinDictionaryService(latinDictionaryRepository));
+//        services.put(2, new DigitDictionaryService(digitDictionaryRepository));
+//
+//        this.scanner = new Scanner(System.in);
+//    }
 
     public void run() {
         boolean exit = false;
@@ -57,11 +79,9 @@ public class ConsoleMenu {
         }
     }
     public void viewAllDictionaryContents() {
-        System.out.println("Содержимое латинского словаря:");
         String latinDictionaryContents = services.get(1).viewDictionaryContents();
         System.out.println(latinDictionaryContents);
 
-        System.out.println("Содержимое цифрового словаря:");
         String digitDictionaryContents = services.get(2).viewDictionaryContents();
         System.out.println(digitDictionaryContents);
     }

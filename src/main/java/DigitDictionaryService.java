@@ -17,12 +17,15 @@ public class DigitDictionaryService implements DictionaryService {
     }
 
     public String viewDictionaryContents() {
-        String dictionaryContents = "Содержимое словаря: ";
+        String dictionaryContents = "Содержимое словаря 2 ";
 
         for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
             dictionaryContents += entry.getKey() + ": " + entry.getValue() + "\n";
         }
         return dictionaryContents;
-
+    }
+    @Override
+    public Map<String, String> getDictionary() {
+        return dictionaryRepository.getDictionary();
     }
 }
