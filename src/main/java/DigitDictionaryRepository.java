@@ -2,16 +2,11 @@ import java.util.Map;
 
 public class DigitDictionaryRepository implements DictionaryRepository {
     private Map<String, String> digitDictionary;
-    private FileService fileService;
-    private FileService digitFileService;
 
-    DigitDictionaryRepository(Map<String, String> stringStringMap){
-        Map<String, String> initialData = fileService.
-                readFromFile("src/main/latinDictionary.txt");
-
-        DigitDictionaryRepository dictionaryRepository = new DigitDictionaryRepository(digitFileService.readFromFile("src/main/digitDictionary.txt"));
-        digitDictionary.putAll(initialData);
+    public DigitDictionaryRepository(Map<String, String> initialData) {
+        digitDictionary = initialData;
     }
+
     @Override
     public void addEntry(String key, String value) {
         if (key.matches("^\\d{5}$") && value.matches("^\\d{5}$")) {

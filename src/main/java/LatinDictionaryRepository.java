@@ -4,13 +4,11 @@ public class LatinDictionaryRepository implements DictionaryRepository {
 
     private Map<String, String> latinDictionary;
     private FileService fileService;
-    private FileService latinFileService;
-    LatinDictionaryRepository(Map<String, String> stringStringMap){
-        Map<String, String> initialData = fileService.
-                readFromFile("src/main/latinDictionary.txt");
-        LatinDictionaryRepository dictionaryRepository = new LatinDictionaryRepository(latinFileService.readFromFile("src/main/latinDictionary.txt"));
-        latinDictionary.putAll(initialData);
+
+    public LatinDictionaryRepository(Map<String, String> initialData) {
+        latinDictionary = initialData;
     }
+
     @Override
     public void addEntry(String key, String value) {
         if (key.matches("^[a-zA-Z]{4}$") && value.matches("^[a-zA-Z]{4}$")) {
