@@ -3,9 +3,11 @@ package service;
 import java.io.*;
 import java.util.Map;
 import java.util.HashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 public class FileService {
     private final String fileName;
-
+    private static final Logger logger = LoggerFactory.getLogger(FileService.class);
     public FileService(String fileName) {
         this.fileName = fileName;
     }
@@ -17,7 +19,7 @@ public class FileService {
                 writer.newLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Something went wrong in method write to file ", e);
         }
     }
 
@@ -38,7 +40,7 @@ public class FileService {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Something went wrong in method read to file ", e);
         }
         return dictionary;
     }
