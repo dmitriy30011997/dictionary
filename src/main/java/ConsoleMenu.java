@@ -2,24 +2,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 public class ConsoleMenu {
-    private Map<Integer, DictionaryService> services = new HashMap<>();
-    private DictionaryRepository latinDictionaryRepository;
-    private DictionaryRepository digitDictionaryRepository;
-    private final FileService latinFileService;
-    private final FileService digitFileService;
-    private FileService fileService;
-    private DictionaryRepository dictionaryRepository;
+    private final Map<Integer, DictionaryService> services = new HashMap<>();
     private final Scanner scanner;
 
-    public ConsoleMenu(LatinDictionaryRepository latinDictionaryRepository, DigitDictionaryRepository digitDictionaryRepository,
-                       FileService latinFileService, FileService digitFileService) {
-        this.latinFileService = latinFileService;
-        this.digitFileService = digitFileService;
-        this.latinDictionaryRepository = latinDictionaryRepository;
-        this.digitDictionaryRepository = digitDictionaryRepository;
-
-        services.put(1, new LatinDictionaryService(latinDictionaryRepository));
-        services.put(2, new DigitDictionaryService(digitDictionaryRepository));
+    public ConsoleMenu() {
+        services.put(1, new LatinDictionaryService());
+        services.put(2, new DigitDictionaryService());
 
         this.scanner = new Scanner(System.in);
     }
@@ -95,7 +83,7 @@ public class ConsoleMenu {
                     viewAllDictionaryContents();
                     break;
                 case 4:
-                    fileService.writeToFile(dictionaryRepository.getDictionary());
+                    service.save();
                     exit = true;
                     break;
                 default:

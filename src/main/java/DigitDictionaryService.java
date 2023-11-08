@@ -2,8 +2,8 @@ import java.util.Map;
 public class DigitDictionaryService implements DictionaryService {
     private final DigitDictionaryRepository dictionaryRepository;
 
-    public DigitDictionaryService(DigitDictionaryRepository dictionaryRepository) {
-        this.dictionaryRepository = dictionaryRepository;
+    public DigitDictionaryService() {
+        this.dictionaryRepository = new DigitDictionaryRepository();
     }
 
     @Override
@@ -17,15 +17,20 @@ public class DigitDictionaryService implements DictionaryService {
     }
 
     public String viewDictionaryContents() {
-        String dictionaryContents = "Содержимое словаря 2 ";
+        StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 2 \n");
 
         for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
-            dictionaryContents += entry.getKey() + ": " + entry.getValue() + "\n";
+            dictionaryContents.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
-        return dictionaryContents;
+        return dictionaryContents.toString();
     }
     @Override
     public Map<String, String> getDictionary() {
         return dictionaryRepository.getDictionary();
+    }
+
+    @Override
+    public void save() {
+        dictionaryRepository.save();
     }
 }

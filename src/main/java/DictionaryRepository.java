@@ -8,5 +8,6 @@ public interface DictionaryRepository {
     String findEntry(String key);
 
     Map<String, String> getDictionary();
+    void save();
 }
 

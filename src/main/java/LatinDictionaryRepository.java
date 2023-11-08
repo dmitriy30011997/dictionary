@@ -1,10 +1,13 @@
 import java.util.Map;
 
 public class LatinDictionaryRepository implements DictionaryRepository {
-    private Map<String, String> latinDictionary;
+    private final Map<String, String> latinDictionary;
+    private final FileService latinFileService;
 
-    public LatinDictionaryRepository(Map<String, String> initialData) {
-        latinDictionary = initialData;
+
+    public LatinDictionaryRepository() {
+        this.latinFileService = new FileService("src/main/latinDictionary.txt");
+        latinDictionary = latinFileService.readFromFile();
     }
 
     @Override
@@ -14,6 +17,10 @@ public class LatinDictionaryRepository implements DictionaryRepository {
         } else {
             System.out.println("Неверный формат слова для первого словаря.");
         }
+    }
+    @Override
+    public void save(){
+        latinFileService.writeToFile(latinDictionary);
     }
 
     @Override

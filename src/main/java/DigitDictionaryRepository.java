@@ -1,10 +1,12 @@
 import java.util.Map;
 
 public class DigitDictionaryRepository implements DictionaryRepository {
-    private Map<String, String> digitDictionary;
+    private final Map<String, String> digitDictionary;
+    private final FileService digitFileService;
 
-    public DigitDictionaryRepository(Map<String, String> initialData) {
-        digitDictionary = initialData;
+    public DigitDictionaryRepository() {
+        this.digitFileService = new FileService("src/main/latinDictionary.txt");
+        this.digitDictionary = digitFileService.readFromFile();
     }
 
     @Override
@@ -29,5 +31,9 @@ public class DigitDictionaryRepository implements DictionaryRepository {
     @Override
     public Map<String, String> getDictionary() {
         return digitDictionary;
+    }
+    @Override
+    public void save(){
+        digitFileService.writeToFile(digitDictionary);
     }
 }

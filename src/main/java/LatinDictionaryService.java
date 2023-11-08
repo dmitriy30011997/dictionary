@@ -3,8 +3,8 @@ import java.util.Map;
 public class LatinDictionaryService implements DictionaryService {
     private final LatinDictionaryRepository dictionaryRepository;
 
-    public LatinDictionaryService(LatinDictionaryRepository dictionaryRepository) {
-        this.dictionaryRepository = new LatinDictionaryRepository(dictionaryRepository.getDictionary());
+    public LatinDictionaryService() {
+        this.dictionaryRepository = new LatinDictionaryRepository();
     }
 
     @Override
@@ -17,12 +17,16 @@ public class LatinDictionaryService implements DictionaryService {
         dictionaryRepository.deleteEntry(key);
     }
     public String viewDictionaryContents() {
-        String dictionaryContents = "Содержимое словаря 1 \n";
+        StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 1 \n");
 
         for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
-            dictionaryContents += entry.getKey() + ": " + entry.getValue() + "\n";
+            dictionaryContents.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
-        return dictionaryContents;
+        return dictionaryContents.toString();
+    }
+    @Override
+    public void save() {
+        dictionaryRepository.save();
     }
 
     @Override

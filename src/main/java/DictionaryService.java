@@ -5,4 +5,5 @@ public interface DictionaryService {
     void delete(String key);
     String viewDictionaryContents();
     Map<String, String> getDictionary();
+    void save();
 }

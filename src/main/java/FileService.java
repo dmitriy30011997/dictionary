@@ -2,10 +2,10 @@ import java.util.Map;
 import java.io.*;
 import java.util.HashMap;
 public class FileService {
-    private final String FileName;
+    private final String fileName;
 
-    public FileService(String FileName) {
-        this.FileName = FileName;
+    public FileService(String fileName) {
+        this.fileName = fileName;
     }
 
     public void writeToFile(Map<String, String> dictionary, String fileName) {
@@ -20,10 +20,10 @@ public class FileService {
     }
 
     public void writeToFile(Map<String, String> dictionary) {
-        writeToFile(dictionary, FileName);
+        writeToFile(dictionary, fileName);
     }
 
-    public Map<String, String> readFromFile(String fileName) {
+    public Map<String, String> readFromFile() {
         Map<String, String> dictionary = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
