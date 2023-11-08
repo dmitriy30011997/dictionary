@@ -1,3 +1,7 @@
+package repository;
+
+import repository.DictionaryRepository;
+
 import java.util.Map;
 
 public class LatinDictionaryRepository implements DictionaryRepository {

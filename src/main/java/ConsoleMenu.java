@@ -1,3 +1,7 @@
+import service.DictionaryService;
+import service.DigitDictionaryService;
+import service.LatinDictionaryService;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

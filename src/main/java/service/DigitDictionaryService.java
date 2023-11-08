@@ -1,3 +1,8 @@
+package service;
+
+import service.DictionaryService;
+import repository.DigitDictionaryRepository;
+
 import java.util.Map;
 public class DigitDictionaryService implements DictionaryService {
     private final DigitDictionaryRepository dictionaryRepository;
