@@ -23,26 +23,6 @@ public class ConsoleMenu {
 
         this.scanner = new Scanner(System.in);
     }
-
-//public class ConsoleMenu {
-//    private Map<Integer, DictionaryService> services = new HashMap<>();
-//    private DictionaryRepository dictionaryRepository;
-//    private final FileService latinFileService;
-//    private final FileService digitFileService;
-//    private FileService fileService;
-//    private final Scanner scanner;
-//
-//    public ConsoleMenu(LatinDictionaryRepository latinDictionaryRepository, DigitDictionaryRepository digitDictionaryRepository,
-//                       FileService latinFileService, FileService digitFileService) {
-//        this.latinFileService = latinFileService;
-//        this.digitFileService = digitFileService;
-//
-//        services.put(1, new LatinDictionaryService(latinDictionaryRepository));
-//        services.put(2, new DigitDictionaryService(digitDictionaryRepository));
-//
-//        this.scanner = new Scanner(System.in);
-//    }
-
     public void run() {
         boolean exit = false;
         while (!exit) {
