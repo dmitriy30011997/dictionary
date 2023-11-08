@@ -40,7 +40,7 @@ public class ConsoleMenu {
         }
     }
 
-    public void chooseDictionary() {
+    private void chooseDictionary() {
         System.out.print("Выберите словарь (1 - латинский, 2 - цифровой): ");
         int dictionaryChoice = scanner.nextInt();
         scanner.nextLine();
@@ -53,7 +53,7 @@ public class ConsoleMenu {
         }
     }
 
-    public void viewAllDictionaryContents() {
+    private void viewAllDictionaryContents() {
         String latinDictionaryContents = services.get(1).viewDictionaryContents();
         System.out.println(latinDictionaryContents);
 
@@ -61,7 +61,7 @@ public class ConsoleMenu {
         System.out.println(digitDictionaryContents);
     }
 
-    public void dictionaryFunctions(DictionaryService service) {
+    private void dictionaryFunctions(DictionaryService service) {
         boolean exit = false;
         while (!exit) {
             System.out.println("Меню команд для выбранного словаря:");
@@ -105,7 +105,7 @@ public class ConsoleMenu {
         }
     }
 
-    public void close() {
+    private void close() {
         scanner.close();
     }
 }
