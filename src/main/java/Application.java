@@ -4,7 +4,5 @@ public class Application {
         ConsoleMenu consoleMenu = new ConsoleMenu();
 
         consoleMenu.run();
-
-
     }
 }
