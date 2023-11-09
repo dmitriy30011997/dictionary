@@ -9,7 +9,7 @@ public class DigitDictionaryRepository implements DictionaryRepository {
     private final FileService digitFileService;
 
     public DigitDictionaryRepository() {
-        this.digitFileService = new FileService("src/main/latinDictionary.txt");
+        this.digitFileService = new FileService("src/main/digitDictionary.txt");
         this.digitDictionary = digitFileService.readFromFile();
     }
 
