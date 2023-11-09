@@ -35,7 +35,7 @@ public class DigitDictionaryService implements DictionaryService {
     }
 
     @Override
-    public void save() {
+    public void saveDictionary() {
         dictionaryRepository.save();
     }
 }

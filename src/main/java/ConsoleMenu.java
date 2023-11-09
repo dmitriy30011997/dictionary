@@ -95,7 +95,7 @@ public class ConsoleMenu {
                     String keyToFind = scanner.nextLine();
                     System.out.println(service.findEntry(keyToFind));
                 case 5:
-                    service.save();
+                    service.saveDictionary();
                     exit = true;
                     break;
                 default:
