@@ -1,6 +1,6 @@
 import service.DictionaryService;
-import service.DigitDictionaryService;
-import service.LatinDictionaryService;
+import service.DigitDictionaryServiceImpl;
+import service.LatinDictionaryServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +11,8 @@ public class ConsoleMenu {
     private final Scanner scanner;
 
     public ConsoleMenu() {
-        services.put(1, new LatinDictionaryService());
-        services.put(2, new DigitDictionaryService());
+        services.put(1, new LatinDictionaryServiceImpl());
+        services.put(2, new DigitDictionaryServiceImpl());
 
         this.scanner = new Scanner(System.in);
     }

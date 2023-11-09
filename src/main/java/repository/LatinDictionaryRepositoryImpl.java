@@ -4,12 +4,12 @@ import service.FileService;
 
 import java.util.Map;
 
-public class LatinDictionaryRepository implements DictionaryRepository {
+public class LatinDictionaryRepositoryImpl implements DictionaryRepository {
     private final Map<String, String> latinDictionary;
     private final FileService latinFileService;
 
 
-    public LatinDictionaryRepository() {
+    public LatinDictionaryRepositoryImpl() {
         this.latinFileService = new FileService("src/main/latinDictionary.txt");
         latinDictionary = latinFileService.readFromFile();
     }

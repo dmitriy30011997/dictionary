@@ -1,14 +1,13 @@
 package service;
 
-import repository.LatinDictionaryRepository;
+import repository.DigitDictionaryRepositoryImpl;
 
 import java.util.Map;
+public class DigitDictionaryServiceImpl implements DictionaryService {
+    private final DigitDictionaryRepositoryImpl dictionaryRepository;
 
-public class LatinDictionaryService implements DictionaryService {
-    private final LatinDictionaryRepository dictionaryRepository;
-
-    public LatinDictionaryService() {
-        this.dictionaryRepository = new LatinDictionaryRepository();
+    public DigitDictionaryServiceImpl() {
+        this.dictionaryRepository = new DigitDictionaryRepositoryImpl();
     }
 
     @Override
@@ -20,8 +19,9 @@ public class LatinDictionaryService implements DictionaryService {
     public void delete(String key) {
         dictionaryRepository.deleteEntry(key);
     }
+
     public String viewDictionaryContents() {
-        StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 1 \n");
+        StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 2 \n");
 
         for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
             dictionaryContents.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");

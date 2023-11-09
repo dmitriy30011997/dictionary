@@ -4,11 +4,11 @@ import service.FileService;
 
 import java.util.Map;
 
-public class DigitDictionaryRepository implements DictionaryRepository {
+public class DigitDictionaryRepositoryImpl implements DictionaryRepository {
     private final Map<String, String> digitDictionary;
     private final FileService digitFileService;
 
-    public DigitDictionaryRepository() {
+    public DigitDictionaryRepositoryImpl() {
         this.digitFileService = new FileService("src/main/digitDictionary.txt");
         this.digitDictionary = digitFileService.readFromFile();
     }
