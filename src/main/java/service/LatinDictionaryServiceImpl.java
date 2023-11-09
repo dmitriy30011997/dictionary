@@ -13,13 +13,18 @@ public class LatinDictionaryServiceImpl implements DictionaryService {
 
     @Override
     public void add(String key, String value) {
-        dictionaryRepository.addEntry(key, value);
+        if (key.matches("^[a-zA-Z]{4}$") && value.matches("^[a-zA-Z]{4}$")) {
+            dictionaryRepository.addEntry(key, value);
+        } else {
+            System.out.println("Неверный формат слова для первого словаря.");
+        }
     }
 
     @Override
     public void delete(String key) {
         dictionaryRepository.deleteEntry(key);
     }
+
     public String viewDictionaryContents() {
         StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 1 \n");
 

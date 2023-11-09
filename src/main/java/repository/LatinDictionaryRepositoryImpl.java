@@ -16,11 +16,7 @@ public class LatinDictionaryRepositoryImpl implements DictionaryRepository {
 
     @Override
     public void addEntry(String key, String value) {
-        if (key.matches("^[a-zA-Z]{4}$") && value.matches("^[a-zA-Z]{4}$")) {
             latinDictionary.put(key, value);
-        } else {
-            System.out.println("Неверный формат слова для первого словаря.");
-        }
     }
     @Override
     public void save(){
