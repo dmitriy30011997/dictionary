@@ -3,6 +3,7 @@ package service;
 import repository.DigitDictionaryRepositoryImpl;
 
 import java.util.Map;
+
 public class DigitDictionaryServiceImpl implements DictionaryService {
     private final DigitDictionaryRepositoryImpl dictionaryRepository;
 
@@ -12,7 +13,11 @@ public class DigitDictionaryServiceImpl implements DictionaryService {
 
     @Override
     public void add(String key, String value) {
-        dictionaryRepository.addEntry(key, value);
+        if (key.matches("^\\d{5}$") && value.matches("^\\d{5}$")) {
+            dictionaryRepository.addEntry(key, value);
+        } else {
+            System.out.println("Неверный формат слова для второго словаря.");
+        }
     }
 
     @Override
@@ -36,6 +41,6 @@ public class DigitDictionaryServiceImpl implements DictionaryService {
 
     @Override
     public void saveDictionary() {
-        dictionaryRepository.save();
+        dictionaryRepository.saveAll();
     }
 }

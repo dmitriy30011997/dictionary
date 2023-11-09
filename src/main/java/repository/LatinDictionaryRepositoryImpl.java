@@ -19,7 +19,7 @@ public class LatinDictionaryRepositoryImpl implements DictionaryRepository {
             latinDictionary.put(key, value);
     }
     @Override
-    public void save(){
+    public void saveAll(){
         latinFileService.writeToFile(latinDictionary);
     }
 

@@ -15,11 +15,7 @@ public class DigitDictionaryRepositoryImpl implements DictionaryRepository {
 
     @Override
     public void addEntry(String key, String value) {
-        if (key.matches("^\\d{5}$") && value.matches("^\\d{5}$")) {
-            digitDictionary.put(key, value);
-        } else {
-            System.out.println("Неверный формат слова для второго словаря.");
-        }
+        digitDictionary.put(key, value);
     }
 
     @Override
@@ -36,8 +32,9 @@ public class DigitDictionaryRepositoryImpl implements DictionaryRepository {
     public Map<String, String> getDictionary() {
         return digitDictionary;
     }
+
     @Override
-    public void save(){
+    public void saveAll() {
         digitFileService.writeToFile(digitDictionary);
     }
 }

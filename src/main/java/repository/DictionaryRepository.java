@@ -11,6 +11,6 @@ public interface DictionaryRepository {
 
     Map<String, String> getDictionary();
 
-    void save();
+    void saveAll();
 }
 
