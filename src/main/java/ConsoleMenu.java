@@ -54,11 +54,8 @@ public class ConsoleMenu {
     }
 
     private void viewAllDictionaryContents() {
-        String latinDictionaryContents = services.get(1).viewDictionaryContents();
-        System.out.println(latinDictionaryContents);
-
-        String digitDictionaryContents = services.get(2).viewDictionaryContents();
-        System.out.println(digitDictionaryContents);
+        services.values()
+                .forEach((DictionaryService service) -> System.out.println(service.viewDictionaryContents()));
     }
 
     private void dictionaryFunctions(DictionaryService service) {
@@ -94,6 +91,7 @@ public class ConsoleMenu {
                     System.out.println("Введите ключ, значение которого надо найти");
                     String keyToFind = scanner.nextLine();
                     System.out.println(service.findEntry(keyToFind));
+                    break;
                 case 5:
                     service.saveDictionary();
                     exit = true;
