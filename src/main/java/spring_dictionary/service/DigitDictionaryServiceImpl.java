@@ -1,5 +1,6 @@
 package spring_dictionary.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring_dictionary.repository.DigitDictionaryRepositoryImpl;
 
@@ -7,9 +8,9 @@ import java.util.Map;
 @Service
 public class DigitDictionaryServiceImpl implements DictionaryService {
     private final DigitDictionaryRepositoryImpl dictionaryRepository;
-
-    public DigitDictionaryServiceImpl() {
-        this.dictionaryRepository = new DigitDictionaryRepositoryImpl();
+    @Autowired
+    public DigitDictionaryServiceImpl(DigitDictionaryRepositoryImpl dictionaryRepository) {
+        this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override

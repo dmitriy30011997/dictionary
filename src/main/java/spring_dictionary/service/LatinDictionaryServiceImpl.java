@@ -1,5 +1,6 @@
 package spring_dictionary.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring_dictionary.repository.LatinDictionaryRepositoryImpl;
 
@@ -7,9 +8,9 @@ import java.util.Map;
 @Service
 public class LatinDictionaryServiceImpl implements DictionaryService {
     private final LatinDictionaryRepositoryImpl dictionaryRepository;
-
-    public LatinDictionaryServiceImpl() {
-        this.dictionaryRepository = new LatinDictionaryRepositoryImpl();
+    @Autowired
+    public LatinDictionaryServiceImpl(LatinDictionaryRepositoryImpl dictionaryRepository) {
+        this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override
