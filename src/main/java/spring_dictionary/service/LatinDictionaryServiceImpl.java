@@ -1,6 +1,6 @@
-package service;
+package spring_dictionary.service;
 
-import repository.LatinDictionaryRepositoryImpl;
+import spring_dictionary.repository.LatinDictionaryRepositoryImpl;
 
 import java.util.Map;
 

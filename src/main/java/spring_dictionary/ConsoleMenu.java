@@ -1,6 +1,8 @@
-import service.DictionaryService;
-import service.DigitDictionaryServiceImpl;
-import service.LatinDictionaryServiceImpl;
+package spring_dictionary;
+
+import spring_dictionary.service.DictionaryService;
+import spring_dictionary.service.DigitDictionaryServiceImpl;
+import spring_dictionary.service.LatinDictionaryServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;

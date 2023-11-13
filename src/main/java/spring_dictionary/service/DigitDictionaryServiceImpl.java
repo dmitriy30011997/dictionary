@@ -1,6 +1,6 @@
-package service;
+package spring_dictionary.service;
 
-import repository.DigitDictionaryRepositoryImpl;
+import spring_dictionary.repository.DigitDictionaryRepositoryImpl;
 
 import java.util.Map;
 

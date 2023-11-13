@@ -1,6 +1,6 @@
-package repository;
+package spring_dictionary.repository;
 
-import service.FileService;
+import spring_dictionary.service.FileService;
 
 import java.util.Map;
 
