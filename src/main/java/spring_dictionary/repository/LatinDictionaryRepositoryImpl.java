@@ -1,5 +1,7 @@
 package spring_dictionary.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import spring_dictionary.service.FileService;
 
@@ -10,8 +12,9 @@ public class LatinDictionaryRepositoryImpl implements DictionaryRepository {
     private final FileService latinFileService;
 
 
-    public LatinDictionaryRepositoryImpl() {
-        this.latinFileService = new FileService("src/main/latinDictionary.txt");
+    @Autowired
+    public LatinDictionaryRepositoryImpl(@Qualifier("latinFileService") FileService latinFileService) {
+        this.latinFileService = latinFileService;
         latinDictionary = latinFileService.readFromFile();
     }
 

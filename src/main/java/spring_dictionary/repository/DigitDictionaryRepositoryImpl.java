@@ -1,5 +1,7 @@
 package spring_dictionary.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import spring_dictionary.service.FileService;
 
@@ -9,11 +11,11 @@ public class DigitDictionaryRepositoryImpl implements DictionaryRepository {
     private final Map<String, String> digitDictionary;
     private final FileService digitFileService;
 
-    public DigitDictionaryRepositoryImpl() {
-        this.digitFileService = new FileService("src/main/digitDictionary.txt");
+    @Autowired
+    public DigitDictionaryRepositoryImpl(@Qualifier("digitFileService") FileService digitFileService) {
+        this.digitFileService = digitFileService;
         this.digitDictionary = digitFileService.readFromFile();
     }
-
     @Override
     public void addEntry(String key, String value) {
         digitDictionary.put(key, value);

@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import spring_dictionary.service.DictionaryService;
-import spring_dictionary.service.DigitDictionaryServiceImpl;
-import spring_dictionary.service.LatinDictionaryServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
