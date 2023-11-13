@@ -1,9 +1,10 @@
 package spring_dictionary.service;
 
+import org.springframework.stereotype.Service;
 import spring_dictionary.repository.LatinDictionaryRepositoryImpl;
 
 import java.util.Map;
-
+@Service
 public class LatinDictionaryServiceImpl implements DictionaryService {
     private final LatinDictionaryRepositoryImpl dictionaryRepository;
 

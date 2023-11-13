@@ -1,9 +1,10 @@
 package spring_dictionary.repository;
 
+import org.springframework.stereotype.Repository;
 import spring_dictionary.service.FileService;
 
 import java.util.Map;
-
+@Repository
 public class LatinDictionaryRepositoryImpl implements DictionaryRepository {
     private final Map<String, String> latinDictionary;
     private final FileService latinFileService;
