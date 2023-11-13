@@ -1,5 +1,7 @@
 package spring_dictionary;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import spring_dictionary.service.DictionaryService;
 import spring_dictionary.service.DigitDictionaryServiceImpl;
 import spring_dictionary.service.LatinDictionaryServiceImpl;
@@ -7,12 +9,15 @@ import spring_dictionary.service.LatinDictionaryServiceImpl;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+@Component
 public class ConsoleMenu {
-    private final Map<Integer, DictionaryService> services = new HashMap<>();
+    private final Map<Integer, DictionaryService> services;
     private final Scanner scanner;
+    @Autowired
+    public ConsoleMenu(DictionaryService latinDictionaryService,
+                       DictionaryService digitDictionaryService) {
 
-    public ConsoleMenu() {
+        this.services = new HashMap<>();
         services.put(1, new LatinDictionaryServiceImpl());
         services.put(2, new DigitDictionaryServiceImpl());
 

@@ -1,12 +1,14 @@
 package spring_dictionary;
 
-import spring_dictionary.ConsoleMenu;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Application {
     public static void main(String[] args) {
 
-        ConsoleMenu consoleMenu = new ConsoleMenu();
-        consoleMenu.run();
-        consoleMenu.close();
+        try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DictionaryConfig.class)) {
+            ConsoleMenu consoleMenu = context.getBean(ConsoleMenu.class);
+            consoleMenu.run();
+            consoleMenu.close();
+        }
     }
 }
