@@ -45,4 +45,9 @@ public class LatinDictionaryServiceImpl implements DictionaryService {
     public void saveDictionary() {
         dictionaryRepository.saveAll();
     }
+
+    @Override
+    public int getType() {
+        return 1;
+    }
 }

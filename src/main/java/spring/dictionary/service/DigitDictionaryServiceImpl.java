@@ -45,4 +45,9 @@ public class DigitDictionaryServiceImpl implements DictionaryService {
     public void saveDictionary() {
         dictionaryRepository.saveAll();
     }
+
+    @Override
+    public int getType() {
+        return 2;
+    }
 }
