@@ -19,3 +19,5 @@ Gsrc/main/java/spring/dictionary/service/DigitDictionaryServiceImpl.java,4\1\41
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 w
 Gsrc/main/java/spring/dictionary/service/LatinDictionaryServiceImpl.java,c\c\cc44f6a1590c7478667a0bc1d0d0a8b48191e783
+t
+Dsrc/main/java/spring/dictionary/repository/DictionaryRepository.java,1\5\154d2f847efc8a63f1f419d81ed1a8c2364d2477

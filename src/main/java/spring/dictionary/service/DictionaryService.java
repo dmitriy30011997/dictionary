@@ -6,5 +6,5 @@ public interface DictionaryService {
     String viewDictionaryContents();
     String findEntry(String key);
     void saveDictionary();
-    public int getType();
+    int getType();
 }
