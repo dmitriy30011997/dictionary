@@ -1,9 +1,9 @@
-package spring_dictionary.repository;
+package spring.dictionary.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import spring_dictionary.service.FileService;
+import spring.dictionary.service.FileService;
 
 import java.util.Map;
 @Repository

@@ -1,12 +1,12 @@
-package spring_dictionary;
+package spring.dictionary;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import spring_dictionary.service.FileService;
+import spring.dictionary.service.FileService;
 
 @Configuration
-@ComponentScan("spring_dictionary")
+@ComponentScan("spring/dictionary")
 public class DictionaryConfig {
     @Bean(name = "digitFileService")
     public FileService digitFileService() {

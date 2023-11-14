@@ -1,4 +1,4 @@
-package spring_dictionary;
+package spring.dictionary;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

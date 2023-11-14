@@ -1,4 +1,4 @@
-package spring_dictionary.repository;
+package spring.dictionary.repository;
 
 import java.util.Map;
 

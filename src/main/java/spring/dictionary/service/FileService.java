@@ -1,4 +1,4 @@
-package spring_dictionary.service;
+package spring.dictionary.service;
 
 import java.io.*;
 import java.util.Map;

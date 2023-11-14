@@ -1,4 +1,4 @@
-package spring_dictionary.service;
+package spring.dictionary.service;
 
 public interface DictionaryService {
     void add(String key, String value);
