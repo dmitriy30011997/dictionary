@@ -1,14 +1,11 @@
 package spring.dictionary.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import spring.dictionary.repository.LatinDictionaryRepositoryImpl;
 
 import java.util.Map;
-@Service
+
 public class LatinDictionaryServiceImpl implements DictionaryService {
     private final LatinDictionaryRepositoryImpl dictionaryRepository;
-    @Autowired
+
     public LatinDictionaryServiceImpl(LatinDictionaryRepositoryImpl dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }

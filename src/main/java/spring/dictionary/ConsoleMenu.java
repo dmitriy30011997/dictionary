@@ -1,7 +1,4 @@
 package spring.dictionary;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import spring.dictionary.service.DictionaryService;
 
 import java.util.List;
@@ -10,11 +7,10 @@ import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Component
+
 public class ConsoleMenu {
     private final Map<Integer, DictionaryService> services;
     private final Scanner scanner;
-    @Autowired
     public ConsoleMenu(List<DictionaryService> servicesList) {
         this.services = servicesList.stream()
                 .collect(Collectors.toMap(DictionaryService::getType, Function.identity()));

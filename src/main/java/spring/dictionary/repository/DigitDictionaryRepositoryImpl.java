@@ -1,18 +1,12 @@
 package spring.dictionary.repository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import spring.dictionary.service.FileService;
 
 import java.util.Map;
-@Repository
 public class DigitDictionaryRepositoryImpl implements DictionaryRepository {
     private final Map<String, String> digitDictionary;
     private final FileService digitFileService;
 
-    @Autowired
-    public DigitDictionaryRepositoryImpl(@Qualifier("digitFileService") FileService digitFileService) {
+    public DigitDictionaryRepositoryImpl(FileService digitFileService) {
         this.digitFileService = digitFileService;
         this.digitDictionary = digitFileService.readFromFile();
     }

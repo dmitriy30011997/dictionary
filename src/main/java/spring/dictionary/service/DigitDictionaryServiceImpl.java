@@ -1,14 +1,10 @@
 package spring.dictionary.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import spring.dictionary.repository.DigitDictionaryRepositoryImpl;
 
 import java.util.Map;
-@Service
 public class DigitDictionaryServiceImpl implements DictionaryService {
     private final DigitDictionaryRepositoryImpl dictionaryRepository;
-    @Autowired
     public DigitDictionaryServiceImpl(DigitDictionaryRepositoryImpl dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
