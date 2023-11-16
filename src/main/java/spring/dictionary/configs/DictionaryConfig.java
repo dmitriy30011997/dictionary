@@ -1,8 +1,9 @@
-package spring.dictionary;
+package spring.dictionary.configs;
 
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import spring.dictionary.ConsoleMenu;
 import spring.dictionary.repository.DictionaryRepository;
 import spring.dictionary.repository.DigitDictionaryRepositoryImpl;
 import spring.dictionary.repository.LatinDictionaryRepositoryImpl;
@@ -32,11 +33,11 @@ public class DictionaryConfig {
     }
     @Bean
     public DictionaryService latinDictionaryServiceImpl(){
-        return new LatinDictionaryServiceImpl((LatinDictionaryRepositoryImpl) latinDictionaryRepository());
+        return new LatinDictionaryServiceImpl(latinDictionaryRepository());
     }
     @Bean
     public DictionaryService digitDictionaryServiceImpl(){
-        return new DigitDictionaryServiceImpl((DigitDictionaryRepositoryImpl) digitDictionaryRepository());
+        return new DigitDictionaryServiceImpl(digitDictionaryRepository());
     }
     @Bean
     public ConsoleMenu consoleMenu(List<DictionaryService> servicesList) {

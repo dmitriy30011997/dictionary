@@ -21,3 +21,8 @@ w
 Gsrc/main/java/spring/dictionary/service/LatinDictionaryServiceImpl.java,c\c\cc44f6a1590c7478667a0bc1d0d0a8b48191e783
 t
 Dsrc/main/java/spring/dictionary/repository/DictionaryRepository.java,1\5\154d2f847efc8a63f1f419d81ed1a8c2364d2477
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+m
+=src/main/java/spring/dictionary/configs/DictionaryConfig.java,0\1\01ab197d8f41b4954f4c6502bffe81377ab330f0
