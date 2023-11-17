@@ -1,11 +1,11 @@
 package spring.dictionary.service;
 
-import spring.dictionary.repository.DictionaryRepository;
+import spring.dictionary.repository.IDictionaryRepository;
 
 import java.util.Map;
-public class DigitDictionaryServiceImpl implements DictionaryService {
-    private final DictionaryRepository dictionaryRepository;
-    public DigitDictionaryServiceImpl(DictionaryRepository dictionaryRepository) {
+public class DigitDictionaryServiceImpl implements IDictionaryService {
+    private final IDictionaryRepository dictionaryRepository;
+    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 

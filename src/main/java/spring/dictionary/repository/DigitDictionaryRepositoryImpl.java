@@ -2,7 +2,7 @@ package spring.dictionary.repository;
 import spring.dictionary.service.FileService;
 
 import java.util.Map;
-public class DigitDictionaryRepositoryImpl implements DictionaryRepository {
+public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     private final Map<String, String> digitDictionary;
     private final FileService digitFileService;
 

@@ -6,10 +6,8 @@ import spring.dictionary.configs.DictionaryConfig;
 public class Application {
     public static void main(String[] args) {
 
-        try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DictionaryConfig.class)) {
-            ConsoleMenu consoleMenu = context.getBean(ConsoleMenu.class);
-            consoleMenu.run();
-            consoleMenu.close();
-        }
+        AnnotationConfigApplicationContext context =
+                     new AnnotationConfigApplicationContext(DictionaryConfig.class);
+        context.close();
     }
 }

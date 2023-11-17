@@ -1,12 +1,12 @@
 package spring.dictionary.service;
-import spring.dictionary.repository.DictionaryRepository;
+import spring.dictionary.repository.IDictionaryRepository;
 
 import java.util.Map;
 
-public class LatinDictionaryServiceImpl implements DictionaryService {
-    private final DictionaryRepository dictionaryRepository;
+public class LatinDictionaryServiceImpl implements IDictionaryService {
+    private final IDictionaryRepository dictionaryRepository;
 
-    public LatinDictionaryServiceImpl(DictionaryRepository dictionaryRepository) {
+    public LatinDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 

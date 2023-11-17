@@ -2,7 +2,7 @@ package spring.dictionary.repository;
 import spring.dictionary.service.FileService;
 
 import java.util.Map;
-public class LatinDictionaryRepositoryImpl implements DictionaryRepository {
+public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     private final Map<String, String> latinDictionary;
     private final FileService latinFileService;
 
