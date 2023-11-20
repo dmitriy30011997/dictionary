@@ -1,7 +1,7 @@
 databaseChangeLog:
     - changeSet:
         id: 1
-        author: postgres
+        author: dmitriy
         changes:
           - createTable:
               tableName: dictionary
