@@ -1,8 +1,8 @@
-package repository;
+package spring.dictionary.repository;
 
 import java.util.Map;
 
-public interface DictionaryRepository {
+public interface IDictionaryRepository {
     void addEntry(String key, String value);
 
     void deleteEntry(String key);

@@ -1,18 +1,15 @@
-package repository;
-
-import service.FileService;
+package spring.dictionary.repository;
+import spring.dictionary.service.FileService;
 
 import java.util.Map;
-
-public class DigitDictionaryRepositoryImpl implements DictionaryRepository {
+public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     private final Map<String, String> digitDictionary;
     private final FileService digitFileService;
 
-    public DigitDictionaryRepositoryImpl() {
-        this.digitFileService = new FileService("src/main/digitDictionary.txt");
+    public DigitDictionaryRepositoryImpl(FileService digitFileService) {
+        this.digitFileService = digitFileService;
         this.digitDictionary = digitFileService.readFromFile();
     }
-
     @Override
     public void addEntry(String key, String value) {
         digitDictionary.put(key, value);

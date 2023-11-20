@@ -1,22 +1,20 @@
-package service;
+package spring.dictionary.service;
 
-import repository.LatinDictionaryRepositoryImpl;
+import spring.dictionary.repository.IDictionaryRepository;
 
 import java.util.Map;
-
-public class LatinDictionaryServiceImpl implements DictionaryService {
-    private final LatinDictionaryRepositoryImpl dictionaryRepository;
-
-    public LatinDictionaryServiceImpl() {
-        this.dictionaryRepository = new LatinDictionaryRepositoryImpl();
+public class DigitDictionaryServiceImpl implements IDictionaryService {
+    private final IDictionaryRepository dictionaryRepository;
+    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
+        this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override
     public void add(String key, String value) {
-        if (key.matches("^[a-zA-Z]{4}$") && value.matches("^[a-zA-Z]{4}$")) {
+        if (key.matches("^\\d{5}$") && value.matches("^\\d{5}$")) {
             dictionaryRepository.addEntry(key, value);
         } else {
-            System.out.println("Неверный формат слова для первого словаря.");
+            System.out.println("Неверный формат слова для второго словаря.");
         }
     }
 
@@ -26,7 +24,7 @@ public class LatinDictionaryServiceImpl implements DictionaryService {
     }
 
     public String viewDictionaryContents() {
-        StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 1 \n");
+        StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 2 \n");
 
         for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
             dictionaryContents.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
@@ -42,5 +40,10 @@ public class LatinDictionaryServiceImpl implements DictionaryService {
     @Override
     public void saveDictionary() {
         dictionaryRepository.saveAll();
+    }
+
+    @Override
+    public int getType() {
+        return 2;
     }
 }

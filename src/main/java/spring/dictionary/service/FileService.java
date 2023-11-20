@@ -1,10 +1,11 @@
-package service;
+package spring.dictionary.service;
 
 import java.io.*;
 import java.util.Map;
 import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 public class FileService {
     private final String fileName;
     private static final Logger logger = LoggerFactory.getLogger(FileService.class);

@@ -1,16 +1,14 @@
-package repository;
-
-import service.FileService;
+package spring.dictionary.repository;
+import spring.dictionary.service.FileService;
 
 import java.util.Map;
-
-public class LatinDictionaryRepositoryImpl implements DictionaryRepository {
+public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     private final Map<String, String> latinDictionary;
     private final FileService latinFileService;
 
 
-    public LatinDictionaryRepositoryImpl() {
-        this.latinFileService = new FileService("src/main/latinDictionary.txt");
+    public LatinDictionaryRepositoryImpl(FileService latinFileService) {
+        this.latinFileService = latinFileService;
         latinDictionary = latinFileService.readFromFile();
     }
 

@@ -1,18 +1,19 @@
-import service.DictionaryService;
-import service.DigitDictionaryServiceImpl;
-import service.LatinDictionaryServiceImpl;
+package spring.dictionary;
+import spring.dictionary.service.IDictionaryService;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 
 public class ConsoleMenu {
-    private final Map<Integer, DictionaryService> services = new HashMap<>();
+    private final Map<Integer, IDictionaryService> services;
     private final Scanner scanner;
-
-    public ConsoleMenu() {
-        services.put(1, new LatinDictionaryServiceImpl());
-        services.put(2, new DigitDictionaryServiceImpl());
+    public ConsoleMenu(List<IDictionaryService> servicesList) {
+        this.services = servicesList.stream()
+                .collect(Collectors.toMap(IDictionaryService::getType, Function.identity()));
 
         this.scanner = new Scanner(System.in);
     }
@@ -34,6 +35,7 @@ public class ConsoleMenu {
                 viewAllDictionaryContents();
             } else if (mainChoice == 3) {
                 exit = true;
+                close();
             } else {
                 System.out.println("Неверная команда. Попробуйте снова.");
             }
@@ -45,7 +47,7 @@ public class ConsoleMenu {
         int dictionaryChoice = scanner.nextInt();
         scanner.nextLine();
 
-        DictionaryService selectedService = services.get(dictionaryChoice);
+        IDictionaryService selectedService = services.get(dictionaryChoice);
         if (selectedService != null) {
             dictionaryFunctions(selectedService);
         } else {
@@ -55,10 +57,10 @@ public class ConsoleMenu {
 
     private void viewAllDictionaryContents() {
         services.values()
-                .forEach((DictionaryService service) -> System.out.println(service.viewDictionaryContents()));
+                .forEach((IDictionaryService service) -> System.out.println(service.viewDictionaryContents()));
     }
 
-    private void dictionaryFunctions(DictionaryService service) {
+    private void dictionaryFunctions(IDictionaryService service) {
         boolean exit = false;
         while (!exit) {
             System.out.println("Меню команд для выбранного словаря:");
