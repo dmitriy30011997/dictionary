@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import spring.dictionary.ConsoleMenu;
 import spring.dictionary.repository.IDictionaryRepository;
 import spring.dictionary.repository.DigitDictionaryRepositoryImpl;
@@ -26,6 +27,7 @@ public class DictionaryConfig implements IConfig {
         return new FileService("C:\\Users\\dmitr\\IdeaProjects\\dictionary\\dictionary\\src\\main\\latinDictionary.txt");
     }
     @Bean
+    @Primary
     public IDictionaryRepository latinDictionaryRepository(){
         return new LatinDictionaryRepositoryImpl(latinFileService());
     }
