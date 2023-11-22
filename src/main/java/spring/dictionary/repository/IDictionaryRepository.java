@@ -1,6 +1,8 @@
 package spring.dictionary.repository;
 
-import java.util.Map;
+import spring.dictionary.entities.LatinEntity;
+
+import java.util.List;
 
 public interface IDictionaryRepository {
     void addEntry(String key, String value);
@@ -9,7 +11,7 @@ public interface IDictionaryRepository {
 
     String findEntry(String key);
 
-    Map<String, String> getDictionary();
+    List<LatinEntity> getDictionary();
 
     void saveAll();
 }

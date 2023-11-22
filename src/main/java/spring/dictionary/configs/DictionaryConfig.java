@@ -18,15 +18,6 @@ import spring.dictionary.service.LatinDictionaryServiceImpl;
 @ComponentScan("spring.dictionary")
 public class DictionaryConfig implements IConfig {
     @Bean
-    public FileService digitFileService() {
-        return new FileService("src\\main\\digitDictionary.txt");
-    }
-
-    @Bean
-    public FileService latinFileService() {
-        return new FileService("src\\main\\latinDictionary.txt");
-    }
-    @Bean
     @Primary
     public IDictionaryRepository latinDictionaryRepository(){
         return new LatinDictionaryRepositoryImpl(latinFileService());

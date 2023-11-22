@@ -25,6 +25,18 @@ public class LatinEntity implements Serializable {
     public LatinEntity() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getLatinKey() {
+        return latinKey;
+    }
+
+    public String getLatinValue() {
+        return latinValue;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -34,6 +46,12 @@ public class LatinEntity implements Serializable {
     }
 
     public void setLatinValue(String latinValue) {
+        this.latinValue = latinValue;
+    }
+
+    public LatinEntity(Long id, String latinKey, String latinValue) {
+        this.id = id;
+        this.latinKey = latinKey;
         this.latinValue = latinValue;
     }
 

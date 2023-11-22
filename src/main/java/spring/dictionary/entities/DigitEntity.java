@@ -50,6 +50,12 @@ public class DigitEntity implements Serializable {
         this.digitValue = digitValue;
     }
 
+    public DigitEntity(Long id, String digitKey, String digitValue) {
+        this.id = id;
+        this.digitKey = digitKey;
+        this.digitValue = digitValue;
+    }
+
     @Override
     public String toString() {
         return "DigitEntity{" +
