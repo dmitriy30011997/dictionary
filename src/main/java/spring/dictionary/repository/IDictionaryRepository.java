@@ -3,6 +3,7 @@ package spring.dictionary.repository;
 import spring.dictionary.entities.LatinEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IDictionaryRepository {
     void addEntry(String key, String value);
@@ -11,7 +12,7 @@ public interface IDictionaryRepository {
 
     String findEntry(String key);
 
-    List<LatinEntity> getDictionary();
+    Map<String, String> getDictionary();
 
     void saveAll();
 }

@@ -10,16 +10,10 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
 import javax.sql.DataSource;
-import java.util.Objects;
-
-import static org.springframework.core.SpringProperties.getProperty;
 
 @Configuration
 @PropertySource("classpath:db/changelog/changelog.yaml")
 public class LiquibaseConfig {
-
-    @Autowired
-    private Environment env;
 
     @Bean
     public DataSource dataSource()  {

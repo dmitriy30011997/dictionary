@@ -2,11 +2,15 @@ package spring.dictionary.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dictionary.entities.DigitEntity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Transactional
@@ -41,9 +45,18 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         }
     }
 
-    public List getDictionary() {
-        return entityManager.createQuery("FROM DigitEntity")
-                .getResultList();
+    public Map<String,String> getDictionary() {
+        Session session = entityManager.unwrap(Session.class);
+        Query query = session.createQuery("SELECT de.digitKey, de.digitValue FROM DigitEntity de");
+
+        List<Object[]> results = query.list();
+
+        Map<String, String> dictionaryMap = new HashMap<>();
+        for (Object[] result : results) {
+            dictionaryMap.put((String) result[0], (String) result[1]);
+        }
+
+        return dictionaryMap;
     }
 
         @Override

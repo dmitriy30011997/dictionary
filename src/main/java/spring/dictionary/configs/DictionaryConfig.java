@@ -11,7 +11,6 @@ import spring.dictionary.repository.DigitDictionaryRepositoryImpl;
 import spring.dictionary.repository.LatinDictionaryRepositoryImpl;
 import spring.dictionary.service.IDictionaryService;
 import spring.dictionary.service.DigitDictionaryServiceImpl;
-import spring.dictionary.service.FileService;
 import spring.dictionary.service.LatinDictionaryServiceImpl;
 
 @Configuration
@@ -20,11 +19,11 @@ public class DictionaryConfig implements IConfig {
     @Bean
     @Primary
     public IDictionaryRepository latinDictionaryRepository(){
-        return new LatinDictionaryRepositoryImpl(latinFileService());
+        return new LatinDictionaryRepositoryImpl();
     }
     @Bean
     public IDictionaryRepository digitDictionaryRepository(){
-        return new DigitDictionaryRepositoryImpl(digitFileService());
+        return new DigitDictionaryRepositoryImpl();
     }
     @Bean
     public IDictionaryService latinDictionaryServiceImpl(){
