@@ -15,23 +15,11 @@ import javax.sql.DataSource;
 @PropertySource("classpath:db/changelog/changelog.yaml")
 public class LiquibaseConfig {
 
-    @Bean
-    public DataSource dataSource()  {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/dictionary");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("inudug95");
-
-        return dataSource;
-    }
 
     @Bean
-    public SpringLiquibase liquibase()  {
+    public SpringLiquibase liquibase(DataSource dataSource)  {
         SpringLiquibase liquibase = new SpringLiquibase();
-
-        liquibase.setDataSource(dataSource());
+        liquibase.setDataSource(dataSource);
         liquibase.setChangeLog("classpath:db/changelog/changelog.yaml");
 
         return liquibase;

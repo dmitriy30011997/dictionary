@@ -7,26 +7,26 @@
 //import org.slf4j.LoggerFactory;
 //
 //public class FileService {
-//    private final String fileName;
-//    private static final Logger logger = LoggerFactory.getLogger(FileService.class);
-//    public FileService(String fileName) {
-//        this.fileName = fileName;
-//    }
+////    private final String fileName;
+////    private static final Logger logger = LoggerFactory.getLogger(FileService.class);
+////    public FileService(String fileName) {
+////        this.fileName = fileName;
+////    }
 //
-//    public void writeToFile(Map<String, String> dictionary, String fileName) {
-//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-//            for (Map.Entry<String, String> entry : dictionary.entrySet()) {
-//                writer.write(entry.getKey() + ": " + entry.getValue());
-//                writer.newLine();
-//            }
-//        } catch (IOException e) {
-//            logger.error("Something went wrong in method write to file ", e);
-//        }
-//    }
+////    public void writeToFile(Map<String, String> dictionary, String fileName) {
+////        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+////            for (Map.Entry<String, String> entry : dictionary.entrySet()) {
+////                writer.write(entry.getKey() + ": " + entry.getValue());
+////                writer.newLine();
+////            }
+////        } catch (IOException e) {
+////            logger.error("Something went wrong in method write to file ", e);
+////        }
+////    }
 //
-//    public void writeToFile(Map<String, String> dictionary) {
-//        writeToFile(dictionary, fileName);
-//    }
+////    public void writeToFile(Map<String, String> dictionary) {
+////        writeToFile(dictionary, fileName);
+////    }
 //
 //    public Map<String, String> readFromFile() {
 //        Map<String, String> dictionary = new HashMap<>();

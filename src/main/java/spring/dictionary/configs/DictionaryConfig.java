@@ -1,6 +1,8 @@
 package spring.dictionary.configs;
 
 import java.util.List;
+
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,16 +24,16 @@ public class DictionaryConfig implements IConfig {
         return new LatinDictionaryRepositoryImpl();
     }
     @Bean
-    public IDictionaryRepository digitDictionaryRepository(){
-        return new DigitDictionaryRepositoryImpl();
+    public IDictionaryRepository digitDictionaryRepository(SessionFactory sessionFactory){
+        return new DigitDictionaryRepositoryImpl(sessionFactory);
     }
     @Bean
     public IDictionaryService latinDictionaryServiceImpl(){
         return new LatinDictionaryServiceImpl(latinDictionaryRepository());
     }
     @Bean
-    public IDictionaryService digitDictionaryServiceImpl(){
-        return new DigitDictionaryServiceImpl(digitDictionaryRepository());
+    public IDictionaryService digitDictionaryServiceImpl(SessionFactory sessionFactory){
+        return new DigitDictionaryServiceImpl(digitDictionaryRepository(sessionFactory));
     }
     @Bean
     public ConsoleMenu consoleMenu(List<IDictionaryService> servicesList) {
