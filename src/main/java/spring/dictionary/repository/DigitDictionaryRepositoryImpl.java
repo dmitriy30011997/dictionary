@@ -15,11 +15,7 @@ import java.util.Map;
 @Transactional
 public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     @PersistenceContext
-    private final EntityManager entityManager;
-
-    public DigitDictionaryRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    EntityManager entityManager;
 
     @Override
     @Transactional
@@ -33,21 +29,17 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     @Override
     @Transactional
     public void deleteEntry(String key) {
-        DigitEntity digitEntity = entityManager.find(DigitEntity.class, key);
-        if (digitEntity != null) {
-            entityManager.remove(digitEntity);
-        }
+        Query query = entityManager.createQuery("DELETE FROM DigitEntity le WHERE le.digitKey = :key");
+        query.setParameter("key", key);
+        query.executeUpdate();
     }
 
     @Override
     @Transactional
     public String findEntry(String key) {
-        DigitEntity digitEntity = entityManager.find(DigitEntity.class, key);
-        if (digitEntity != null) {
-            return digitEntity.getDigitValue();
-        } else {
-            return null;
-        }
+        Query query = entityManager.createQuery("SELECT de.digitValue FROM DigitEntity de WHERE de.digitKey = :key");
+        query.setParameter("key", key);
+        return (String) query.getSingleResult();
     }
 
     @Transactional(readOnly = true)

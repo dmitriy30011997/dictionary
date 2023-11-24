@@ -3,18 +3,12 @@ package spring.dictionary.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import org.springframework.orm.jpa.JpaTransactionManager;
-
-import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -41,10 +35,6 @@ public class HibernateConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 
         return transactionManager;
-    }
-    @Bean
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
-        return entityManagerFactory.createEntityManager();
     }
     private Properties hibernateProperties(){
         Properties properties = new Properties();

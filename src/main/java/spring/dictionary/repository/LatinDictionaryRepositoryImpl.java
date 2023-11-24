@@ -1,13 +1,12 @@
 package spring.dictionary.repository;
 
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 import spring.dictionary.entities.LatinEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +15,7 @@ import java.util.Map;
 @Transactional
 public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     @PersistenceContext
-    private final EntityManager entityManager;
-
-    public LatinDictionaryRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    EntityManager entityManager;
 
     @Override
     @Transactional
@@ -34,28 +29,25 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     @Override
     @Transactional
     public void deleteEntry(String key) {
-        LatinEntity digitEntity = entityManager.find(LatinEntity.class, key);
-        if (digitEntity != null) {
-            entityManager.remove(digitEntity);
-        }
+        Query query = entityManager.createQuery("DELETE FROM LatinEntity le WHERE le.latinKey = :key");
+        query.setParameter("key", key);
+        query.executeUpdate();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public String findEntry(String key) {
-        LatinEntity latinEntity = entityManager.find(LatinEntity.class, key);
-        if (latinEntity != null) {
-            return latinEntity.getLatinValue();
-        } else {
-            return null;
-        }
+        Query query = entityManager.createQuery("SELECT le.latinValue FROM LatinEntity le WHERE le.latinKey = :key");
+        query.setParameter("key", key);
+        return (String) query.getSingleResult();
+
     }
+
     @Transactional(readOnly = true)
     public Map<String, String> getDictionary() {
-        Session session = entityManager.unwrap(Session.class);
-        Query query = session.createQuery("SELECT le.latinKey, le.latinValue FROM LatinEntity le");
+        Query query = entityManager.createQuery("SELECT le.latinKey, le.latinValue FROM LatinEntity le");
 
-        List<Object[]> results = query.list();
+        List<Object[]> results = query.getResultList();
 
         Map<String, String> dictionaryMap = new HashMap<>();
         for (Object[] result : results) {

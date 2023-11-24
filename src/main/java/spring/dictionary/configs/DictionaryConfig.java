@@ -14,28 +14,26 @@ import spring.dictionary.service.IDictionaryService;
 import spring.dictionary.service.DigitDictionaryServiceImpl;
 import spring.dictionary.service.LatinDictionaryServiceImpl;
 
-import javax.persistence.EntityManager;
-
 @Configuration
 @ComponentScan("spring.dictionary")
 public class DictionaryConfig implements IConfig {
     @Bean
     @Primary
-    public IDictionaryRepository latinDictionaryRepository(EntityManager entityManager){
-        return new LatinDictionaryRepositoryImpl(entityManager);
+    public IDictionaryRepository latinDictionaryRepository(){
+        return new LatinDictionaryRepositoryImpl();
     }
     @Bean
-    public IDictionaryRepository digitDictionaryRepository(EntityManager entityManager){
-        return new DigitDictionaryRepositoryImpl(entityManager);
+    public IDictionaryRepository digitDictionaryRepository(){
+        return new DigitDictionaryRepositoryImpl();
     }
 
     @Bean
-    public IDictionaryService latinDictionaryServiceImpl(EntityManager entityManager){
-        return new LatinDictionaryServiceImpl(latinDictionaryRepository(entityManager));
+    public IDictionaryService latinDictionaryServiceImpl(){
+        return new LatinDictionaryServiceImpl(latinDictionaryRepository());
     }
     @Bean
-    public IDictionaryService digitDictionaryServiceImpl(EntityManager entityManager){
-        return new DigitDictionaryServiceImpl(digitDictionaryRepository(entityManager));
+    public IDictionaryService digitDictionaryServiceImpl(){
+        return new DigitDictionaryServiceImpl(digitDictionaryRepository());
     }
     @Bean
     public ConsoleMenu consoleMenu(List<IDictionaryService> servicesList) {
