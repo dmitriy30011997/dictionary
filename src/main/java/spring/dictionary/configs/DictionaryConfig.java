@@ -20,16 +20,16 @@ import spring.dictionary.service.LatinDictionaryServiceImpl;
 public class DictionaryConfig implements IConfig {
     @Bean
     @Primary
-    public IDictionaryRepository latinDictionaryRepository(){
-        return new LatinDictionaryRepositoryImpl();
+    public IDictionaryRepository latinDictionaryRepository(SessionFactory sessionFactory){
+        return new LatinDictionaryRepositoryImpl(sessionFactory);
     }
     @Bean
     public IDictionaryRepository digitDictionaryRepository(SessionFactory sessionFactory){
         return new DigitDictionaryRepositoryImpl(sessionFactory);
     }
     @Bean
-    public IDictionaryService latinDictionaryServiceImpl(){
-        return new LatinDictionaryServiceImpl(latinDictionaryRepository());
+    public IDictionaryService latinDictionaryServiceImpl(SessionFactory sessionFactory){
+        return new LatinDictionaryServiceImpl(latinDictionaryRepository(sessionFactory));
     }
     @Bean
     public IDictionaryService digitDictionaryServiceImpl(SessionFactory sessionFactory){

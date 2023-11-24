@@ -1,8 +1,7 @@
 package spring.dictionary.repository;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
@@ -16,51 +15,56 @@ import java.util.Map;
 @Transactional
 public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final SessionFactory sessionFactory;
+
+    public LatinDictionaryRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public void addEntry(String key, String value) {
+        Session session = sessionFactory.getCurrentSession();
         LatinEntity latinEntity = new LatinEntity();
         latinEntity.setLatinKey(key);
         latinEntity.setLatinValue(value);
-        entityManager.persist(latinEntity);
+        session.persist(latinEntity);
     }
 
     @Override
     public void deleteEntry(String key) {
-        LatinEntity digitEntity = entityManager.find(LatinEntity.class, key);
-        if (digitEntity != null) {
-            entityManager.remove(digitEntity);
-        }
+//        LatinEntity digitEntity = entityManager.find(LatinEntity.class, key);
+//        if (digitEntity != null) {
+//            entityManager.remove(digitEntity);
+//        }
     }
 
     @Override
     public String findEntry(String key) {
-        LatinEntity latinEntity = entityManager.find(LatinEntity.class, key);
-        if (latinEntity != null) {
-            return latinEntity.getLatinValue();
-        } else {
+//        LatinEntity latinEntity = entityManager.find(LatinEntity.class, key);
+//        if (latinEntity != null) {
+//            return latinEntity.getLatinValue();
+//        } else {
             return null;
         }
-    }
+
     public Map<String, String> getDictionary() {
-        Session session = entityManager.unwrap(Session.class);
-        Query query = session.createQuery("SELECT le.latinKey, le.latinValue FROM LatinEntity le");
-
-        List<Object[]> results = query.list();
-
-        Map<String, String> dictionaryMap = new HashMap<>();
-        for (Object[] result : results) {
-            dictionaryMap.put((String) result[0], (String) result[1]);
-        }
-
-        return dictionaryMap;
+//        Session session = entityManager.unwrap(Session.class);
+//        Query query = session.createQuery("SELECT le.latinKey, le.latinValue FROM LatinEntity le");
+//
+//        List<Object[]> results = query.list();
+//
+//        Map<String, String> dictionaryMap = new HashMap<>();
+//        for (Object[] result : results) {
+//            dictionaryMap.put((String) result[0], (String) result[1]);
+//        }
+//
+//        return dictionaryMap;
+        return null;
     }
 
     @Override
     public void saveAll () {
-        entityManager.getTransaction().commit();
+//        entityManager.getTransaction().commit();
     }
 }
 

@@ -1,16 +1,13 @@
 package spring.dictionary.repository;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dictionary.entities.DigitEntity;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Repository

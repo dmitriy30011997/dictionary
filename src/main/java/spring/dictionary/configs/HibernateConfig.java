@@ -6,11 +6,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@EnableTransactionManagement
 public class HibernateConfig {
     @Bean
     public LocalSessionFactoryBean localSessionFactoryBean(){
@@ -25,6 +27,7 @@ public class HibernateConfig {
     public PlatformTransactionManager hibernateTransactionManger(){
         HibernateTransactionManager transactionManager
                 = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(localSessionFactoryBean().getObject());
         return transactionManager;
     }
     private Properties hibernateProperties(){
