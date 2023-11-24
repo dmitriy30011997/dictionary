@@ -9,7 +9,5 @@ public interface IDictionaryRepository {
     String findEntry(String key);
 
     Map<String, String> getDictionary();
-
-    void saveAll();
 }
 

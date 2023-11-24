@@ -28,6 +28,7 @@ public class DictionaryConfig implements IConfig {
     public IDictionaryRepository digitDictionaryRepository(EntityManager entityManager){
         return new DigitDictionaryRepositoryImpl(entityManager);
     }
+
     @Bean
     public IDictionaryService latinDictionaryServiceImpl(EntityManager entityManager){
         return new LatinDictionaryServiceImpl(latinDictionaryRepository(entityManager));

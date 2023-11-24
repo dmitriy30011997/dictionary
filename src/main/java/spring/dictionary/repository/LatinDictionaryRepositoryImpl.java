@@ -22,6 +22,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
+    @Transactional
     public void addEntry(String key, String value) {
         LatinEntity latinEntity = new LatinEntity();
         latinEntity.setLatinKey(key);
@@ -30,6 +31,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
+    @Transactional
     public void deleteEntry(String key) {
         LatinEntity digitEntity = entityManager.find(LatinEntity.class, key);
         if (digitEntity != null) {
@@ -38,6 +40,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
+    @Transactional
     public String findEntry(String key) {
         LatinEntity latinEntity = entityManager.find(LatinEntity.class, key);
         if (latinEntity != null) {
@@ -46,7 +49,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
             return null;
         }
     }
-
+    @Transactional
     public Map<String, String> getDictionary() {
         Session session = entityManager.unwrap(Session.class);
         Query query = session.createQuery("SELECT le.latinKey, le.latinValue FROM LatinEntity le");
@@ -59,11 +62,6 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
         }
 
         return dictionaryMap;
-    }
-
-    @Override
-    public void saveAll () {
-        entityManager.getTransaction().commit();
     }
 }
 

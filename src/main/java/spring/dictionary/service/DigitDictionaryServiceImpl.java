@@ -1,9 +1,13 @@
 package spring.dictionary.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.dictionary.repository.IDictionaryRepository;
 import java.util.Map;
+@Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {
     private final IDictionaryRepository dictionaryRepository;
+    @Autowired
     public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
@@ -34,11 +38,6 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     @Override
     public String findEntry(String key) {
         return dictionaryRepository.findEntry(key);
-    }
-
-    @Override
-    public void saveDictionary() {
-        dictionaryRepository.saveAll();
     }
 
     @Override

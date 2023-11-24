@@ -1,11 +1,13 @@
 package spring.dictionary.service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import spring.dictionary.repository.IDictionaryRepository;
 
 import java.util.Map;
-
+@Service
 public class LatinDictionaryServiceImpl implements IDictionaryService {
     private final IDictionaryRepository dictionaryRepository;
-
+    @Autowired
     public LatinDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
@@ -38,10 +40,6 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
         return dictionaryRepository.findEntry(key);
     }
 
-    @Override
-    public void saveDictionary() {
-        dictionaryRepository.saveAll();
-    }
 
     @Override
     public int getType() {

@@ -23,6 +23,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
+    @Transactional
     public void addEntry(String key, String value) {
         DigitEntity digitEntity = new DigitEntity();
         digitEntity.setDigitKey(key);
@@ -31,6 +32,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
+    @Transactional
     public void deleteEntry(String key) {
         DigitEntity digitEntity = entityManager.find(DigitEntity.class, key);
         if (digitEntity != null) {
@@ -39,6 +41,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
+    @Transactional
     public String findEntry(String key) {
         DigitEntity digitEntity = entityManager.find(DigitEntity.class, key);
         if (digitEntity != null) {
@@ -48,7 +51,8 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         }
     }
 
-    public Map<String,String> getDictionary() {
+    @Transactional
+    public Map<String, String> getDictionary() {
         Query query = entityManager.createQuery("SELECT de.digitKey, de.digitValue FROM DigitEntity de");
 
         List<Object[]> results = query.getResultList();
@@ -60,10 +64,5 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
         return dictionaryMap;
     }
-        @Override
-        public void saveAll () {
-            entityManager.getTransaction().commit();
-        }
-    }
-
+}
 
