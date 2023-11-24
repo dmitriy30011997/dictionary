@@ -18,7 +18,6 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     private final EntityManager entityManager;
 
     public DigitDictionaryRepositoryImpl(EntityManager entityManager) {
-
         this.entityManager = entityManager;
     }
 
@@ -51,7 +50,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Map<String, String> getDictionary() {
         Query query = entityManager.createQuery("SELECT de.digitKey, de.digitValue FROM DigitEntity de");
 

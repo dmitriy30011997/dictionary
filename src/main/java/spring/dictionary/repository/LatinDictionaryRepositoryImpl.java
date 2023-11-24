@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import spring.dictionary.entities.LatinEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 @Repository
 @Transactional
 public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
-
+    @PersistenceContext
     private final EntityManager entityManager;
 
     public LatinDictionaryRepositoryImpl(EntityManager entityManager) {
@@ -49,7 +50,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
             return null;
         }
     }
-    @Transactional
+    @Transactional(readOnly = true)
     public Map<String, String> getDictionary() {
         Session session = entityManager.unwrap(Session.class);
         Query query = session.createQuery("SELECT le.latinKey, le.latinValue FROM LatinEntity le");
