@@ -1,14 +1,40 @@
 databaseChangeLog:
-    - changeSet:
-        id: 1
-        author: dmitriy
-        changes:
-          - createTable:
-              tableName: dictionary
-              columns:
-                - column:
-                    name: test_column
-                    type: INT
-                    constraints:
-                      primaryKey: true
-                      nullable: false
+  - changeSet:
+      id: createLatinDictionaryTable
+      author: dmitriy
+      changes:
+        - createTable:
+            tableName: latin_dictionary
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: latin_key
+                  type: VARCHAR(255)
+              - column:
+                  name: latin_value
+                  type: VARCHAR(255)
+
+  - changeSet:
+      id: createDigitDictionaryTable
+      author: dmitriy
+      changes:
+        - createTable:
+            tableName: digit_dictionary
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: digit_key
+                  type: VARCHAR(255)
+              - column:
+                  name: digit_value
+                  type: VARCHAR(255)
