@@ -1,7 +1,6 @@
 package spring.dictionary.service;
 
 import spring.dictionary.repository.IDictionaryRepository;
-
 import java.util.Map;
 public class DigitDictionaryServiceImpl implements IDictionaryService {
     private final IDictionaryRepository dictionaryRepository;

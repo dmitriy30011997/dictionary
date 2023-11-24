@@ -1,5 +1,4 @@
 package spring.dictionary.repository;
-import org.hibernate.Session;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

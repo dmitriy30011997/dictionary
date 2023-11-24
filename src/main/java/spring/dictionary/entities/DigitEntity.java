@@ -1,10 +1,7 @@
 package spring.dictionary.entities;
 
-
-
 import javax.persistence.*;
 import java.io.Serializable;
-
 
 @Entity
 @Table(name = "digit_dictionary")
