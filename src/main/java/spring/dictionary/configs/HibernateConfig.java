@@ -3,7 +3,9 @@ package spring.dictionary.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -15,9 +17,15 @@ public class HibernateConfig {
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setDataSource(dataSource());
         localSessionFactoryBean.setHibernateProperties(hibernateProperties());
-        String[] scan = {"spring.dictionary.entities"};
-        localSessionFactoryBean.setPackagesToScan(scan);
+        localSessionFactoryBean.setPackagesToScan("spring.dictionary.entities");
         return localSessionFactoryBean;
+    }
+
+    @Bean
+    public PlatformTransactionManager hibernateTransactionManger(){
+        HibernateTransactionManager transactionManager
+                = new HibernateTransactionManager();
+        return transactionManager;
     }
     private Properties hibernateProperties(){
         Properties properties = new Properties();
