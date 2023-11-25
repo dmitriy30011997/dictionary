@@ -61,23 +61,16 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     @Override
     @Transactional
     public void addSynonym(String key, String synonym) {
-        LatinEntity latinEntity = entityManager.find(LatinEntity.class, key);
+        LatinSynonymEntity synonymEntity = new LatinSynonymEntity();
+        synonymEntity.setWord(key);
+        synonymEntity.setSynonym(synonym);
 
-        if (latinEntity != null) {
-            LatinSynonymEntity synonymEntity = new LatinSynonymEntity();
-            synonymEntity.setWord(key);
-            synonymEntity.setSynonym(synonym);
-            synonymEntity.setLatinEntity(latinEntity);
-
-            entityManager.persist(synonymEntity);
-        } else {
-            throw new RuntimeException("Слово не найдено в словаре");
-        }
+        entityManager.persist(synonymEntity);
     }
 
     @Override
     @Transactional
-    public List<String> getLatinSynonyms(String word) {
+    public List<String> getSynonyms(String word) {
         Query query = entityManager.createQuery(
                 "SELECT s.synonym FROM LatinSynonymEntity s WHERE s.latinEntity.word = :word"
         );

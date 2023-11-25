@@ -58,18 +58,11 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     @Override
     @Transactional
     public void addSynonym(String key, String synonym) {
-        DigitEntity digitEntity = entityManager.find(DigitEntity.class, key);
+        DigitSynonymEntity synonymEntity = new DigitSynonymEntity();
+        synonymEntity.setWord(key);
+        synonymEntity.setSynonym(synonym);
 
-        if (digitEntity != null) {
-            DigitSynonymEntity synonymEntity = new DigitSynonymEntity();
-            synonymEntity.setWord(key);
-            synonymEntity.setSynonym(synonym);
-            synonymEntity.setDigitEntity(digitEntity);
-
-            entityManager.persist(synonymEntity);
-        } else {
-            throw new RuntimeException("Слово не найдено в словаре");
-        }
+        entityManager.persist(synonymEntity);
     }
 
     @Override

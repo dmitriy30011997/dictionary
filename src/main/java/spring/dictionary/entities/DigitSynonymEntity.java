@@ -3,7 +3,7 @@ package spring.dictionary.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "digit_synonym_table")
+@Table(name = "digit_synonym")
 public class DigitSynonymEntity {
 
     @Id
