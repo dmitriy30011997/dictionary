@@ -8,6 +8,8 @@ public class LatinSynonymEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ManyToOne
+    @JoinColumn(name = "latin_entity_id")
     private Long id;
 
     @Column(name = "word")
@@ -16,8 +18,7 @@ public class LatinSynonymEntity {
     @Column(name = "synonym")
     private String synonym;
 
-    @ManyToOne
-    @JoinColumn(name = "latin_entity_id")
+
     private LatinEntity latinEntity;
 
     public Long getId() {

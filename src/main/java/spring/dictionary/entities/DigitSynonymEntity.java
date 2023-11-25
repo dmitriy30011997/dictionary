@@ -8,6 +8,8 @@ public class DigitSynonymEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ManyToOne
+    @JoinColumn(name = "digit_entity_id")
     private Long id;
 
     @Column(name = "word")
@@ -16,8 +18,6 @@ public class DigitSynonymEntity {
     @Column(name = "synonym")
     private String synonym;
 
-    @ManyToOne
-    @JoinColumn(name = "digit_entity_id")
     private DigitEntity digitEntity;
 
     public Long getId() {
