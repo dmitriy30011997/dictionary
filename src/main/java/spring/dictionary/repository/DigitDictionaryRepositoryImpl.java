@@ -3,7 +3,7 @@ package spring.dictionary.repository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dictionary.entities.DigitEntity;
-import spring.dictionary.entities.SynonymEntity;
+import spring.dictionary.entities.DigitSynonymEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -57,14 +57,18 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional
-    public void addSynonym(String word, String synonym) {
-        DigitEntity digitEntity = entityManager.find(DigitEntity.class, word);
+    public void addSynonym(String key, String synonym) {
+        DigitEntity digitEntity = entityManager.find(DigitEntity.class, key);
+
         if (digitEntity != null) {
-            SynonymEntity synonymEntity = new SynonymEntity();
-            synonymEntity.setWord(word);
+            DigitSynonymEntity synonymEntity = new DigitSynonymEntity();
+            synonymEntity.setWord(key);
             synonymEntity.setSynonym(synonym);
             synonymEntity.setDigitEntity(digitEntity);
+
             entityManager.persist(synonymEntity);
+        } else {
+            throw new RuntimeException("Слово не найдено в словаре");
         }
     }
 
@@ -72,9 +76,10 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     @Transactional
     public List<String> getSynonyms(String word) {
         DigitEntity digitEntity = entityManager.find(DigitEntity.class, word);
+
         if (digitEntity != null) {
             List<String> synonyms = new ArrayList<>();
-            for (SynonymEntity synonymEntity : digitEntity.getSynonyms()) {
+            for (DigitSynonymEntity synonymEntity : digitEntity.getSynonyms()) {
                 synonyms.add(synonymEntity.getSynonym());
             }
             return synonyms;
@@ -82,4 +87,5 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         return Collections.emptyList();
     }
 }
+
 

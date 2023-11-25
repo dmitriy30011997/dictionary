@@ -9,9 +9,9 @@ import java.util.List;
 @Table(name = "latin_dictionary")
 public class LatinEntity implements Serializable {
     @OneToMany(mappedBy = "word", cascade = CascadeType.ALL)
-    private List<SynonymEntity> synonyms = new ArrayList<>();
+    private List<LatinSynonymEntity> synonyms = new ArrayList<>();
 
-    public List<SynonymEntity> getSynonyms() {
+    public List<LatinSynonymEntity> getSynonyms() {
         return synonyms;
     }
 

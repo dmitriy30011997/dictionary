@@ -8,10 +8,10 @@ import java.util.List;
 @Entity
 @Table(name = "digit_dictionary")
 public class DigitEntity implements Serializable {
-    @OneToMany(mappedBy = "word", cascade = CascadeType.ALL)
-    private List<SynonymEntity> synonyms = new ArrayList<>();
+    @OneToMany(mappedBy = "digitEntity", cascade = CascadeType.ALL)
+    private List<DigitSynonymEntity> synonyms = new ArrayList<>();
 
-    public List<SynonymEntity> getSynonyms() {
+    public List<DigitSynonymEntity> getSynonyms() {
         return synonyms;
     }
 
