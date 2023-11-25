@@ -77,17 +77,14 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional
-    public List<String> getSynonyms(String word) {
-        DigitEntity digitEntity = entityManager.find(DigitEntity.class, word);
+    public List<String> getLatinSynonyms(String word) {
+        Query query = entityManager.createQuery(
+                "SELECT s.synonym FROM LatinSynonymEntity s WHERE s.latinEntity.word = :word"
+        );
+        query.setParameter("word", word);
 
-        if (digitEntity != null) {
-            List<String> synonyms = new ArrayList<>();
-            for (DigitSynonymEntity synonymEntity : digitEntity.getSynonyms()) {
-                synonyms.add(synonymEntity.getSynonym());
-            }
-            return synonyms;
-        }
-        return Collections.emptyList();
+        List<String> synonyms = query.getResultList();
+        return synonyms != null ? synonyms : Collections.emptyList();
     }
 }
 
