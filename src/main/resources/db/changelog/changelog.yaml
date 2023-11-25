@@ -38,3 +38,22 @@ databaseChangeLog:
               - column:
                   name: digit_value
                   type: VARCHAR(255)
+  - changeSet:
+      id: addSynonymTable
+      author: your_name
+      changes:
+        - createTable:
+            tableName: synonym_table
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: key
+                  type: VARCHAR(255)
+              - column:
+                  name: synonym
+                  type: VARCHAR(255)
