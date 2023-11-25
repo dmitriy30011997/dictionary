@@ -40,7 +40,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
   - changeSet:
       id: addSynonymTable
-      author: your_name
+      author: dmitriy
       changes:
         - createTable:
             tableName: synonym_table

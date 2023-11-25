@@ -3,13 +3,12 @@ package spring.dictionary.repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 import spring.dictionary.entities.LatinEntity;
+import spring.dictionary.entities.SynonymEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Transactional
@@ -55,6 +54,33 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
         }
 
         return dictionaryMap;
+    }
+
+    @Override
+    @Transactional
+    public void addSynonym(String word, String synonym) {
+        LatinEntity latinEntity = entityManager.find(LatinEntity.class, word);
+        if (latinEntity != null) {
+            SynonymEntity synonymEntity = new SynonymEntity();
+            synonymEntity.setWord(word);
+            synonymEntity.setSynonym(synonym);
+            synonymEntity.setLatinEntity(latinEntity);
+            entityManager.persist(synonymEntity);
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<String> getSynonyms(String word) {
+        LatinEntity latinEntity = entityManager.find(LatinEntity.class, word);
+        if (latinEntity != null) {
+            List<String> synonyms = new ArrayList<>();
+            for (SynonymEntity synonymEntity : latinEntity.getSynonyms()) {
+                synonyms.add(synonymEntity.getSynonym());
+            }
+            return synonyms;
+        }
+        return Collections.emptyList();
     }
 }
 

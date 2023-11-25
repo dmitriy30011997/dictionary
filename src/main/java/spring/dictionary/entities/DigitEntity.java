@@ -2,10 +2,18 @@ package spring.dictionary.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "digit_dictionary")
 public class DigitEntity implements Serializable {
+    @OneToMany(mappedBy = "word", cascade = CascadeType.ALL)
+    private List<SynonymEntity> synonyms = new ArrayList<>();
+
+    public List<SynonymEntity> getSynonyms() {
+        return synonyms;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

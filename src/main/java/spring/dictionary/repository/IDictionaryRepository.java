@@ -1,4 +1,5 @@
 package spring.dictionary.repository;
+import java.util.List;
 import java.util.Map;
 
 public interface IDictionaryRepository {
@@ -9,5 +10,7 @@ public interface IDictionaryRepository {
     String findEntry(String key);
 
     Map<String, String> getDictionary();
+    void addSynonym(String word, String synonym);
+    List<String> getSynonyms(String word);
 }
 

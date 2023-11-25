@@ -3,13 +3,12 @@ package spring.dictionary.repository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dictionary.entities.DigitEntity;
+import spring.dictionary.entities.SynonymEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Transactional
@@ -54,6 +53,33 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         }
 
         return dictionaryMap;
+    }
+
+    @Override
+    @Transactional
+    public void addSynonym(String word, String synonym) {
+        DigitEntity digitEntity = entityManager.find(DigitEntity.class, word);
+        if (digitEntity != null) {
+            SynonymEntity synonymEntity = new SynonymEntity();
+            synonymEntity.setWord(word);
+            synonymEntity.setSynonym(synonym);
+            synonymEntity.setDigitEntity(digitEntity);
+            entityManager.persist(synonymEntity);
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<String> getSynonyms(String word) {
+        DigitEntity digitEntity = entityManager.find(DigitEntity.class, word);
+        if (digitEntity != null) {
+            List<String> synonyms = new ArrayList<>();
+            for (SynonymEntity synonymEntity : digitEntity.getSynonyms()) {
+                synonyms.add(synonymEntity.getSynonym());
+            }
+            return synonyms;
+        }
+        return Collections.emptyList();
     }
 }
 

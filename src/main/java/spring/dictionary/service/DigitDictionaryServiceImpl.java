@@ -3,6 +3,8 @@ package spring.dictionary.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.dictionary.repository.IDictionaryRepository;
+
+import java.util.List;
 import java.util.Map;
 @Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {
@@ -43,5 +45,15 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     @Override
     public int getType() {
         return 2;
+    }
+
+    @Override
+    public void addSynonym(String word, String synonym) {
+        dictionaryRepository.addSynonym(word, synonym);
+    }
+
+    @Override
+    public List<String> getSynonyms(String word) {
+        return dictionaryRepository.getSynonyms(word);
     }
 }

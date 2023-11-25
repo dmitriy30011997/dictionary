@@ -59,6 +59,28 @@ public class ConsoleMenu {
         services.values()
                 .forEach((IDictionaryService service) -> System.out.println(service.viewDictionaryContents()));
     }
+    private void addSynonymToWord(IDictionaryService service) {
+        System.out.println("Введите слово, к которому нужно добавить синоним:");
+        String word = scanner.nextLine();
+
+        System.out.println("Введите синоним:");
+        String synonym = scanner.nextLine();
+
+        service.addSynonym(word, synonym);
+    }
+
+    private void showAllSynonymsForWord(IDictionaryService service) {
+        System.out.println("Введите слово, для которого нужно показать все синонимы:");
+        String word = scanner.nextLine();
+
+        List<String> synonyms = service.getSynonyms(word);
+        if (synonyms.isEmpty()) {
+            System.out.println("Нет синонимов для данного слова.");
+        } else {
+            System.out.println("Синонимы для слова '" + word + "':");
+            synonyms.forEach(System.out::println);
+        }
+    }
 
     private void dictionaryFunctions(IDictionaryService service) {
         boolean exit = false;
@@ -68,7 +90,9 @@ public class ConsoleMenu {
             System.out.println("2. Удалить запись");
             System.out.println("3. Показать содержимое словарей");
             System.out.println("4. Показать значение ключа");
-            System.out.println("5. Выйти из словаря");
+            System.out.println("5. Добавить синоним к слову");
+            System.out.println("6. Показать все синонимы для слова");
+            System.out.println("7. Выйти из словаря");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -95,6 +119,12 @@ public class ConsoleMenu {
                     System.out.println(service.findEntry(keyToFind));
                     break;
                 case 5:
+                    addSynonymToWord(service);
+                    break;
+                case 6:
+                    showAllSynonymsForWord(service);
+                    break;
+                case 7:
                     exit = true;
                     break;
                 default:
