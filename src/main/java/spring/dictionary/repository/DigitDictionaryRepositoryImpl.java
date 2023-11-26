@@ -8,6 +8,7 @@ import spring.dictionary.entities.DigitSynonymEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.*;
 import java.util.*;
 
 @Repository
@@ -28,24 +29,41 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     @Override
     @Transactional
     public void deleteEntry(String key) {
-        Query query = entityManager.createQuery("DELETE FROM DigitEntity le WHERE le.digitKey = :key");
-        query.setParameter("key", key);
-        query.executeUpdate();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaDelete<DigitEntity> deleteQuery = builder.createCriteriaDelete(DigitEntity.class);
+
+        Root<DigitEntity> root = deleteQuery.from(DigitEntity.class);
+        deleteQuery.where(builder.equal(root.get("digitKey"), key));
+
+        entityManager.createQuery(deleteQuery).executeUpdate();
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public String findEntry(String key) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<String> query = builder.createQuery(String.class);
+
+        Root<DigitEntity> root = query.from(DigitEntity.class);
+        query.select(root.get("digitValue"));
+
+        Predicate predicate = builder.equal(root.get("digitKey"), key);
+        query.where(predicate);
+
+        return entityManager.createQuery(query).getSingleResult();
     }
 
     @Override
-    @Transactional
-    public String findEntry(String key) {
-        Query query = entityManager.createQuery("SELECT de.digitValue FROM DigitEntity de WHERE de.digitKey = :key");
-        query.setParameter("key", key);
-        return (String) query.getSingleResult();
-    }
-
     @Transactional(readOnly = true)
     public Map<String, String> getDictionary() {
-        Query query = entityManager.createQuery("SELECT de.digitKey, de.digitValue FROM DigitEntity de");
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
 
-        List<Object[]> results = query.getResultList();
+        Root<DigitEntity> root = query.from(DigitEntity.class);
+        query.multiselect(root.get("digitKey"), root.get("digitValue"));
+
+        List<Object[]> results = entityManager.createQuery(query).getResultList();
 
         Map<String, String> dictionaryMap = new HashMap<>();
         for (Object[] result : results) {
@@ -54,6 +72,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
         return dictionaryMap;
     }
+
 
     @Override
     @Transactional
@@ -66,14 +85,18 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<String> getSynonyms(String word) {
-        Query query = entityManager.createQuery(
-                "SELECT s.synonym FROM DigitSynonymEntity s WHERE s.digitEntity.word = :word"
-        );
-        query.setParameter("word", word);
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<String> query = builder.createQuery(String.class);
 
-        List<String> synonyms = query.getResultList();
+        Root<DigitSynonymEntity> root = query.from(DigitSynonymEntity.class);
+        query.select(root.get("synonym"));
+
+        Predicate predicate = builder.equal(root.get("word"), word);
+        query.where(predicate);
+
+        List<String> synonyms = entityManager.createQuery(query).getResultList();
         return synonyms != null ? synonyms : Collections.emptyList();
     }
 }

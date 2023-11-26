@@ -10,6 +10,7 @@ import spring.dictionary.entities.LatinSynonymEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.*;
 import java.util.*;
 
 @Repository
@@ -30,25 +31,40 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     @Override
     @Transactional
     public void deleteEntry(String key) {
-        Query query = entityManager.createQuery("DELETE FROM LatinEntity le WHERE le.latinKey = :key");
-        query.setParameter("key", key);
-        query.executeUpdate();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaDelete<LatinEntity> deleteQuery = builder.createCriteriaDelete(LatinEntity.class);
+
+        Root<LatinEntity> root = deleteQuery.from(LatinEntity.class);
+        deleteQuery.where(builder.equal(root.get("latinKey"), key));
+
+        entityManager.createQuery(deleteQuery).executeUpdate();
     }
 
     @Override
     @Transactional(readOnly = true)
     public String findEntry(String key) {
-        Query query = entityManager.createQuery("SELECT le.latinValue FROM LatinEntity le WHERE le.latinKey = :key");
-        query.setParameter("key", key);
-        return (String) query.getSingleResult();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<String> query = builder.createQuery(String.class);
 
+        Root<LatinEntity> root = query.from(LatinEntity.class);
+        query.select(root.get("latinValue"));
+
+        Predicate predicate = builder.equal(root.get("latinKey"), key);
+        query.where(predicate);
+
+        return entityManager.createQuery(query).getSingleResult();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Map<String, String> getDictionary() {
-        Query query = entityManager.createQuery("SELECT le.latinKey, le.latinValue FROM LatinEntity le");
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
 
-        List<Object[]> results = query.getResultList();
+        Root<LatinEntity> root = query.from(LatinEntity.class);
+        query.multiselect(root.get("latinKey"), root.get("latinValue"));
+
+        List<Object[]> results = entityManager.createQuery(query).getResultList();
 
         Map<String, String> dictionaryMap = new HashMap<>();
         for (Object[] result : results) {
@@ -69,14 +85,18 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<String> getSynonyms(String word) {
-        Query query = entityManager.createQuery(
-                "SELECT s.synonym FROM LatinSynonymEntity s WHERE s.latinEntity.word = :word"
-        );
-        query.setParameter("word", word);
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<String> query = builder.createQuery(String.class);
 
-        List<String> synonyms = query.getResultList();
+        Root<LatinSynonymEntity> root = query.from(LatinSynonymEntity.class);
+        query.select(root.get("synonym"));
+
+        Predicate predicate = builder.equal(root.get("word"), word);
+        query.where(predicate);
+
+        List<String> synonyms = entityManager.createQuery(query).getResultList();
         return synonyms != null ? synonyms : Collections.emptyList();
     }
 }
