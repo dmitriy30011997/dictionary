@@ -16,7 +16,7 @@ import spring.dictionary.service.LatinDictionaryServiceImpl;
 
 @Configuration
 @ComponentScan("spring.dictionary")
-public class DictionaryConfig implements IConfig {
+public class DictionaryConfig {
     @Bean
     @Primary
     public IDictionaryRepository latinDictionaryRepository(){
