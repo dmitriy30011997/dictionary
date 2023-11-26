@@ -1,5 +1,4 @@
-package spring.dictionary.repository;
-import java.util.List;
+package spring.dictionary.dictionaries.repositories;
 import java.util.Map;
 
 public interface IDictionaryRepository {

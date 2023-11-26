@@ -1,6 +1,4 @@
-package spring.dictionary.service;
-
-import java.util.List;
+package spring.dictionary.dictionaries.serveces;
 
 public interface IDictionaryService {
     void add(String key, String value);

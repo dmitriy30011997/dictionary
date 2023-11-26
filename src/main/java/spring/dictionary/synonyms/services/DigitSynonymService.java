@@ -1,14 +1,14 @@
-package spring.dictionary.service;
+package spring.dictionary.synonyms.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.dictionary.repository.DigitSynonymRepositoryImpl;
+import spring.dictionary.synonyms.repositories.DigitSynonymRepositoryImpl;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class DigitSynonymService {
+public class DigitSynonymService implements ISynonymService {
 
     private final DigitSynonymRepositoryImpl digitSynonymRepository;
 
@@ -23,13 +23,18 @@ public class DigitSynonymService {
     }
 
     @Transactional
-    public void deleteSynonym(String word, String synonym) {
-        digitSynonymRepository.deleteSynonym(word, synonym);
+    public void deleteSynonym(String synonym) {
+        digitSynonymRepository.deleteSynonym(synonym);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public List<String> getSynonyms(String word) {
         return digitSynonymRepository.getSynonyms(word);
+    }
+
+    @Override
+    public int getType() {
+        return 2;
     }
 }
 

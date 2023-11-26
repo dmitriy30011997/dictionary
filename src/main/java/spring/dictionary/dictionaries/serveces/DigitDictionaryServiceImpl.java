@@ -1,10 +1,9 @@
-package spring.dictionary.service;
+package spring.dictionary.dictionaries.serveces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.dictionary.repository.IDictionaryRepository;
+import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 
-import java.util.List;
 import java.util.Map;
 @Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {

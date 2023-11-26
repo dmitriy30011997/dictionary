@@ -7,12 +7,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import spring.dictionary.ConsoleMenu;
-import spring.dictionary.repository.IDictionaryRepository;
-import spring.dictionary.repository.DigitDictionaryRepositoryImpl;
-import spring.dictionary.repository.LatinDictionaryRepositoryImpl;
-import spring.dictionary.service.IDictionaryService;
-import spring.dictionary.service.DigitDictionaryServiceImpl;
-import spring.dictionary.service.LatinDictionaryServiceImpl;
+import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
+import spring.dictionary.dictionaries.repositories.DigitDictionaryRepositoryImpl;
+import spring.dictionary.dictionaries.repositories.LatinDictionaryRepositoryImpl;
+import spring.dictionary.dictionaries.serveces.IDictionaryService;
+import spring.dictionary.dictionaries.serveces.DigitDictionaryServiceImpl;
+import spring.dictionary.dictionaries.serveces.LatinDictionaryServiceImpl;
+import spring.dictionary.synonyms.services.ISynonymService;
 
 @Configuration
 @ComponentScan("spring.dictionary")
@@ -36,7 +37,7 @@ public class DictionaryConfig {
         return new DigitDictionaryServiceImpl(digitDictionaryRepository());
     }
     @Bean
-    public ConsoleMenu consoleMenu(List<IDictionaryService> servicesList) {
-        return new ConsoleMenu(servicesList);
+    public ConsoleMenu consoleMenu(List<IDictionaryService> servicesList, List<ISynonymService> synonymServicesList) {
+        return new ConsoleMenu(servicesList, synonymServicesList);
     }
 }

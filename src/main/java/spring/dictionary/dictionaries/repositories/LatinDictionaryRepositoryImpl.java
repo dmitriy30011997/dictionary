@@ -1,15 +1,12 @@
-package spring.dictionary.repository;
+package spring.dictionary.dictionaries.repositories;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
-import spring.dictionary.entities.DigitEntity;
-import spring.dictionary.entities.DigitSynonymEntity;
+import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.entities.LatinEntity;
-import spring.dictionary.entities.LatinSynonymEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.criteria.*;
 import java.util.*;
 

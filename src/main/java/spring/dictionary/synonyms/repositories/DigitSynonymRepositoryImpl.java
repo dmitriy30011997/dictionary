@@ -1,16 +1,12 @@
-package spring.dictionary.repository;
+package spring.dictionary.synonyms.repositories;
 
 import org.springframework.stereotype.Repository;
 import spring.dictionary.entities.DigitSynonymEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -31,19 +27,16 @@ public class DigitSynonymRepositoryImpl implements ISynonymRepository {
 
     @Override
     @Transactional
-    public void deleteSynonym(String word, String synonym) {
+    public void deleteSynonym(String synonym) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaDelete<DigitSynonymEntity> query = builder.createCriteriaDelete(DigitSynonymEntity.class);
 
         Root<DigitSynonymEntity> root = query.from(DigitSynonymEntity.class);
-        Predicate predicate = builder.and(
-                builder.equal(root.get("word"), word),
-                builder.equal(root.get("synonym"), synonym)
-        );
-        query.where(predicate);
+        query.where(builder.equal(root.get("synonym"), synonym));
 
         entityManager.createQuery(query).executeUpdate();
     }
+
 
     @Override
     @Transactional
@@ -58,7 +51,7 @@ public class DigitSynonymRepositoryImpl implements ISynonymRepository {
         query.where(predicate);
 
         List<String> synonyms = entityManager.createQuery(query).getResultList();
-        return synonyms != null ? synonyms : Collections.emptyList();
+        return synonyms;
     }
 }
 
