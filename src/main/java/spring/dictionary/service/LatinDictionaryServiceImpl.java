@@ -47,13 +47,4 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
         return 1;
     }
 
-    @Override
-    public void addSynonym(String word, String synonym) {
-        dictionaryRepository.addSynonym(word, synonym);
-    }
-
-    @Override
-    public List<String> getSynonyms(String word) {
-        return dictionaryRepository.getSynonyms(word);
-    }
 }

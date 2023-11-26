@@ -73,31 +73,5 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
         return dictionaryMap;
     }
-
-    @Override
-    @Transactional
-    public void addSynonym(String key, String synonym) {
-        LatinSynonymEntity synonymEntity = new LatinSynonymEntity();
-        synonymEntity.setWord(key);
-        synonymEntity.setSynonym(synonym);
-
-        entityManager.persist(synonymEntity);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<String> getSynonyms(String word) {
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<String> query = builder.createQuery(String.class);
-
-        Root<LatinSynonymEntity> root = query.from(LatinSynonymEntity.class);
-        query.select(root.get("synonym"));
-
-        Predicate predicate = builder.equal(root.get("word"), word);
-        query.where(predicate);
-
-        List<String> synonyms = entityManager.createQuery(query).getResultList();
-        return synonyms != null ? synonyms : Collections.emptyList();
-    }
 }
 

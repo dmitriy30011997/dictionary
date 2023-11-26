@@ -10,7 +10,5 @@ public interface IDictionaryRepository {
     String findEntry(String key);
 
     Map<String, String> getDictionary();
-    void addSynonym(String word, String synonym);
-    List<String> getSynonyms(String word);
 }
 

@@ -72,33 +72,6 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
         return dictionaryMap;
     }
-
-
-    @Override
-    @Transactional
-    public void addSynonym(String key, String synonym) {
-        DigitSynonymEntity synonymEntity = new DigitSynonymEntity();
-        synonymEntity.setWord(key);
-        synonymEntity.setSynonym(synonym);
-
-        entityManager.persist(synonymEntity);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<String> getSynonyms(String word) {
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<String> query = builder.createQuery(String.class);
-
-        Root<DigitSynonymEntity> root = query.from(DigitSynonymEntity.class);
-        query.select(root.get("synonym"));
-
-        Predicate predicate = builder.equal(root.get("word"), word);
-        query.where(predicate);
-
-        List<String> synonyms = entityManager.createQuery(query).getResultList();
-        return synonyms != null ? synonyms : Collections.emptyList();
-    }
 }
 
 

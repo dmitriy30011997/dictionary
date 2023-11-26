@@ -8,6 +8,4 @@ public interface IDictionaryService {
     String viewDictionaryContents();
     String findEntry(String key);
     int getType();
-    void addSynonym(String word, String synonym);
-    List<String> getSynonyms(String word);
 }

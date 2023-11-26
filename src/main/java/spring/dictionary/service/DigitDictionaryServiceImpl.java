@@ -47,13 +47,4 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
         return 2;
     }
 
-    @Override
-    public void addSynonym(String word, String synonym) {
-        dictionaryRepository.addSynonym(word, synonym);
-    }
-
-    @Override
-    public List<String> getSynonyms(String word) {
-        return dictionaryRepository.getSynonyms(word);
-    }
 }
