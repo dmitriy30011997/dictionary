@@ -2,6 +2,7 @@ package spring.dictionary.dictionaries.serveces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import spring.dictionary.annotations.LatinValidation;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 
 import java.util.Map;
@@ -16,12 +17,8 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
     }
 
     @Override
-    public void add(String key, String value) {
-        if (key.matches("^[a-zA-Z]{4}$") && value.matches("^[a-zA-Z]{4}$")) {
-            dictionaryRepository.addEntry(key, value);
-        } else {
-            System.out.println("Неверный формат слова для первого словаря.");
-        }
+    public void add(@LatinValidation String key, @LatinValidation String value) {
+        dictionaryRepository.addEntry(key, value);
     }
 
     @Override

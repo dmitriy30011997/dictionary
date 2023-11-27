@@ -2,24 +2,24 @@ package spring.dictionary.dictionaries.serveces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import spring.dictionary.annotations.DigitValidation;
+import spring.dictionary.annotations.LatinValidation;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 
 import java.util.Map;
+
 @Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {
     private final IDictionaryRepository dictionaryRepository;
+
     @Autowired
     public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override
-    public void add(String key, String value) {
-        if (key.matches("^\\d{5}$") && value.matches("^\\d{5}$")) {
-            dictionaryRepository.addEntry(key, value);
-        } else {
-            System.out.println("Неверный формат слова для второго словаря.");
-        }
+    public void add(@DigitValidation String key, @DigitValidation String value) {
+        dictionaryRepository.addEntry(key, value);
     }
 
     @Override
