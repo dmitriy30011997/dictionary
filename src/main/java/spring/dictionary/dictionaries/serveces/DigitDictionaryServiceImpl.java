@@ -2,24 +2,32 @@ package spring.dictionary.dictionaries.serveces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import spring.dictionary.annotations.DigitValidation;
-import spring.dictionary.annotations.LatinValidation;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
+import spring.dictionary.dictionaries.validation.ValidationService;
+import spring.dictionary.dictionaries.validation.IValidationRule;
 
 import java.util.Map;
 
 @Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {
+
     private final IDictionaryRepository dictionaryRepository;
+    private final ValidationService validationService;
 
     @Autowired
-    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
+    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository, ValidationService validationService) {
         this.dictionaryRepository = dictionaryRepository;
+        this.validationService = validationService;
     }
 
     @Override
-    public void add(@DigitValidation String key, @DigitValidation String value) {
-        dictionaryRepository.addEntry(key, value);
+    public void add(String key, String value) {
+        IValidationRule rule = validationService.getRule("digit");
+        if (rule != null && rule.validate(value)) {
+            dictionaryRepository.addEntry(key, value);
+        } else {
+            System.out.println("Неправильный формат для словаря с цифрами.");
+        }
     }
 
     @Override
