@@ -7,7 +7,7 @@ databaseChangeLog:
             tableName: latin_dictionary
             columns:
               - column:
-                  name: id
+                  name: latin_entity_id
                   type: BIGINT
                   autoIncrement: true
                   constraints:

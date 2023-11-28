@@ -8,16 +8,10 @@ import java.util.List;
 @Entity
 @Table(name = "digit_dictionary")
 public class DigitEntity implements Serializable {
-    @OneToMany(mappedBy = "digitEntity", cascade = CascadeType.ALL)
-    private List<DigitSynonymEntity> synonyms = new ArrayList<>();
-
-    public List<DigitSynonymEntity> getSynonyms() {
-        return synonyms;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "digit_entity_id")
     private Long id;
 
     @Column(name = "digit_key")
@@ -26,8 +20,8 @@ public class DigitEntity implements Serializable {
     @Column(name = "digit_value")
     private String digitValue;
 
-    public DigitEntity() {
-    }
+    @OneToMany(mappedBy = "digitEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DigitSynonymEntity> synonyms = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -53,18 +47,14 @@ public class DigitEntity implements Serializable {
         this.digitValue = digitValue;
     }
 
-    public DigitEntity(Long id, String digitKey, String digitValue) {
-        this.id = id;
-        this.digitKey = digitKey;
-        this.digitValue = digitValue;
+    public List<DigitSynonymEntity> getSynonyms() {
+        return synonyms;
     }
 
-    @Override
-    public String toString() {
-        return "DigitEntity{" +
-                "id=" + id +
-                ", digitKey='" + digitKey + '\'' +
-                ", digitValue='" + digitValue + '\'' +
-                '}';
+    public void setSynonyms(List<DigitSynonymEntity> synonyms) {
+        this.synonyms = synonyms;
+    }
+
+    public DigitEntity() {
     }
 }

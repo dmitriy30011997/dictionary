@@ -8,16 +8,10 @@ import java.util.List;
 @Entity
 @Table(name = "latin_dictionary")
 public class LatinEntity implements Serializable {
-    @OneToMany(mappedBy = "word", cascade = CascadeType.ALL)
-    private List<LatinSynonymEntity> synonyms = new ArrayList<>();
-
-    public List<LatinSynonymEntity> getSynonyms() {
-        return synonyms;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "latin_entity_id")
     private Long id;
 
     @Column(name = "latin_key")
@@ -26,6 +20,10 @@ public class LatinEntity implements Serializable {
     @Column(name = "latin_value")
     private String latinValue;
 
+    @OneToMany(mappedBy = "latinEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LatinSynonymEntity> synonyms = new ArrayList<>();
+
+
     public LatinEntity() {
     }
 
@@ -33,38 +31,31 @@ public class LatinEntity implements Serializable {
         return id;
     }
 
-    public String getLatinKey() {
-        return latinKey;
-    }
-
-    public String getLatinValue() {
-        return latinValue;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLatinKey() {
+        return latinKey;
     }
 
     public void setLatinKey(String latinKey) {
         this.latinKey = latinKey;
     }
 
+    public String getLatinValue() {
+        return latinValue;
+    }
+
     public void setLatinValue(String latinValue) {
         this.latinValue = latinValue;
     }
 
-    public LatinEntity(Long id, String latinKey, String latinValue) {
-        this.id = id;
-        this.latinKey = latinKey;
-        this.latinValue = latinValue;
+    public List<LatinSynonymEntity> getSynonyms() {
+        return synonyms;
     }
 
-    @Override
-    public String toString() {
-        return "LatinEntity{" +
-                "id=" + id +
-                ", latinKey='" + latinKey + '\'' +
-                ", latinValue='" + latinValue + '\'' +
-                '}';
+    public void setSynonyms(List<LatinSynonymEntity> synonyms) {
+        this.synonyms = synonyms;
     }
 }

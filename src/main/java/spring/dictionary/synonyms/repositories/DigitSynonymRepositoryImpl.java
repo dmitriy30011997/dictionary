@@ -50,8 +50,7 @@ public class DigitSynonymRepositoryImpl implements ISynonymRepository {
         Predicate predicate = builder.equal(root.get("word"), word);
         query.where(predicate);
 
-        List<String> synonyms = entityManager.createQuery(query).getResultList();
-        return synonyms;
+        return entityManager.createQuery(query).getResultList();
     }
 }
 

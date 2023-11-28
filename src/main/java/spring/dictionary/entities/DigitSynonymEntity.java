@@ -8,8 +8,7 @@ public class DigitSynonymEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
-    @JoinColumn(name = "digit_entity_id")
+    @Column(name = "digit_synonym_id")
     private Long id;
 
     @Column(name = "word")
@@ -18,15 +17,10 @@ public class DigitSynonymEntity {
     @Column(name = "synonym")
     private String synonym;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "digit_entity_id")
     private DigitEntity digitEntity;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getWord() {
         return word;
@@ -42,6 +36,14 @@ public class DigitSynonymEntity {
 
     public void setSynonym(String synonym) {
         this.synonym = synonym;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public DigitEntity getDigitEntity() {
