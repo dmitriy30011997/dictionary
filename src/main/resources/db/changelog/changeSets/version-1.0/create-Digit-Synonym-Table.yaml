@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: createDigitSynonymTable
+      author: dmitriy
+      changes:
+        - createTable:
+            tableName: digit_synonym
+            remarks: Для хранения слов из цифрового словаря, для которых есть синонимы
+            columns:
+              - column:
+                  name: id
+                  remarks: Порядковый номер
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: word
+                  remarks: Слово
+                  type: VARCHAR(255)
+              - column:
+                  name: synonym
+                  remarks: Синоним
+                  type: VARCHAR(255)
+              - column:
+                  name: digit_entity_id
+                  remarks: Порядковый номер слова из цифрового словаря
+                  type: BIGINT
+                  constraints:
+                    references:
+                      tableName: digit_dictionary
+                      column: id
+                      foreignKeyName: digit_synonym_fk

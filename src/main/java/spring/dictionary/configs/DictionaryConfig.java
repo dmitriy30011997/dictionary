@@ -29,12 +29,12 @@ public class DictionaryConfig {
         return new DigitDictionaryRepositoryImpl();
     }
     @Bean
-    public IDictionaryService latinDictionaryService(ValidationService validationService) {
+    public IDictionaryService latinDictionaryService(ValidationResolver validationService) {
         return new LatinDictionaryServiceImpl(latinDictionaryRepository(), validationService);
     }
 
     @Bean
-    public IDictionaryService digitDictionaryService(ValidationService validationService) {
+    public IDictionaryService digitDictionaryService(ValidationResolver validationService) {
         return new DigitDictionaryServiceImpl(digitDictionaryRepository(), validationService);
     }
     @Bean

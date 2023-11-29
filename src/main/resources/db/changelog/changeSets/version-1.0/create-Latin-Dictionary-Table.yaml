@@ -1,0 +1,24 @@
+databaseChangeLog:
+ - changeSet:
+        id: createLatinDictionaryTable
+        author: dmitriy
+        changes:
+          - createTable:
+              tableName: latin_dictionary
+              remarks: Для хранения слов и значений латинского словаря
+              columns:
+                - column:
+                    name: latin_entity_id
+                    remarks: Порядковый номер слова
+                    type: BIGINT
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                - column:
+                    name: latin_key
+                    remarks: Слово
+                    type: VARCHAR(255)
+                - column:
+                    name: latin_value
+                    remarks: Значение
+                    type: VARCHAR(255)

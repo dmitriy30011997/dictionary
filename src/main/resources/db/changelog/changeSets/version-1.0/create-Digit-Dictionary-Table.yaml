@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: createDigitDictionaryTable
+      author: dmitriy
+      changes:
+        - createTable:
+            tableName: digit_dictionary
+            remarks: Для хранения слов и значений цифрового словаря
+            columns:
+              - column:
+                  name: digit_entity_id
+                  remarks: Порядковый номер слова
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: digit_key
+                  remarks: Слово
+                  type: VARCHAR(255)
+              - column:
+                  name: digit_value
+                  remarks: Значение
+                  type: VARCHAR(255)

@@ -3,7 +3,7 @@ package spring.dictionary.dictionaries.serveces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
-import spring.dictionary.dictionaries.validation.ValidationService;
+import spring.dictionary.dictionaries.validation.ValidationResolver;
 import spring.dictionary.dictionaries.validation.IValidationRule;
 
 import java.util.Map;
@@ -12,10 +12,10 @@ import java.util.Map;
 public class DigitDictionaryServiceImpl implements IDictionaryService {
 
     private final IDictionaryRepository dictionaryRepository;
-    private final ValidationService validationService;
+    private final ValidationResolver validationService;
 
     @Autowired
-    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository, ValidationService validationService) {
+    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository, ValidationResolver validationService) {
         this.dictionaryRepository = dictionaryRepository;
         this.validationService = validationService;
     }
