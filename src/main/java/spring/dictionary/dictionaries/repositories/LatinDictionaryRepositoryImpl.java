@@ -2,7 +2,6 @@ package spring.dictionary.dictionaries.repositories;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
-import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.entities.LatinEntity;
 
 import javax.persistence.EntityManager;
@@ -54,21 +53,14 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public Map<String, String> getDictionary() {
+    public List<Object[]> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
 
         Root<LatinEntity> root = query.from(LatinEntity.class);
         query.multiselect(root.get("latinKey"), root.get("latinValue"));
 
-        List<Object[]> results = entityManager.createQuery(query).getResultList();
-
-        Map<String, String> dictionaryMap = new HashMap<>();
-        for (Object[] result : results) {
-            dictionaryMap.put((String) result[0], (String) result[1]);
-        }
-
-        return dictionaryMap;
+        return entityManager.createQuery(query).getResultList();
     }
 }
 

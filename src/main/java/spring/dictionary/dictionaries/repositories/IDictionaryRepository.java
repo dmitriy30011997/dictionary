@@ -1,5 +1,5 @@
 package spring.dictionary.dictionaries.repositories;
-import java.util.Map;
+import java.util.List;
 
 public interface IDictionaryRepository {
     void addEntry(String key, String value);
@@ -8,6 +8,6 @@ public interface IDictionaryRepository {
 
     String findEntry(String key);
 
-    Map<String, String> getDictionary();
+    List<Object[]> getDictionary();
 }
 

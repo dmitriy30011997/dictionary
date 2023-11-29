@@ -2,10 +2,12 @@ package spring.dictionary.dictionaries.serveces;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import spring.dictionary.converters.Converter;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.dictionaries.validation.ValidationResolver;
 import spring.dictionary.dictionaries.validation.IValidationRule;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -37,8 +39,11 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
 
     public String viewDictionaryContents() {
         StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 2 \n");
+        Converter converter = new Converter();
+        List<Object[]> listFromDictionary = dictionaryRepository.getDictionary();
+        Map<String,String> results = converter.convert(listFromDictionary);
 
-        for (Map.Entry<String, String> entry : dictionaryRepository.getDictionary().entrySet()) {
+        for (Map.Entry<String, String> entry : results.entrySet()) {
             dictionaryContents.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
         return dictionaryContents.toString();
