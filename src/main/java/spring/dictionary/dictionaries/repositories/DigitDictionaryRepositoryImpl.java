@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dictionary.entities.DigitEntity;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
@@ -54,9 +55,9 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Object[]> getDictionary() {
+    public List<Entity> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+        CriteriaQuery<Entity> query = builder.createQuery(Entity.class);
 
         Root<DigitEntity> root = query.from(DigitEntity.class);
         query.multiselect(root.get("digitKey"), root.get("digitValue"));

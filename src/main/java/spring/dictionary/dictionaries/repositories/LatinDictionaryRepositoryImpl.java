@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 import spring.dictionary.entities.LatinEntity;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
@@ -53,9 +54,9 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Object[]> getDictionary() {
+    public List<Entity> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+        CriteriaQuery<Entity> query = builder.createQuery(Entity.class);
 
         Root<LatinEntity> root = query.from(LatinEntity.class);
         query.multiselect(root.get("latinKey"), root.get("latinValue"));

@@ -8,9 +8,9 @@ import spring.dictionary.ConsoleMenu;
 import spring.dictionary.dictionaries.repositories.DigitDictionaryRepositoryImpl;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.dictionaries.repositories.LatinDictionaryRepositoryImpl;
-import spring.dictionary.dictionaries.serveces.DigitDictionaryServiceImpl;
-import spring.dictionary.dictionaries.serveces.IDictionaryService;
-import spring.dictionary.dictionaries.serveces.LatinDictionaryServiceImpl;
+import spring.dictionary.dictionaries.services.DigitDictionaryServiceImpl;
+import spring.dictionary.dictionaries.services.IDictionaryService;
+import spring.dictionary.dictionaries.services.LatinDictionaryServiceImpl;
 import spring.dictionary.dictionaries.validation.*;
 import spring.dictionary.synonyms.services.ISynonymService;
 

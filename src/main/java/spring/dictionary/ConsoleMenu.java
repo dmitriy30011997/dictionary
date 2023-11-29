@@ -1,6 +1,6 @@
 package spring.dictionary;
 
-import spring.dictionary.dictionaries.serveces.IDictionaryService;
+import spring.dictionary.dictionaries.services.IDictionaryService;
 import spring.dictionary.synonyms.services.ISynonymService;
 
 import java.util.List;

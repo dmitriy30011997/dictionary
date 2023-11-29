@@ -1,4 +1,4 @@
-package spring.dictionary.dictionaries.serveces;
+package spring.dictionary.dictionaries.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
