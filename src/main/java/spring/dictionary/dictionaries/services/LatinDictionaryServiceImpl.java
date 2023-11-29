@@ -15,6 +15,11 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
 
     private final IDictionaryRepository dictionaryRepository;
     private final ValidationResolver validationService;
+    private Converter converter;
+    @Autowired
+    public void setConverter(Converter converter) {
+        this.converter = converter;
+    }
 
     @Autowired
     public LatinDictionaryServiceImpl(IDictionaryRepository dictionaryRepository, ValidationResolver validationService) {
@@ -39,7 +44,7 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
 
     public String viewDictionaryContents() {
         StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 1 \n");
-        Converter converter = new Converter();
+
         List<Object[]> listFromDictionary = dictionaryRepository.getDictionary();
         Map<String,String> results = converter.convert(listFromDictionary);
 

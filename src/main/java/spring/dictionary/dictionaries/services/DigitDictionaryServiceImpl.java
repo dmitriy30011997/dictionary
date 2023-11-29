@@ -12,9 +12,14 @@ import java.util.Map;
 
 @Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {
+    @Autowired
+    public void setConverter(Converter converter) {
+        this.converter = converter;
+    }
 
     private final IDictionaryRepository dictionaryRepository;
     private final ValidationResolver validationService;
+    private Converter converter;
 
     @Autowired
     public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository, ValidationResolver validationService) {
@@ -39,7 +44,7 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
 
     public String viewDictionaryContents() {
         StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 2 \n");
-        Converter converter = new Converter();
+
         List<Object[]> listFromDictionary = dictionaryRepository.getDictionary();
         Map<String,String> results = converter.convert(listFromDictionary);
 

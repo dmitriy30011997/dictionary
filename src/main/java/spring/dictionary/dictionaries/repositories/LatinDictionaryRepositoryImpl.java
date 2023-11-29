@@ -54,7 +54,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Entity> getDictionary() {
+    public List<Object[]> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Entity> query = builder.createQuery(Entity.class);
 
