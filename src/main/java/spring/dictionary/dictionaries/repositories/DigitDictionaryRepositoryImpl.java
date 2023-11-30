@@ -5,12 +5,15 @@ import org.springframework.transaction.annotation.Transactional;
 import spring.dictionary.entities.DigitEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-@Transactional
+@Transactional(rollbackFor = {Exception.class})
 public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
     @PersistenceContext
     EntityManager entityManager;
@@ -38,8 +41,8 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
 
     @Override
-    @Transactional(readOnly = true)
-    public String findEntry(String key) {
+    @Transactional(readOnly = true, rollbackFor = {NoResultException.class})
+    public Optional<String> findEntry(String key) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<String> query = builder.createQuery(String.class);
 
@@ -49,14 +52,19 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         Predicate predicate = builder.equal(root.get("digitKey"), key);
         query.where(predicate);
 
-        return entityManager.createQuery(query).getSingleResult();
+        try {
+            String result = entityManager.createQuery(query).getSingleResult();
+            return Optional.ofNullable(result);
+        } catch (NoResultException | NonUniqueResultException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Object[]> getDictionary() {
+    public List<DigitEntity> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+        CriteriaQuery<DigitEntity> query = builder.createQuery(DigitEntity.class);
 
         Root<DigitEntity> root = query.from(DigitEntity.class);
         query.multiselect(root.get("digitKey"), root.get("digitValue"));
@@ -64,5 +72,3 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         return entityManager.createQuery(query).getResultList();
     }
 }
-
-

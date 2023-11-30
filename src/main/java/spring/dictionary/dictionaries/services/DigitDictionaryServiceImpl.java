@@ -9,6 +9,7 @@ import spring.dictionary.dictionaries.validation.IValidationRule;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {
@@ -55,7 +56,7 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     }
 
     @Override
-    public String findEntry(String key) {
+    public Optional findEntry(String key) {
         return dictionaryRepository.findEntry(key);
     }
 

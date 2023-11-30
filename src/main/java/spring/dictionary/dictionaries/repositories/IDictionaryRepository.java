@@ -1,13 +1,14 @@
 package spring.dictionary.dictionaries.repositories;
 import java.util.List;
+import java.util.Optional;
 
-public interface IDictionaryRepository {
+public interface IDictionaryRepository<T> {
     void addEntry(String key, String value);
 
     void deleteEntry(String key);
 
-    String findEntry(String key);
+    Optional<String> findEntry(String key);
 
-    List<Object[]> getDictionary();
+    List<T> getDictionary();
 }
 
