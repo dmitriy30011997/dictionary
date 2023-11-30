@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 public class JPAConfig {
 
     @Value("${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}")

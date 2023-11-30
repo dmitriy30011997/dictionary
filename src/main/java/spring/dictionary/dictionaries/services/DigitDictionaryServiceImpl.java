@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import spring.dictionary.converters.Converter;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.dictionaries.validation.ValidationResolver;
-import spring.dictionary.dictionaries.validation.IValidationRule;
 
 import java.util.List;
 import java.util.Map;
@@ -30,12 +29,7 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
 
     @Override
     public void add(String key, String value) {
-        IValidationRule rule = validationService.getRule("digit");
-        if (rule != null && rule.validate(value)) {
             dictionaryRepository.addEntry(key, value);
-        } else {
-            System.out.println("Неправильный формат для словаря с цифрами.");
-        }
     }
 
     @Override
