@@ -1,20 +1,16 @@
 package spring.dictionary.synonyms.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import spring.dictionary.synonyms.repositories.LatinSynonymRepositoryImpl;
+import spring.dictionary.synonyms.repositories.ISynonymRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 
-@Service
 public class LatinSynonymService implements ISynonymService {
 
-    private final LatinSynonymRepositoryImpl latinSynonymRepository;
+    private final ISynonymRepository latinSynonymRepository;
 
-    @Autowired
-    public LatinSynonymService(LatinSynonymRepositoryImpl latinSynonymRepository) {
+    public LatinSynonymService(ISynonymRepository latinSynonymRepository) {
         this.latinSynonymRepository = latinSynonymRepository;
     }
 

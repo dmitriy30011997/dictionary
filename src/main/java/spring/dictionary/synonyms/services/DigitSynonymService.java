@@ -1,33 +1,30 @@
 package spring.dictionary.synonyms.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import spring.dictionary.synonyms.repositories.DigitSynonymRepositoryImpl;
+import spring.dictionary.synonyms.repositories.ISynonymRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
-@Service
+
 public class DigitSynonymService implements ISynonymService {
 
-    private final DigitSynonymRepositoryImpl digitSynonymRepository;
+    private final ISynonymRepository digitSynonymRepository;
 
-    @Autowired
-    public DigitSynonymService(DigitSynonymRepositoryImpl digitSynonymRepository) {
+
+    public DigitSynonymService(ISynonymRepository digitSynonymRepository) {
         this.digitSynonymRepository = digitSynonymRepository;
     }
 
-    @Transactional
+
     public void addSynonym(String word, String synonym) {
         digitSynonymRepository.addSynonym(word, synonym);
     }
 
-    @Transactional
+
     public void deleteSynonym(String synonym) {
         digitSynonymRepository.deleteSynonym(synonym);
     }
 
-    @Transactional
+
     public List<String> getSynonyms(String word) {
         return digitSynonymRepository.getSynonyms(word);
     }

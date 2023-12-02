@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
 public class DigitSynonymRepositoryImpl implements ISynonymRepository {
 
     @PersistenceContext

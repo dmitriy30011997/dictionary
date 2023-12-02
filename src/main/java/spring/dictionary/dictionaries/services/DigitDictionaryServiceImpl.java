@@ -1,30 +1,24 @@
 package spring.dictionary.dictionaries.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import spring.dictionary.converters.Converter;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
-import spring.dictionary.dictionaries.validation.ValidationResolver;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Service
 public class DigitDictionaryServiceImpl implements IDictionaryService {
-    @Autowired
+
     public void setConverter(Converter converter) {
         this.converter = converter;
     }
 
     private final IDictionaryRepository dictionaryRepository;
-    private final ValidationResolver validationService;
     private Converter converter;
 
-    @Autowired
-    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository, ValidationResolver validationService) {
+
+    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
-        this.validationService = validationService;
     }
 
     @Override
@@ -50,7 +44,7 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     }
 
     @Override
-    public Optional findEntry(String key) {
+    public Optional<String> findEntry(String key) {
         return dictionaryRepository.findEntry(key);
     }
 
