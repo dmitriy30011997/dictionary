@@ -16,7 +16,7 @@ public class DigitSynonymEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "digit_synonym_id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "word")

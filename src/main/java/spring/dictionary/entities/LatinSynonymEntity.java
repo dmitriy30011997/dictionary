@@ -16,7 +16,7 @@ public class LatinSynonymEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "latin_synonym_id")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "word")
