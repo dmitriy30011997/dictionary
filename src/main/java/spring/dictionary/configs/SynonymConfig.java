@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import spring.dictionary.ConsoleMenu;
 import spring.dictionary.dictionaries.services.IDictionaryService;
 import spring.dictionary.synonyms.repositories.DigitSynonymRepositoryImpl;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Configuration
 @ComponentScan("spring.dictionary")
+@EnableTransactionManagement
 public class SynonymConfig {
     @Bean
     @Primary
