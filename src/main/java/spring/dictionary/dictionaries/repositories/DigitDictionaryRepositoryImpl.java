@@ -3,6 +3,7 @@ package spring.dictionary.dictionaries.repositories;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spring.dictionary.entities.DigitEntity;
+import spring.dictionary.entities.IConvertible;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -66,7 +67,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<DigitEntity> getDictionary() {
+    public List<IConvertible[]> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<DigitEntity> query = builder.createQuery(DigitEntity.class);
 

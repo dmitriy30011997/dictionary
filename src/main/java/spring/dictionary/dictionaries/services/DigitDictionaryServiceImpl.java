@@ -2,6 +2,9 @@ package spring.dictionary.dictionaries.services;
 
 import spring.dictionary.converters.Converter;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
+import spring.dictionary.dictionaries.validation.DigitValidation;
+import spring.dictionary.entities.DigitEntity;
+import spring.dictionary.entities.IConvertible;
 
 import java.util.List;
 import java.util.Map;
@@ -13,16 +16,16 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
         this.converter = converter;
     }
 
-    private final IDictionaryRepository dictionaryRepository;
+    private final IDictionaryRepository<DigitEntity> dictionaryRepository;
     private Converter converter;
 
 
-    public DigitDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
+    public DigitDictionaryServiceImpl(IDictionaryRepository<DigitEntity> dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override
-    public void add(String key, String value) {
+    public void add(@DigitValidation String key, @DigitValidation String value) {
             dictionaryRepository.addEntry(key, value);
     }
 
@@ -34,7 +37,7 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     public String viewDictionaryContents() {
         StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 2 \n");
 
-        List<Object[]> listFromDictionary = dictionaryRepository.getDictionary();
+        List<IConvertible[]> listFromDictionary = dictionaryRepository.getDictionary();
         Map<String,String> results = converter.convert(listFromDictionary);
 
         for (Map.Entry<String, String> entry : results.entrySet()) {

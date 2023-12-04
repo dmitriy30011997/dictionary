@@ -9,10 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "digit_synonym")
-public class DigitSynonymEntity {
+public class DigitSynonymEntity implements Serializable, IConvertible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

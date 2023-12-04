@@ -2,6 +2,7 @@ package spring.dictionary.dictionaries.repositories;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import spring.dictionary.entities.IConvertible;
 import spring.dictionary.entities.LatinEntity;
 
 import javax.persistence.EntityManager;
@@ -66,7 +67,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<LatinEntity> getDictionary() {
+    public List<IConvertible[]> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<LatinEntity> query = builder.createQuery(LatinEntity.class);
 

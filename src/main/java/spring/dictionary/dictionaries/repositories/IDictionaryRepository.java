@@ -1,4 +1,6 @@
 package spring.dictionary.dictionaries.repositories;
+import spring.dictionary.entities.IConvertible;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +11,6 @@ public interface IDictionaryRepository<T> {
 
     Optional<String> findEntry(String key);
 
-    List<T> getDictionary();
+    List<IConvertible[]> getDictionary();
 }
 

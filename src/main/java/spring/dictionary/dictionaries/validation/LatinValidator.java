@@ -1,10 +1,7 @@
 package spring.dictionary.dictionaries.validation;
 
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
-@Component("latinValidator")
 public class LatinValidator implements IValidator {
     private final List<IRule> rules;
 

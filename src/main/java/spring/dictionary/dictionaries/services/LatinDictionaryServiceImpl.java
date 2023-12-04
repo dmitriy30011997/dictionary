@@ -2,6 +2,9 @@ package spring.dictionary.dictionaries.services;
 
 import spring.dictionary.converters.Converter;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
+import spring.dictionary.dictionaries.validation.LatinValidation;
+import spring.dictionary.entities.IConvertible;
+import spring.dictionary.entities.LatinEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -9,19 +12,19 @@ import java.util.Optional;
 
 public class LatinDictionaryServiceImpl implements IDictionaryService {
 
-    private final IDictionaryRepository dictionaryRepository;
+    private final IDictionaryRepository<LatinEntity> dictionaryRepository;
     private Converter converter;
 
     public void setConverter(Converter converter) {
         this.converter = converter;
     }
 
-    public LatinDictionaryServiceImpl(IDictionaryRepository dictionaryRepository) {
+    public LatinDictionaryServiceImpl(IDictionaryRepository<LatinEntity> dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 
     @Override
-    public void add(String key, String value) {
+    public void add(@LatinValidation String key, @LatinValidation String value) {
             dictionaryRepository.addEntry(key, value);
     }
 
@@ -33,7 +36,7 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
     public String viewDictionaryContents() {
         StringBuilder dictionaryContents = new StringBuilder("Содержимое словаря 1 \n");
 
-        List<Object[]> listFromDictionary = dictionaryRepository.getDictionary();
+        List<IConvertible[]> listFromDictionary = dictionaryRepository.getDictionary();
         Map<String,String> results = converter.convert(listFromDictionary);
 
         for (Map.Entry<String, String> entry : results.entrySet()) {

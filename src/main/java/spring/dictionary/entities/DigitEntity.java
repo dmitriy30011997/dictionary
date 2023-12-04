@@ -15,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "digit_dictionary")
-public class DigitEntity implements Serializable {
+public class DigitEntity implements Serializable, IConvertible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

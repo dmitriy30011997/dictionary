@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "latin_dictionary")
-public class LatinEntity implements Serializable {
+public class LatinEntity implements Serializable, IConvertible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

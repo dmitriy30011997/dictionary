@@ -9,10 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "latin_synonym")
-public class LatinSynonymEntity {
+public class LatinSynonymEntity implements Serializable, IConvertible {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

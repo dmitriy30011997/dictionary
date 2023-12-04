@@ -1,10 +1,7 @@
 package spring.dictionary.dictionaries.validation;
 
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
-@Component("digitValidator")
 public class DigitValidator implements IValidator {
     private final List<IRule> rules;
 
