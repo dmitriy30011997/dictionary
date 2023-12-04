@@ -31,7 +31,7 @@ public class DigitSynonymEntity implements Serializable, IConvertible {
     private DigitEntity digitEntity;
 
 
-    public String getWord() {
+    public String getKey() {
         return word;
     }
 
@@ -39,7 +39,7 @@ public class DigitSynonymEntity implements Serializable, IConvertible {
         this.word = word;
     }
 
-    public String getSynonym() {
+    public String getValue() {
         return synonym;
     }
 

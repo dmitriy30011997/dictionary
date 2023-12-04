@@ -5,7 +5,7 @@ import java.util.List;
 public class DigitValidator implements IValidator {
     private final List<IRule> rules;
 
-    public DigitValidator(List<IRule> rules) {
+    public DigitValidator(@DigitValidation List<IRule> rules) {
         this.rules = rules;
     }
 

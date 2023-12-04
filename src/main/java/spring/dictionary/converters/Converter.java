@@ -6,14 +6,20 @@ import spring.dictionary.entities.IConvertible;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Component
 public class Converter {
 
-    public Map<String, String> convert(List<IConvertible[]> results) {
+    public StringBuilder convert(List<IConvertible> results) {
+        StringBuilder dictionaryContents = new StringBuilder();
         Map<String, String> dictionaryMap = new HashMap<>();
-        for (IConvertible[] result : results) {
-            dictionaryMap.put(result[0].toString(), result[1].toString());
+
+        for (IConvertible result : results) {
+            dictionaryMap.put(result.getKey(), result.getValue());
+            dictionaryContents.append(result.getKey()).append(": ").append(result.getValue()).append("\n");
         }
-        return dictionaryMap;
+
+        return dictionaryContents;
     }
+
 }

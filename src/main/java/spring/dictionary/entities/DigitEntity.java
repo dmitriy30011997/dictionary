@@ -39,7 +39,7 @@ public class DigitEntity implements Serializable, IConvertible {
         this.id = id;
     }
 
-    public String getDigitKey() {
+    public String getKey() {
         return digitKey;
     }
 
@@ -47,7 +47,7 @@ public class DigitEntity implements Serializable, IConvertible {
         this.digitKey = digitKey;
     }
 
-    public String getDigitValue() {
+    public String getValue() {
         return digitValue;
     }
 

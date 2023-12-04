@@ -38,7 +38,7 @@ public class LatinSynonymEntity implements Serializable, IConvertible {
         this.id = id;
     }
 
-    public String getWord() {
+    public String getKey() {
         return word;
     }
 
@@ -46,7 +46,7 @@ public class LatinSynonymEntity implements Serializable, IConvertible {
         this.word = word;
     }
 
-    public String getSynonym() {
+    public String getValue() {
         return synonym;
     }
 

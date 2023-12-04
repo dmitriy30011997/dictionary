@@ -30,7 +30,10 @@ public class LatinEntity implements Serializable, IConvertible {
     @OneToMany(mappedBy = "latinEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LatinSynonymEntity> synonyms = new ArrayList<>();
 
-
+    public LatinEntity(String latinKey, String latinValue) {
+        this.latinKey = latinKey;
+        this.latinValue = latinValue;
+    }
     public LatinEntity() {
     }
 
@@ -42,7 +45,7 @@ public class LatinEntity implements Serializable, IConvertible {
         this.id = id;
     }
 
-    public String getLatinKey() {
+    public String getKey() {
         return latinKey;
     }
 
@@ -50,7 +53,7 @@ public class LatinEntity implements Serializable, IConvertible {
         this.latinKey = latinKey;
     }
 
-    public String getLatinValue() {
+    public String getValue() {
         return latinValue;
     }
 

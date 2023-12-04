@@ -5,7 +5,7 @@ import java.util.List;
 public class LatinValidator implements IValidator {
     private final List<IRule> rules;
 
-    public LatinValidator(List<IRule> rules) {
+    public LatinValidator(@LatinValidation List<IRule> rules) {
         this.rules = rules;
     }
 

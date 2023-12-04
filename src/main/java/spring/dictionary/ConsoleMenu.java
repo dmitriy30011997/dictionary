@@ -43,6 +43,7 @@ public class ConsoleMenu {
                 case 4:
                     exit = true;
                     close();
+                    break;
                 default:
                     System.out.println("Неверная команда. Попробуйте снова.");
             }

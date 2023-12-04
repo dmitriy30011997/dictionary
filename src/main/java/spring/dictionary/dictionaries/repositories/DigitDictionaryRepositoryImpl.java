@@ -19,7 +19,8 @@ import java.util.Optional;
 
 @Repository
 @Transactional(rollbackFor = {Exception.class})
-public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
+public class DigitDictionaryRepositoryImpl implements IDictionaryRepository<DigitEntity> {
+    public static final String DIGIT_KEY = "digitKey";
     @PersistenceContext
     EntityManager entityManager;
 
@@ -39,7 +40,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         CriteriaDelete<DigitEntity> deleteQuery = builder.createCriteriaDelete(DigitEntity.class);
 
         Root<DigitEntity> root = deleteQuery.from(DigitEntity.class);
-        deleteQuery.where(builder.equal(root.get("digitKey"), key));
+        deleteQuery.where(builder.equal(root.get(DIGIT_KEY), key));
 
         entityManager.createQuery(deleteQuery).executeUpdate();
     }
@@ -54,7 +55,7 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
         Root<DigitEntity> root = query.from(DigitEntity.class);
         query.select(root.get("digitValue"));
 
-        Predicate predicate = builder.equal(root.get("digitKey"), key);
+        Predicate predicate = builder.equal(root.get(DIGIT_KEY), key);
         query.where(predicate);
 
         try {
@@ -67,13 +68,13 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<IConvertible[]> getDictionary() {
+    public List<IConvertible> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<DigitEntity> query = builder.createQuery(DigitEntity.class);
+        CriteriaQuery<? extends IConvertible> query = builder.createQuery(DigitEntity.class);
 
-        Root<DigitEntity> root = query.from(DigitEntity.class);
-        query.multiselect(root.get("digitKey"), root.get("digitValue"));
+        Root<? extends IConvertible> root = query.from(DigitEntity.class);
+        query.multiselect(root.get(DIGIT_KEY), root.get("digitValue"));
 
-        return entityManager.createQuery(query).getResultList();
+        return (List<IConvertible>) entityManager.createQuery(query).getResultList();
     }
 }

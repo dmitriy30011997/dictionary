@@ -2,7 +2,8 @@ package spring.dictionary.dictionaries.validation;
 
 import org.springframework.stereotype.Component;
 
-@Component("digitRule")
+@Component
+@DigitValidation
 public class DigitRule implements IRule {
     @Override
     public boolean validate(String input) {

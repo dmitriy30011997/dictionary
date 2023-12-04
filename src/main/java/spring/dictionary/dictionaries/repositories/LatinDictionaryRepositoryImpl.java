@@ -9,17 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 @Transactional(rollbackFor = {Exception.class})
-public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
+public class LatinDictionaryRepositoryImpl implements IDictionaryRepository<LatinEntity> {
+    public static final String LATIN_KEY = "latinKey";
     @PersistenceContext
     EntityManager entityManager;
 
@@ -39,7 +36,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
         CriteriaDelete<LatinEntity> deleteQuery = builder.createCriteriaDelete(LatinEntity.class);
 
         Root<LatinEntity> root = deleteQuery.from(LatinEntity.class);
-        deleteQuery.where(builder.equal(root.get("latinKey"), key));
+        deleteQuery.where(builder.equal(root.get(LATIN_KEY), key));
 
         entityManager.createQuery(deleteQuery).executeUpdate();
     }
@@ -53,7 +50,7 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
         Root<LatinEntity> root = query.from(LatinEntity.class);
         query.select(root.get("latinValue"));
 
-        Predicate predicate = builder.equal(root.get("latinKey"), key);
+        Predicate predicate = builder.equal(root.get(LATIN_KEY), key);
         query.where(predicate);
 
         try {
@@ -67,14 +64,14 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public List<IConvertible[]> getDictionary() {
+    public List<IConvertible> getDictionary() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<LatinEntity> query = builder.createQuery(LatinEntity.class);
+        CriteriaQuery<? extends IConvertible> query = builder.createQuery(LatinEntity.class);
 
-        Root<LatinEntity> root = query.from(LatinEntity.class);
-        query.multiselect(root.get("latinKey"), root.get("latinValue"));
+        Root<? extends IConvertible> root = query.from(LatinEntity.class);
+        query.multiselect(root.get(LATIN_KEY), root.get("latinValue"));
 
-        return entityManager.createQuery(query).getResultList();
+        return (List<IConvertible>) entityManager.createQuery(query).getResultList();
     }
 }
 
