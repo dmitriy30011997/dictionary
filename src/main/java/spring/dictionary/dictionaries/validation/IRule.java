@@ -1,5 +1,5 @@
 package spring.dictionary.dictionaries.validation;
 
-public interface IValidationRule {
+public interface IRule {
     boolean validate(String input);
 }
