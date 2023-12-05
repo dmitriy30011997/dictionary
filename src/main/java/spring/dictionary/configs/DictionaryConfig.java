@@ -13,6 +13,7 @@ import spring.dictionary.dictionaries.repositories.LatinDictionaryRepositoryImpl
 import spring.dictionary.dictionaries.services.DigitDictionaryServiceImpl;
 import spring.dictionary.dictionaries.services.IDictionaryService;
 import spring.dictionary.dictionaries.services.LatinDictionaryServiceImpl;
+import spring.dictionary.dictionaries.validation.IValidator;
 import spring.dictionary.synonyms.services.ISynonymService;
 
 import java.util.List;
@@ -31,8 +32,8 @@ public class DictionaryConfig {
         return new DigitDictionaryRepositoryImpl();
     }
     @Bean
-    public IDictionaryService latinDictionaryService() {
-        IDictionaryService iDictionaryService = new LatinDictionaryServiceImpl(latinDictionaryRepository());
+    public IDictionaryService latinDictionaryService(IValidator latinValidator) {
+        IDictionaryService iDictionaryService = new LatinDictionaryServiceImpl(latinDictionaryRepository(), latinValidator);
         iDictionaryService.setConverter(converter());
         return iDictionaryService;
     }
@@ -43,8 +44,8 @@ public class DictionaryConfig {
     }
 
     @Bean
-    public IDictionaryService digitDictionaryService() {
-        IDictionaryService iDictionaryService = new DigitDictionaryServiceImpl(digitDictionaryRepository());
+    public IDictionaryService digitDictionaryService(IValidator digitValidator) {
+        IDictionaryService iDictionaryService = new DigitDictionaryServiceImpl(digitDictionaryRepository(), digitValidator);
         iDictionaryService.setConverter(converter());
         return iDictionaryService;
     }
