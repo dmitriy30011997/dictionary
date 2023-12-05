@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: createLatinSynonymTable
+      author: dmitriy
+      changes:
+        - createTable:
+            tableName: latin_synonym
+            remarks: Для хранения слов из латинского словаря, для которых есть синонимы
+            columns:
+              - column:
+                  name: id
+                  remarks: Порядковый номер синонима
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: word
+                  remarks: Слово
+                  type: VARCHAR(255)
+              - column:
+                  name: synonym
+                  remarks: Синоним
+                  type: VARCHAR(255)
+              - column:
+                  name: latin_entity_id
+                  remarks: Порядковый номер слова из латинского словаря
+                  type: BIGINT
+                  constraints:
+                    references:
+                      tableName: latin_dictionary
+                      column: id
+                      foreignKeyName: latin_synonym_fk

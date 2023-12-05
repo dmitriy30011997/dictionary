@@ -1,14 +1,9 @@
 databaseChangeLog:
-    - changeSet:
-        id: 1
-        author: dmitriy
-        changes:
-          - createTable:
-              tableName: dictionary
-              columns:
-                - column:
-                    name: test_column
-                    type: INT
-                    constraints:
-                      primaryKey: true
-                      nullable: false
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Digit-Dictionary-Table.yaml
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Latin-Dictionary-Table.yaml
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Digit-Synonym-Table.yaml
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Latin-Synonym-Table.yaml

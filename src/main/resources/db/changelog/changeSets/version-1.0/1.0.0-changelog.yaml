@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Digit-Dictionary-Table.yaml
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Latin-Dictionary-Table.yaml
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Digit-Synonym-Table.yaml
+  - include:
+      file: db/changelog/changeSets/version-1.0/create-Latin-Synonym-Table.yaml
