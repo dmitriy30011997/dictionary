@@ -1,8 +1,5 @@
 package spring.dictionary.dictionaries.validation;
 
-import org.springframework.stereotype.Component;
-
-@Component
 @LatinValidation
 public class LatinRule implements IRule {
     @Override
