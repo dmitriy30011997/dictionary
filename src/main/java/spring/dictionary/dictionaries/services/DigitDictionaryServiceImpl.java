@@ -1,6 +1,6 @@
 package spring.dictionary.dictionaries.services;
 
-import spring.dictionary.converters.Converter;
+import spring.dictionary.converters.ListToStringBuilderConverter;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.entities.DigitEntity;
 import spring.dictionary.entities.IConvertible;
@@ -8,14 +8,16 @@ import spring.dictionary.entities.IConvertible;
 import java.util.List;
 import java.util.Optional;
 
+
 public class DigitDictionaryServiceImpl implements IDictionaryService {
 
-    public void setConverter(Converter converter) {
-        this.converter = converter;
+    public void setConverter(ListToStringBuilderConverter listToStringBuilderConverter) {
+        this.listToStringBuilderConverter = listToStringBuilderConverter;
     }
 
     private final IDictionaryRepository<DigitEntity> dictionaryRepository;
-    private Converter converter;
+
+    private ListToStringBuilderConverter listToStringBuilderConverter;
 
 
     public DigitDictionaryServiceImpl(IDictionaryRepository<DigitEntity> dictionaryRepository) {
@@ -31,15 +33,13 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     public void delete(String key) {
         dictionaryRepository.deleteEntry(key);
     }
-
     public String viewDictionaryContents() {
         System.out.println("Содержимое цифрового словаря: ");
         List<IConvertible> listFromDictionary = dictionaryRepository.getDictionary();
-        StringBuilder dictionaryContents = converter.convert(listFromDictionary);
+        StringBuilder dictionaryContents = listToStringBuilderConverter.convert(listFromDictionary);
 
         return dictionaryContents.toString();
     }
-
 
     @Override
     public Optional<String> findEntry(String key) {
@@ -50,5 +50,4 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     public int getType() {
         return 2;
     }
-
 }

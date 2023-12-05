@@ -1,5 +1,6 @@
 package spring.dictionary.dictionaries.repositories;
 
+import spring.dictionary.converters.ListToStringBuilderConverter;
 import spring.dictionary.entities.IConvertible;
 
 import java.util.List;
@@ -13,5 +14,6 @@ public interface IDictionaryRepository<T> {
     Optional<String> findEntry(String key);
 
     List<IConvertible> getDictionary();
+
 }
 

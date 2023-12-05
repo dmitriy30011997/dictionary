@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import spring.dictionary.ConsoleMenu;
+import spring.dictionary.converters.ListToStringBuilderConverter;
 import spring.dictionary.dictionaries.repositories.DigitDictionaryRepositoryImpl;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.dictionaries.repositories.LatinDictionaryRepositoryImpl;
@@ -31,12 +32,21 @@ public class DictionaryConfig {
     }
     @Bean
     public IDictionaryService latinDictionaryService() {
-        return new LatinDictionaryServiceImpl(latinDictionaryRepository());
+        IDictionaryService iDictionaryService = new LatinDictionaryServiceImpl(latinDictionaryRepository());
+        iDictionaryService.setConverter(converter());
+        return iDictionaryService;
+    }
+
+    @Bean
+    public ListToStringBuilderConverter converter(){
+        return new ListToStringBuilderConverter();
     }
 
     @Bean
     public IDictionaryService digitDictionaryService() {
-        return new DigitDictionaryServiceImpl(digitDictionaryRepository());
+        IDictionaryService iDictionaryService = new DigitDictionaryServiceImpl(digitDictionaryRepository());
+        iDictionaryService.setConverter(converter());
+        return iDictionaryService;
     }
     @Bean
     public ConsoleMenu consoleMenu(List<IDictionaryService> servicesList, List<ISynonymService> synonymServicesList) {

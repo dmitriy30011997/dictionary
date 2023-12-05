@@ -31,6 +31,11 @@ public class DigitEntity implements Serializable, IConvertible {
     @OneToMany(mappedBy = "digitEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DigitSynonymEntity> synonyms = new ArrayList<>();
 
+    public DigitEntity(String digitKey, String digitValue) {
+        this.digitKey = digitKey;
+        this.digitValue = digitValue;
+    }
+
     public Long getId() {
         return id;
     }
