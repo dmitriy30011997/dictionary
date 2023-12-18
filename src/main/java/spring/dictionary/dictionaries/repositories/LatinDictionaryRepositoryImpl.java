@@ -71,7 +71,8 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository<Lati
         Root<? extends IConvertible> root = query.from(LatinEntity.class);
         query.multiselect(root.get(LATIN_KEY), root.get("latinValue"));
 
-        return (List<IConvertible>) entityManager.createQuery(query).getResultList();
+        return (List<IConvertible>) entityManager.createQuery(query).setFirstResult(0)
+                .setMaxResults(10).getResultList();
     }
 }
 

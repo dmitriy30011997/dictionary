@@ -3,7 +3,6 @@ package spring.dictionary.dictionaries.services;
 import spring.dictionary.converters.ListToStringBuilderConverter;
 import spring.dictionary.dictionaries.repositories.IDictionaryRepository;
 import spring.dictionary.dictionaries.validation.IValidator;
-import spring.dictionary.dictionaries.validation.LatinValidation;
 import spring.dictionary.entities.IConvertible;
 import spring.dictionary.entities.LatinEntity;
 
@@ -27,7 +26,7 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
         this.latinValidator = latinValidator;
     }
 
-    @LatinValidation
+
     @Override
     public void add(String key, String value) {
         if (latinValidator.validate(value)) {
