@@ -42,7 +42,7 @@ public class DigitDictionaryServiceImpl implements IDictionaryService {
     }
     public String viewDictionaryContents() {
         System.out.println("Содержимое цифрового словаря: ");
-        List<IConvertible> listFromDictionary = dictionaryRepository.getDictionary();
+        List<IConvertible> listFromDictionary = dictionaryRepository.getDictionary(0, 10);
         StringBuilder dictionaryContents = listToStringBuilderConverter.convert(listFromDictionary);
 
         return dictionaryContents.toString();

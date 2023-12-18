@@ -64,15 +64,18 @@ public class LatinDictionaryRepositoryImpl implements IDictionaryRepository<Lati
 
     @Override
     @Transactional(readOnly = true)
-    public List<IConvertible> getDictionary() {
+    public List<IConvertible> getDictionary(int pageNumber, int pageSize) {
+        pageNumber = pageNumber <= 0 ? 1 : pageNumber;
+        pageSize = pageSize <= 0 ? 10 : pageSize;
+
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<? extends IConvertible> query = builder.createQuery(LatinEntity.class);
 
         Root<? extends IConvertible> root = query.from(LatinEntity.class);
         query.multiselect(root.get(LATIN_KEY), root.get("latinValue"));
 
-        return (List<IConvertible>) entityManager.createQuery(query).setFirstResult(0)
-                .setMaxResults(10).getResultList();
+        return (List<IConvertible>) entityManager.createQuery(query).setFirstResult(pageNumber)
+                .setMaxResults(pageSize).getResultList();
     }
 }
 

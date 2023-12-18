@@ -68,14 +68,17 @@ public class DigitDictionaryRepositoryImpl implements IDictionaryRepository<Digi
 
     @Override
     @Transactional(readOnly = true)
-    public List<IConvertible> getDictionary() {
+    public List<IConvertible> getDictionary(int pageNumber, int pageSize) {
+        pageNumber = pageNumber <= 0 ? 1 : pageNumber;
+        pageSize = pageSize <= 0 ? 10 : pageSize;
+
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<? extends IConvertible> query = builder.createQuery(DigitEntity.class);
 
         Root<? extends IConvertible> root = query.from(DigitEntity.class);
         query.multiselect(root.get(DIGIT_KEY), root.get("digitValue"));
 
-        return (List<IConvertible>) entityManager.createQuery(query).setFirstResult(0)
-                .setMaxResults(10).getResultList();
+        return (List<IConvertible>) entityManager.createQuery(query).setFirstResult(pageNumber)
+                .setMaxResults(pageSize).getResultList();
     }
 }

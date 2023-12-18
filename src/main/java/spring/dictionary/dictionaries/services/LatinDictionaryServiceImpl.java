@@ -43,7 +43,7 @@ public class LatinDictionaryServiceImpl implements IDictionaryService {
 
     public String viewDictionaryContents() {
         System.out.println("Содержимое латинского словаря: ");
-        List<IConvertible> listFromDictionary = dictionaryRepository.getDictionary();
+        List<IConvertible> listFromDictionary = dictionaryRepository.getDictionary(0, 10);
         StringBuilder dictionaryContents = converter.convert(listFromDictionary);
 
         return dictionaryContents.toString();
